@@ -27,7 +27,7 @@ def add_bill(request):
       bill = Bill()
       bill.number = data['number']
       billsb10 = Bill_Import()
-      billsb10.set_bill_num(str(bill.number))
+      billsb10.set_bill_num(bill.number)
       billsb10.pull_billtext()
       bill_list = billsb10.billtext
       bill.text = Bill.serialize(bill_list)
@@ -55,35 +55,6 @@ def add_bill(request):
   else:
     form = BillForm()
   return render(request, 'addbill.html', {'form': form})
-
-
-def get_bill_text(number):
-
-  if not number.isalnum():
-    None
-  # Queries only senate bills in legislative session 84R
-  url = "http://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB000" + number + "I.htm"
-  #this suffix changes depending on what stage the bill is at. we could give them an option
-
-  res = requests.get(url)
-  if not res.status_code == requests.codes.ok:
-    return None
-
-  html = bs4.BeautifulSoup(res.text)
-  clean_text = html.get_text()
-  # this is actually a list of sentences
-  sentence_list = clean_text.split('.')
-  span_text = ""
-  span_id = 0
-
-  for sentence in sentence_list:
-    modified_sentence = sentence.replace('\n',"").replace('\t',"").replace('\xa0',"").replace('\r',"")
-    span = '<span id=' + str(span_id) + '>' + modified_sentence + '</span>'
-    span_text += span
-    span_id += 1
-
-  return span_text
-
 
 def bill(request, bill_id):
   try:
@@ -168,56 +139,6 @@ def edit_bill(request, bill_id):
 
 def example_client(request):
   return render(request, 'example.html')
-
-from django.core.serializers import serialize
-
-def get_bill(request):
-  print(request.GET)
-  bill = Bill()
-  bill.number = request.GET['bill_number']
-  # #bill_txt = get_bill_text(str(bill.number))
-  # #print("Checkpoint2")
-  # #if (bill_txt == None):
-  # #  return Http404
-  # #else:
-  # #  bill.text = bill_txt
-  # #subjects = get_history("SB", str(bill.number))
-  # #bill.subjects = Bill.serialize(subjects)
-  # print("Checkpoint2")
-  # ####
-  billsb10 = Bill_Import()
-  billsb10.set_bill_num('10')
-  billsb10.pull_billtext()
-  bill_list = billsb10.billtext
-  bill.text = Bill.serialize(bill_list)
-  # print("Checkpoint3")
-  billsb10.pull_history()
-  # print("Checkpoint4")
-  billsb10.set_authors()
-  bill.authors = Bill.serialize(billsb10.authors)
-  # print("Checkpoint5")
-  billsb10.set_coauthors()
-  bill.coauthors = Bill.serialize(billsb10.coauthors)
-  # print("Checkpoint5")
-  billsb10.set_subjects()
-  bill.subjects = Bill.serialize(billsb10.subjects)
-  # print("Checkpoint6")
-  billsb10.set_cosponsors()
-  bill.cosponsors = Bill.serialize(billsb10.cosponsors)
-  # print("Checkpoint7")
-  billsb10.set_sponsors()
-  bill.sponsors = Bill.serialize(billsb10.sponsors)
-  # print('authors', Bill.deserialize(bill.authors))
-  # print('billtext', Bill.deserialize(bill.text))
-  # print('subjects', Bill.deserialize(bill.subjects))
-  # print('coauthors', Bill.deserialize(bill.coauthors))
-  # print('sponsors', Bill.deserialize(bill.sponsors))
-  # print('cosponsors', Bill.deserialize(bill.cosponsors))
-
-  # ####
-
-  bill.save()
-  return HttpResponse(serialize('json', [bill]))
 
 def megalith(request):
   return render(request, 'megalith/megalith.html')

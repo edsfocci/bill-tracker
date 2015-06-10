@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+'''
 import requests, bs4
 
 bill_number = input('bill number')
@@ -37,3 +38,4 @@ for i in badchars:
 
 print(stringtext)
 #print(span_list)
+'''
