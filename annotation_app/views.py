@@ -140,7 +140,6 @@ def edit_bill(request, bill_id):
 def example_client(request):
   return render(request, 'example.html')
 
-<<<<<<< HEAD
 def megalith(request):
   return render(request, 'megalith/megalith.html')
   

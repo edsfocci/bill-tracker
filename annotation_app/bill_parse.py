@@ -51,13 +51,22 @@ class Bill_Import():
             if not res.status_code == requests.codes.ok:
                 print('not a vaild bill!')
                 break
-            html = bs4.BeautifulSoup(res.text)
-            clean_text = html.get_text()
-            clean_text = clean_text.split()
-            clean_text = ' '.join(clean_text)
-            clean_text = re.sub(r'\{.+\}\s*', '',clean_text)
-            self.billtext.append(clean_text)
-
+            self.billtext.append(res.text)
+            
+    def remove_empty_tag(self):
+        print('empty tag func')
+        taglist = ['td','tr','u']
+        domfile = bs4.BeautifulSoup(self.billtext[-1])
+        for x in range(len(taglist)):
+            i = 0
+            while i < (len(domfile(taglist[x]))):
+                #print(taglist[x])
+                if domfile(taglist[x])[i].getText().isspace():
+                    domfile(taglist[x])[i].extract()
+                else:
+                    i +=1
+        a = domfile.prettify()
+        self.billtext[-1] = a
 
     def pull_history(self):
         if self.issenate:
@@ -106,3 +115,8 @@ class Bill_Import():
             self.rawhistory.find('td',id = cellid).getText()
             text = self.rawhistory.find('td',id = cellid).getText().split('|')
             return text
+
+newbill = Bill_Import()
+newbill.bill_number = '15'
+newbill.pull_billtext()
+newbill.remove_empty_tag()
