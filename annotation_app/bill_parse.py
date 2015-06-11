@@ -77,9 +77,8 @@ class Bill_Import():
         #gets the first sentence of the bill.
         for x in domfile('td'):
             chkstring = x.get_text() #TODO ask mark if he wants the text extracted.
-            b = re.search('[.]',chkstring)
             title1 += re.sub(r'(\s\s+)',r' ', chkstring) #strips repeated whitespace
-            if b is not None:
+            if re.search('[.]',chkstring) is not None:
                 break
         self.title = [title1]
     
