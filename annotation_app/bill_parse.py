@@ -21,6 +21,7 @@ class Bill_Import():
         self.coauthors = list()
         self.cosponsors = list()
         self.sponsors = list()
+        self.title = list()
     def set_bill_num(self, num):
         num = str(num)
         if not num.isalnum():
@@ -68,6 +69,20 @@ class Bill_Import():
         a = domfile.prettify()
         self.billtext[-1] = a
 
+    def get_title(self):
+        domfile = bs4.BeautifulSoup(self.billtext[-1])
+        title1 = re.sub(r'(\s\s+)',r' ', domfile('title')[0].extract().get_text())
+        #gets the second table in text which contains the bill. 
+        domfile = domfile('table')[1].extract()
+        #gets the first sentence of the bill.
+        for x in domfile('td'):
+            chkstring = x.get_text() #TODO ask mark if he wants the text extracted.
+            b = re.search('[.]',chkstring)
+            title1 += re.sub(r'(\s\s+)',r' ', chkstring) #strips repeated whitespace
+            if b is not None:
+                break
+        self.title = [title1]
+    
     def pull_history(self):
         if self.issenate:
             chamber = 'SB'
@@ -82,7 +97,6 @@ class Bill_Import():
         regex = re.compile(".*?\((.*?)\)")
         # Find all the strings between (...) - parenthesis
         result = re.findall(regex, td)
-
         # Delete the content between the parenthesis
         for par in result:
           td = td.replace(par, "")
@@ -115,8 +129,10 @@ class Bill_Import():
             self.rawhistory.find('td',id = cellid).getText()
             text = self.rawhistory.find('td',id = cellid).getText().split('|')
             return text
-
+       
 newbill = Bill_Import()
 newbill.bill_number = '15'
 newbill.pull_billtext()
 newbill.remove_empty_tag()
+newbill.get_title()
+print(newbill.title)
