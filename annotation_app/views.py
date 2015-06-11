@@ -15,6 +15,8 @@ def index(request):
 
 def bill_list(request):
   bill_list = Bill.objects.all()
+  for bill in bill_list:
+    bill.text = text_frontend(bill.text)
   context = {'bill_list': bill_list}
   return render(request, 'bill-list.html', context)
 
@@ -48,8 +50,6 @@ def add_bill(request):
       print('sponsors', Bill.deserialize(bill.sponsors))
       print('cosponsors', Bill.deserialize(bill.cosponsors))
 
-      ####
-
       bill.save()
       return HttpResponseRedirect('/bills/%d/' % bill.id)
   else:
@@ -62,6 +62,7 @@ def bill(request, bill_id):
   except Bill.DoesNotExist:
     raise Http404
   annotation_list = Annotation.objects.filter(bill_id=bill)
+  bill.text = text_frontend(bill.text)
   context = {'bill': bill, 'annotation_list': annotation_list}
   return render(request, 'bill.html', context)
 
@@ -117,7 +118,6 @@ def comment(request, comment_id):
   context = {'comment': comment}
   return render(request, 'comment.html', context)
 
-# TODO: Implement
 
 def edit_bill(request, bill_id):
   try:
@@ -140,6 +140,7 @@ def edit_bill(request, bill_id):
 def example_client(request):
   return render(request, 'example.html')
 
+<<<<<<< HEAD
 def megalith(request):
   return render(request, 'megalith/megalith.html')
   
@@ -190,3 +191,34 @@ def get_bill(request):
 
   bill.save()
   return HttpResponse(serialize('json', [bill]))
+=======
+from django.core.serializers import serialize
+
+def megalith(request):
+  return render(request, 'megalith/megalith.html')
+
+import re
+
+def text_frontend(text):
+  output = text
+  output = output.split('", "')[0]
+#  output.replace('["', '')
+
+  if re.search('</span>', output):
+    output = output.replace('</span>', '.</span>').replace('\\',"")
+    output = str(re.sub(r'\{.+\}\s*', '', output))
+    return output
+  else:
+    sentence_list = output.split('.')
+    sentence_list.pop()
+    span_text = ""
+    span_id = 1
+
+    for sentence in sentence_list:
+      modified_sentence = sentence.replace('\n',"").replace('\t',"").replace('\xa0',"").replace('\r',"").replace('\\',"")
+      span = '<span id="' + str(span_id) + '">' + modified_sentence + '.</span>'
+      span_text += span
+      span_id += 1
+
+    return span_text
+>>>>>>> 893d7ffba90ef59026d0713c7da0220267151fe1

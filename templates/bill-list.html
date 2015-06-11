@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block content %}
 <div class="container">
 <div class="row">
 <div class="col-lg-8">
@@ -8,46 +9,21 @@
     <h1 id="navbar">Bill List</h1>
   </div>
 
-{% block content %}
-
   <div class="container bill-list">
-  
-  {% if bill_list %}
 
     <ul class="nav nav-pills nav-stacked">
       {% for bill in bill_list %}
         <li class="active"><a href="/bills/{{ bill.id }}/">
-          {{ bill.text|slice:":1000"|safe }}
+          {{ bill.text|slice:":1000"|safe }}</span>
         </a></li>
       {% endfor %}
     </ul>
-
-    {% else %}
-
-      <!-- <p>you haven't added any bills yet!</p> -->
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="/bills/1/">
-          <span id="1">84(R) SB 10 - Engrossed version - Bill Text By: Huffman, Birdwell</span><span id="2">A bill to be entitled an act relating to the investigation and prosecution of offenses against public administration, including ethics offenses</span>
-        </a></li>
-        <li class="active"><a href="/bills/1/">
-          <span id="1">84(R) SB 10 - Engrossed version - Bill Text By: Huffman, Birdwell</span><span id="2">A bill to be entitled an act relating to the investigation and prosecution of offenses against public administration, including ethics offenses</span>
-        </a></li>
-        <li class="active"><a href="/bills/1/">
-          <span id="1">84(R) SB 10 - Engrossed version - Bill Text By: Huffman, Birdwell</span><span id="2">A bill to be entitled an act relating to the investigation and prosecution of offenses against public administration, including ethics offenses</span>
-        </a></li>
-        <li class="active"><a href="/bills/1/">
-          <span id="1">84(R) SB 10 - Engrossed version - Bill Text By: Huffman, Birdwell</span><span id="2">A bill to be entitled an act relating to the investigation and prosecution of offenses against public administration, including ethics offenses</span>
-        </a></li>
-      </ul>
-
-    {% endif %}
 
     <a class="btn btn-primary addBillButton" href="/addbill/">Add new bill</a>
 
   </div>
 
+</div>
+</div>
+</div>
 {% endblock %}
-
-</div>
-</div>
-</div>
