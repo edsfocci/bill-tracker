@@ -5,11 +5,13 @@ Created on Wed Jun 10 22:04:34 2015
 @author: Deepti Boddapati
 /deeptiboddapati
 """
-import bs4, re, itertools
-'''
+import bs4, re, itertools, collections
+
 def remove_empty_tag():
-    taglist = ['td','tr','u']   
-    
+    taglist = ['td','tr','u'] 
+    file = open('file.html', 'r')    
+    lines = bs4.BeautifulSoup(file.read())
+    file.close() 
     for x in range(len(taglist)):
         i = 0
         while i < (len(lines(taglist[x]))):
@@ -17,7 +19,11 @@ def remove_empty_tag():
                 lines(taglist[x])[i].extract()
             else:
                 i +=1
+    writef = open('destfile.html', 'w')
+    writef.write(lines.prettify())
+    writef.close()
 
+'''
 def remove_title():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
@@ -40,21 +46,32 @@ def consolidate_tag():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
     file.close()
-    count = 0
-    desc = 0
-    for i in lines('tr'):
+    tags = ['html', 'body', 'tr', 'td', 'u']
+    ''''
+    #will find all html tags in doc for now its hard coded. 
+    for tag in lines.find_all(True):
+        tags.append(tag.name)
+    '''
+    for i in lines('td'): #removes upperlevel navigable strings.
         for x in list(i.children):
-            print(x.siblings)
+            print(type(x))
             if type(x) == bs4.element.NavigableString:
                 x.extract()
-    for m in lines('tr'):
+    file = open('destfile.html', 'w')
+    file.write(lines.prettify())
+    file.close()
+    '''
+    for m in lines(tags[0:]):
+        print(type(m))
         for x in list(m.children):
-            print('loop',x, x.siblings)
-            
+            if x.siblings == True:
+                print('true')
+    '''
+
 def main():
     remove_empty_tag()
     #title = remove_title()
     #print([title])
-    consolidate_tag()
+    #consolidate_tag()
     
 main()
