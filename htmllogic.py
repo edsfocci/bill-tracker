@@ -5,8 +5,8 @@ Created on Wed Jun 10 22:04:34 2015
 @author: Deepti Boddapati
 /deeptiboddapati
 """
-import bs4, re
-
+import bs4, re, itertools
+'''
 def remove_empty_tag():
     taglist = ['td','tr','u']   
     
@@ -17,7 +17,7 @@ def remove_empty_tag():
                 lines(taglist[x])[i].extract()
             else:
                 i +=1
-'''
+
 def remove_title():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
@@ -40,17 +40,21 @@ def consolidate_tag():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
     file.close()
-    for x in lines('tr'):
-        for i in x.descendants:
-            for y in i.find_next_siblings():
-                if y is None:
-                    y.extract()
-                elif y.name == i.name:
-                    print(y.string)
-    print(i)
+    count = 0
+    desc = 0
+    for i in lines('tr'):
+        for x in list(i.children):
+            print(x.siblings)
+            if type(x) == bs4.element.NavigableString:
+                x.extract()
+    for m in lines('tr'):
+        for x in list(m.children):
+            print('loop',x, x.siblings)
+            
 def main():
     remove_empty_tag()
     #title = remove_title()
     #print([title])
     consolidate_tag()
+    
 main()
