@@ -47,17 +47,14 @@ def consolidate_tag():
     lines = bs4.BeautifulSoup(file.read())
     file.close()
     tags = ['html', 'body', 'tr', 'td', 'u']
-    ''''
-    #will find all html tags in doc for now its hard coded. 
-    for tag in lines.find_all(True):
-        tags.append(tag.name)
-    '''
+
     for i in lines(tags): #removes upperlevel navigable strings.
         for x in list(i.children):
             #print(type(x))
             if type(x) == bs4.element.NavigableString and len(x) <= 1:
                 x.extract()
-    for i in lines('td'):
+
+    for i in lines(tags[3]):
         i.unwrap()
     for i in lines(tags[-1]):
         #find out if tag has siblings. 
@@ -67,17 +64,17 @@ def consolidate_tag():
                 # if the name is the the same then remove the text and place inside tag.
                 if x.name == i.name:
                     i.append(x.extract().get_text())
-
+    ptag = lines.new_tag('p', {'id':"SECTION"})
+    for i in list(lines('tr')):
+        #check what the first word is
+        for x in list(i.stripped_strings):
+            if 'SECTION' in x:
+                print(i)
+            
+                i.wrap(ptag)
     file = open('destfile.html', 'w')
     file.write(lines.prettify())#Adds whitespace back in for formatting. 
     file.close()
-    '''
-    for m in lines(tags[0:]):
-        print(type(m))
-        for x in list(m.children):
-            if x.siblings == True:
-                print('true')
-    '''
 
 def main():
     remove_empty_tag()
