@@ -6,7 +6,7 @@ Created on Wed Jun 10 22:04:34 2015
 /deeptiboddapati
 """
 import bs4, re, itertools, collections
-'''
+
 def remove_empty_tag():
     taglist = ['td','tr','u'] 
     file = open('file.html', 'r')    
@@ -41,7 +41,7 @@ def remove_title():
     writef.write(lines.prettify())
     writef.close()
     return title
-'''
+
 def consolidate_tag():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
@@ -57,11 +57,16 @@ def consolidate_tag():
             #print(type(x))
             if type(x) == bs4.element.NavigableString and len(x) <= 1:
                 x.extract()
-    for i in lines(tags):
+    for i in lines('td'):
+        i.unwrap()
+    for i in lines(tags[-1]):
+        #find out if tag has siblings. 
         if len(i.find_next_siblings()) > 0:
-            print('I have siblings!')
-        # if there are siblings see if their name is the same as yours.
-        # if the name is the the same then take their text out and put it inside yourself.
+            # if there are siblings see if their tag is the same
+            for x in (list(i.find_next_siblings())):
+                # if the name is the the same then remove the text and place inside tag.
+                if x.name == i.name:
+                    i.append(x.extract().get_text())
 
     file = open('destfile.html', 'w')
     file.write(lines.prettify())#Adds whitespace back in for formatting. 
@@ -75,8 +80,8 @@ def consolidate_tag():
     '''
 
 def main():
-    #remove_empty_tag()
-    #remove_title()
+    remove_empty_tag()
+    remove_title()
     #print([title])
     consolidate_tag()
     file = open('destfile.html', 'r')    
