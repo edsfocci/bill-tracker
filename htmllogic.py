@@ -55,16 +55,15 @@ def consolidate_tag():
     for i in lines(tags): #removes upperlevel navigable strings.
         for x in list(i.children):
             #print(type(x))
-            if type(x) == bs4.element.NavigableString:
-                if len(x) <= 1:
-                    x.extract()
-    for i in lines(tags): #removes upperlevel navigable strings.
-        for x in list(i.children):
-            if type(x) == bs4.element.NavigableString:
-                if len(x) <= 1:
-                    print('found empty')
+            if type(x) == bs4.element.NavigableString and len(x) <= 1:
+                x.extract()
+    print(lines('u')[8])
+    print(len(lines('u')[8].find_next_siblings()))
+        # if there are siblings see if their name is the same as yours.
+        # if the name is the the same then take their text out and put it inside yourself.
+
     file = open('destfile.html', 'w')
-    file.write(lines.prettify())
+    file.write(lines.prettify())#Adds whitespace back in for formatting. 
     file.close()
     '''
     for m in lines(tags[0:]):
@@ -75,18 +74,12 @@ def consolidate_tag():
     '''
 
 def main():
-    remove_empty_tag()
-    remove_title()
+    #remove_empty_tag()
+    #remove_title()
     #print([title])
     consolidate_tag()
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
     file.close()
     print('inmain')
-    tags = ['html', 'body', 'tr', 'td', 'u']
-    for i in lines(tags): #removes upperlevel navigable strings.
-        for x in list(i.children):
-            if type(x) == bs4.element.NavigableString:
-                if len(x) <= 1:
-                    print('found empty')
 main()
