@@ -6,7 +6,7 @@ Created on Wed Jun 10 22:04:34 2015
 /deeptiboddapati
 """
 import bs4, re, itertools, collections
-
+'''
 def remove_empty_tag():
     taglist = ['td','tr','u'] 
     file = open('file.html', 'r')    
@@ -23,7 +23,7 @@ def remove_empty_tag():
     writef.write(lines.prettify())
     writef.close()
 
-'''
+
 def remove_title():
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
@@ -52,11 +52,17 @@ def consolidate_tag():
     for tag in lines.find_all(True):
         tags.append(tag.name)
     '''
-    for i in lines('td'): #removes upperlevel navigable strings.
+    for i in lines(tags): #removes upperlevel navigable strings.
         for x in list(i.children):
-            print(type(x))
+            #print(type(x))
             if type(x) == bs4.element.NavigableString:
-                x.extract()
+                if len(x) <= 1:
+                    x.extract()
+    for i in lines(tags): #removes upperlevel navigable strings.
+        for x in list(i.children):
+            if type(x) == bs4.element.NavigableString:
+                if len(x) <= 1:
+                    print('found empty')
     file = open('destfile.html', 'w')
     file.write(lines.prettify())
     file.close()
@@ -70,8 +76,17 @@ def consolidate_tag():
 
 def main():
     remove_empty_tag()
-    #title = remove_title()
+    remove_title()
     #print([title])
-    #consolidate_tag()
-    
+    consolidate_tag()
+    file = open('destfile.html', 'r')    
+    lines = bs4.BeautifulSoup(file.read())
+    file.close()
+    print('inmain')
+    tags = ['html', 'body', 'tr', 'td', 'u']
+    for i in lines(tags): #removes upperlevel navigable strings.
+        for x in list(i.children):
+            if type(x) == bs4.element.NavigableString:
+                if len(x) <= 1:
+                    print('found empty')
 main()
