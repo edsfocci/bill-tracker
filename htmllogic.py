@@ -57,8 +57,9 @@ def consolidate_tag():
             #print(type(x))
             if type(x) == bs4.element.NavigableString and len(x) <= 1:
                 x.extract()
-    print(lines('u')[8])
-    print(len(lines('u')[8].find_next_siblings()))
+    for i in lines(tags):
+        if len(i.find_next_siblings()) > 0:
+            print('I have siblings!')
         # if there are siblings see if their name is the same as yours.
         # if the name is the the same then take their text out and put it inside yourself.
 
