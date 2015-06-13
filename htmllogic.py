@@ -64,14 +64,19 @@ def consolidate_tag():
                 # if the name is the the same then remove the text and place inside tag.
                 if x.name == i.name:
                     i.append(x.extract().get_text())
-    ptag = lines.new_tag('p', {'id':"SECTION"})
+    ptag = lines.new_tag('p', {id :"SECTION"})
+    count = 0
     for i in list(lines('tr')):
         #check what the first word is
-        for x in list(i.stripped_strings):
-            if 'SECTION' in x:
-                print(i)
-            
-                i.wrap(ptag)
+        print(count, list(i.stripped_strings)[0], list(i.stripped_strings)[0].find('SECTION')== True)
+        print(i.name)
+        count += 1
+        '''
+        if 'SECTION' in list(i.stripped_strings)[0]:
+            print(i.parent.name)
+            i.wrap(ptag)
+            print(i.parent.name)
+        '''
     file = open('destfile.html', 'w')
     file.write(lines.prettify())#Adds whitespace back in for formatting. 
     file.close()
