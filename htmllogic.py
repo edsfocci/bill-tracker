@@ -49,7 +49,7 @@ def consolidate_tag():
     tags = ['html', 'body', 'tr', 'td', 'u']
 
     for i in lines(tags): #removes upperlevel navigable strings.
-        for x in list(i.children):
+        for x in i.children:
             #print(type(x))
             if type(x) == bs4.element.NavigableString and len(x) <= 1:
                 x.extract()
@@ -60,23 +60,18 @@ def consolidate_tag():
         #find out if tag has siblings. 
         if len(i.find_next_siblings()) > 0:
             # if there are siblings see if their tag is the same
-            for x in (list(i.find_next_siblings())):
+            for x in i.find_next_siblings():
                 # if the name is the the same then remove the text and place inside tag.
                 if x.name == i.name:
                     i.append(x.extract().get_text())
-    ptag = lines.new_tag('p', {id :"SECTION"})
+    ptag = lines.new_tag('p', class_ = "SECTION")
     count = 0
-    for i in list(lines('tr')):
+    for i in lines('tr'):
         #check what the first word is
-        print(count, list(i.stripped_strings)[0], list(i.stripped_strings)[0].find('SECTION')== True)
-        print(i.name)
-        count += 1
-        '''
-        if 'SECTION' in list(i.stripped_strings)[0]:
-            print(i.parent.name)
-            i.wrap(ptag)
-            print(i.parent.name)
-        '''
+        if 'SECTION' in i.get_text():
+            i.name = "p"
+            i['class'] = "SECTION"
+
     file = open('destfile.html', 'w')
     file.write(lines.prettify())#Adds whitespace back in for formatting. 
     file.close()
