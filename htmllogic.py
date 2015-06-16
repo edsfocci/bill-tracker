@@ -14,6 +14,7 @@ def remove_empty_tag():
     file.close() 
     for x in range(len(taglist)):
         i = 0
+        # removes the tags with just space in them.
         while i < (len(lines(taglist[x]))):
             if lines(taglist[x])[i].getText().isspace():
                 lines(taglist[x])[i].extract()
@@ -34,8 +35,9 @@ def remove_title():
     for x in lines('td'):
         chkstring = x.get_text() #TODO ask mark if he wants the text extracted.
         b = re.search('[.]',chkstring)
+        #replaces weird spaces with normal spacing. 
         title += re.sub(r'(\s\s+)',r' ', chkstring) 
-        if b is not None:
+        if b is not None:#stops the loop when a period is found. 
             break
     writef = open('destfile.html', 'w')
     writef.write(lines.prettify())
@@ -50,10 +52,8 @@ def consolidate_tag():
 
     for i in lines(tags): #removes upperlevel navigable strings.
         for x in i.children:
-            #print(type(x))
             if type(x) == bs4.element.NavigableString and len(x) <= 1:
                 x.extract()
-
     for i in lines(tags[3]):
         i.unwrap()
     for i in lines(tags[-1]):
@@ -78,8 +78,8 @@ def consolidate_tag():
 
 def main():
     remove_empty_tag()
-    remove_title()
-    #print([title])
+    title = remove_title()
+    print([title])
     consolidate_tag()
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())

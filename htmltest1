@@ -1,4 +1,6 @@
-   <tr>
+import bs4, re, itertools, collections
+
+a = "<tr>
     <u>
      (b)
      The prosecuting attorney described by Subsection
@@ -33,7 +35,7 @@
     </u>
    </tr>
     <tr>
-    SECTION 1.  Chapter 402, Government Code, is amended by
+    SECTIONÂ 1.Â Â Chapter 402, Government Code, is amended by
    </tr>
    <tr>
     adding Subchapter D to read as follows:
@@ -45,6 +47,8 @@
    </tr>
    <tr>
     <u>
-     Sec. 402.101.  DEFINITIONS.  In this subchapter:
+     Sec.Â 402.101.Â Â DEFINITIONS.Â Â In this subchapter:
     </u>
-   </tr> 
+   </tr>"
+
+   type(a)
