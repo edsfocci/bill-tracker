@@ -1,41 +1,66 @@
 import bs4, re, itertools, collections
 
-file = open('destfile.html', 'r')    
-lines = bs4.BeautifulSoup(file.read())
-file.close()
 
 #find tr
 #Make a list of prev siblings
 #go back to the first one with a name
 #check if its tr if so consoliidate and name it p
 
-count = 0
-a = list(lines('li')[0].previous_siblings)+list(lines('li')[0].next_siblings)
-b =list(lines('tr')[0].previous_siblings) + list(lines('tr')[0].next_siblings)
-print('is a b', len(a) == len(b))
-print(len(list(lines('li')[0].next_siblings) + list(lines('li')[0].previous_siblings)))
-for x in (list(lines('tr')[0].next_siblings) + list(lines('tr')[0].previous_siblings)):
-	print('"',x,"'")
-	print(len(list(lines('tr')[0].next_siblings)))
-	if type(x) == bs4.element.NavigableString:
-		print('extracting')
-		x.extract()
+def remove_space(tag):
+	file = open('destfile.html', 'r')    
+	lines = bs4.BeautifulSoup(file.read())
+	file.close()
+	for x in (list(lines(tag)[0].next_siblings) + list(lines(tag)[0].previous_siblings)):
+		if type(x) == bs4.element.NavigableString:
+			x.extract()
+	return lines
 
-print('outside for', len(list(lines('li')[0].next_siblings) + list(lines('li')[0].previous_siblings)))
+def consolidate_tag(rem, tag):
+	if rem == 'parent':
+		lines = rm_tag_str_parent(tag)
+	elif rem == 'sibling same name':
+		lines = rm_tag_str_same_sib(tag)
+	elif rem == 'sibling different name':
+		lines = rm_tag_str_dif_sib(tag)
+	else:
+		print('Must specify how you want to remove the tag.')
+	return(lines)
+def rm_tag_str_parent(tag):
+	lines = remove_space(tag)
+	for i in lines(tag):
+		i.unwrap()
+	return(lines)
+def rm_tag_str_dif_sib(tag):
+	lines = remove_space(tag)
+	for y in lines(tag): #removes tr tags and puts their strings into other tags.
+		firstele = True
+		while y.previous_sibling and y.previous_sibling.name != tag:
+			firstele = False
+			y.previous_sibling.string = y.previous_sibling.string + y.string
+			m = y.previous_sibling
+			y.decompose()
+		if firstele:
+			y.name = 'p'
+	return(lines)
 
-l = list(lines('li')[0].previous_siblings)+list(lines('li')[0].next_siblings)
+def rm_tag_str_same_sib(tag):
+	lines = remove_space(tag)
+	for i in lines(tag):
+		#find out if tag has siblings. 
+		if i.find_next_siblings():
+			# if there are siblings see if their tag is the same
+			for x in i.find_next_siblings():
+				# if the name is the the same then remove the text and place inside tag.
+				if x.name == i.name:
+					i.append(x.extract().get_text())
+	return(lines)
 
+lines = remove_space('tr')
+a = list()
+for ele in lines.find_all(True):
+	a.append(ele.name)
+print(set(a))
 
-for y in lines('tr'): #removes tr tags and puts their strings into other tags.
-	firstele = True
-	while y.previous_sibling and y.previous_sibling.name != 'tr':
-		firstele = False
-		y.previous_sibling.string = y.previous_sibling.string+y.string
-		m = y.previous_sibling
-		y.decompose()
-	if firstele:
-		y.name = 'p'
-print(lines.prettify())
 '''
 SECTION
 
