@@ -56,7 +56,8 @@ def consolidate_tag():
                 x.extract()
     for i in lines(tags[3]):
         i.unwrap()
-    for i in lines(tags[-1]):
+
+    for i in lines(tags[4]):
         #find out if tag has siblings. 
         if len(i.find_next_siblings()) > 0:
             # if there are siblings see if their tag is the same
@@ -64,23 +65,42 @@ def consolidate_tag():
                 # if the name is the the same then remove the text and place inside tag.
                 if x.name == i.name:
                     i.append(x.extract().get_text())
-    ptag = lines.new_tag('p', class_ = "SECTION")
-    count = 0
-    for i in lines('tr'):
-        #check what the first word is
-        if 'SECTION' in i.get_text():
-            i.name = "p"
-            i['class'] = "SECTION"
 
     file = open('destfile.html', 'w')
     file.write(lines.prettify())#Adds whitespace back in for formatting. 
     file.close()
 
+def add_tags():
+    file = open('destfile.html', 'r')    
+    lines = bs4.BeautifulSoup(file.read())
+    file.close()
+    sec = re.compile("\A(SECTION)")
+    sec1 =  re.compile("\A(Sec)")
+    sec3 = re.compile("\A(SUBCHAPTER)")
+    sec4 = re.compile("\A(\(.\))(?!\s\(.\))")
+
+    regcheck = [[sec, 'SECTION', "p" ], [sec1, "Sec", 'p' ],[sec3,"Subchapter", "p"],[sec4, "list", "li" ]]
+
+    #find each expression and add the classes above to it.
+    for x in regcheck:#TODO google double for
+        for i in lines('tr'):
+            #check what the first word is
+            if re.search(x[0], list(i.stripped_strings)[0]):
+                i.name = x[2]
+                i['class'] = x[1]
+    print(type(lines("tr")[3].previous_sibling), len(lines("tr")[3].previous_sibling))
+    file = open('destfile.html', 'w')
+    file.write(lines.prettify())#Adds whitespace back in for formatting. 
+    file.close()
+
+    
+
+
 def main():
     remove_empty_tag()
     title = remove_title()
-    print([title])
     consolidate_tag()
+    add_tags()
     file = open('destfile.html', 'r')    
     lines = bs4.BeautifulSoup(file.read())
     file.close()
