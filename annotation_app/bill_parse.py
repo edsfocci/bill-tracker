@@ -1,7 +1,7 @@
 import re
 import bs4
 import requests
-
+from htmllogic import html_cleanup
 class Bill_Import():
 
     def __init__(self):
@@ -53,34 +53,6 @@ class Bill_Import():
                 print('not a vaild bill!')
                 break
             self.billtext.append(res.text)
-            
-    def remove_empty_tag(self):
-        print('empty tag func')
-        taglist = ['td','tr','u']
-        domfile = bs4.BeautifulSoup(self.billtext[-1])
-        for x in range(len(taglist)):
-            i = 0
-            while i < (len(domfile(taglist[x]))):
-                #print(taglist[x])
-                if domfile(taglist[x])[i].getText().isspace():
-                    domfile(taglist[x])[i].extract()
-                else:
-                    i +=1
-        a = domfile.prettify()
-        self.billtext[-1] = a
-
-    def get_title(self):
-        domfile = bs4.BeautifulSoup(self.billtext[-1])
-        title1 = re.sub(r'(\s\s+)',r' ', domfile('title')[0].extract().get_text())
-        #gets the second table in text which contains the bill. 
-        domfile = domfile('table')[1].extract()
-        #gets the first sentence of the bill.
-        for x in domfile('td'):
-            chkstring = x.get_text() #TODO ask mark if he wants the text extracted.
-            title1 += re.sub(r'(\s\s+)',r' ', chkstring) #strips repeated whitespace
-            if re.search('[.]',chkstring) is not None:
-                break
-        self.title = [title1]
     
     def pull_history(self):
         if self.issenate:
@@ -103,11 +75,13 @@ class Bill_Import():
         # Skip last element (it's an empty string anyway)
         subjects_list = subjects_list[:len(subjects_list)-1]
         self.subjects = subjects_list
+
     def set_data(self):
         self.set_author()
         self.set_coauthor()
         self.set_sponsors()
         self.set_cosponsors()
+        self.set_subjects()
         
     def set_author(self):
         self.authors = self.check_empty('cellAuthors')
@@ -129,9 +103,3 @@ class Bill_Import():
             text = self.rawhistory.find('td',id = cellid).getText().split('|')
             return text
        
-newbill = Bill_Import()
-newbill.bill_number = '15'
-newbill.pull_billtext()
-newbill.remove_empty_tag()
-newbill.get_title()
-print(newbill.title)

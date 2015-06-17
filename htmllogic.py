@@ -18,10 +18,8 @@ class html_cleanup():
         self.taglist = ['a']
         self.title = ''
 
-    def set_text(self, text = 'a'):
-        file = open('file.html', 'r')    
-        self.text = bs4.BeautifulSoup(file.read())
-        file.close()
+    def set_text(self, text = 'a'):   
+        self.text = bs4.BeautifulSoup(text.text)
         a = list()
         for ele in self.text.find_all(True):
             a.append(ele.name)
@@ -126,7 +124,4 @@ def main():
     ttobj.add_tags('tr')
     #consolidate tag diff sib tr
     ttobj.consolidate_tag('sibling different name', 'tr')
-    fi = open('destfile.html','w')
-    fi.write(str(ttobj.text))
-    fi.close()
 main()
