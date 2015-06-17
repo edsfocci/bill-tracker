@@ -1,7 +1,8 @@
 import re
 import bs4
 import requests
-from htmllogic import html_cleanup
+import htmllogic
+
 class Bill_Import():
 
     def __init__(self):
@@ -53,6 +54,7 @@ class Bill_Import():
                 print('not a vaild bill!')
                 break
             self.billtext.append(res.text)
+        self.billtext[-1] = htmllogic.htmltext(self.billtext[-1])
     
     def pull_history(self):
         if self.issenate:
@@ -102,4 +104,8 @@ class Bill_Import():
             self.rawhistory.find('td',id = cellid).getText()
             text = self.rawhistory.find('td',id = cellid).getText().split('|')
             return text
-       
+
+billsb10 = Bill_Import()
+billsb10.set_bill_num('70')
+billsb10.pull_billtext()
+print(billsb10.billtext[-1])
