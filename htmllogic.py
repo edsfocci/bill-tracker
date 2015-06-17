@@ -19,7 +19,7 @@ class html_cleanup():
         self.title = ''
 
     def set_text(self, text = 'a'):   
-        self.text = bs4.BeautifulSoup(text.text)
+        self.text = bs4.BeautifulSoup(text)
         a = list()
         for ele in self.text.find_all(True):
             a.append(ele.name)
@@ -106,10 +106,10 @@ class html_cleanup():
 
 
 
-def main():
+def htmltext(text):
     ttobj = html_cleanup()
     #set text
-    ttobj.set_text()
+    ttobj.set_text(text)
     #remove empty tag
     ttobj.remove_empty_tag()
     #consolidate tag same sib u
@@ -124,4 +124,4 @@ def main():
     ttobj.add_tags('tr')
     #consolidate tag diff sib tr
     ttobj.consolidate_tag('sibling different name', 'tr')
-main()
+    return ttobj.text
