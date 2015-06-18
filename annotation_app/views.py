@@ -94,7 +94,8 @@ def save_subjects(bill, subjects):
       # Associate this subject with imported bill
       subject.bills.add(bill)
       subject.save()
-
+#do we need get_bill_text?      
+'''
 def get_bill_text(number):
 
   if not number.isalnum():
@@ -121,7 +122,7 @@ def get_bill_text(number):
     span_id += 1
 
   return span_text
-
+'''
 
 @ensure_csrf_cookie
 def bill(request, bill_id):
@@ -144,8 +145,9 @@ def author(request, author_id):
     raise Http404
   context = {'author': author}
   return render(request, 'author.html', context)
-
+#what is this cookie?
 @ensure_csrf_cookie
+#pipes a subject to the front end
 def subject(request, subject_id):
   try:
     subject = Subject.objects.get(id = subject_id)
@@ -153,25 +155,25 @@ def subject(request, subject_id):
     raise Http404
   context = {'subject': subject}
   return render(request, 'subject.html', context)
-
+#pipes all bills to front end.
 def get_bill_list(request):
   #TODO optimize
   data = serializers.serialize("json", Bill.objects.all())
-  print(data)
+  #print(data)
   return HttpResponse(data)
-
+# pipes all subjects to front end.
 def get_subject_list(request):
   #TODO optimize
   data = serializers.serialize("json", Subject.objects.all())
   print(data)
   return HttpResponse(data)
-
+#pipes authors to front end
 def get_author_list(request):
   #TODO optimize
   data = serializers.serialize("json", Senator.objects.all())
   print(data)
   return HttpResponse(data)
-
+#pipes bills by author to the front end.
 def get_author_bills(request):
   author_id = request.GET.get("id")
   #TODO optimize
@@ -181,6 +183,7 @@ def get_author_bills(request):
   print(data)
   return HttpResponse(data)
 
+#pipes subjects to the front end.
 def get_subject_bills(request):
   subject_id = request.GET.get("id")
   #TODO optimize
