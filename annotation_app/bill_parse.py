@@ -52,7 +52,8 @@ class Bill_Import():
                 print('not a vaild bill!')
                 break
             self.billtext.append(res.text)
-            self.billtext[-1] = htmllogic.htmltext(self.billtext[-1])
+
+        self.billtext[-1] = htmllogic.htmltext(self.billtext[-1])#Cant be in while loop slows things down. 
 
 
     def pull_history(self):
