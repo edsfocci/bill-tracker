@@ -108,4 +108,6 @@ class Bill_Import():
 billsb10 = Bill_Import()
 billsb10.set_bill_num('70')
 billsb10.pull_billtext()
+fil = open("file.html", "w")
+fil.write(billsb10.billtext[-1].prettify())
 print(billsb10.billtext[-1])
