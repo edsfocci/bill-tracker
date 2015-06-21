@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'annotation_app',
+    'docs',
 )
 
 MIDDLEWARE_CLASSES = (
