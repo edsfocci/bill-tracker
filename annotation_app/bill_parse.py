@@ -105,3 +105,11 @@ class Bill_Import():
             self.rawhistory.find('td',id = cellid).getText()
             text = self.rawhistory.find('td',id = cellid).getText().split('|')
             return text
+
+def Bill_Import_Call(number):
+    bill = Bill_Import()
+    bill.set_bill_num(number)
+    bill.pull_billtext()
+    bill.pull_history()
+    bill.set_data()
+    return bill
