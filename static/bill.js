@@ -33,6 +33,12 @@ window.onload = function() {
   //   return cookieValue;
   // }
   // var csrftoken = getCookie('csrftoken');
+
+  // $("center").each(function(){
+  //   $(this).replaceWith('<div style="text-align:center;">' + $(this).html() +
+  //     '</div>');
+  // });
+
   var csrftoken = $.cookie('csrftoken');
   // console.log(csrftoken);
 
@@ -64,7 +70,7 @@ window.onload = function() {
   });
 
   // margin side-tab and scrollbar
-  $('.billarea').annotator().annotator('addPlugin', 'AnnotatorViewer'); 
+  billarea.annotator('addPlugin', 'AnnotatorViewer');
   $('#anotacions-uoc-panel').slimscroll({height: '100%'});
 
   billarea.annotator('addPlugin', 'Store', {
