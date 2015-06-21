@@ -1,3 +1,17 @@
+import bs4
+from django.core import serializers
+from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import ensure_csrf_cookie
+import requests
+from annotation_app.bill_parse import Bill_Import
+from django.core import serializers
+ #get_history,
+
+from annotation_app.models import Bill, Senator, Subject
+from annotation_app.forms import BillForm
+import json
+
 def add_bill(request):
   if request.method == 'POST':
     form = BillForm(request.POST)
@@ -31,36 +45,12 @@ def add_bill(request):
         save_authors(bill, bill_import.authors)
         save_subjects(bill, bill_import.subjects)
 
-
-def save_authors(bill, authors):
-  #TODO fix duplicate authors
-  for author in authors:
-      senator = Senator.objects.filter(name=author)
-      # If this senator is not in the db, add her/him
-      if not senator:
-        senator = Senator()
-        senator.name = author
-        senator.committee = "comittee" # TODO fix hardcode
-        senator.is_chair = False # TODO fix hardcode
-        senator.save()
-        # Associate this senator with imported bill
-        senator.bills.add(bill)
-        senator.save()
-
-      if 'format' in request.POST:
-        return HttpResponse(serializers.serialize(request.POST['format'],
-          [bill]))
-      else:
-        return HttpResponseRedirect('/bills/%d/' % bill.id)
-  else:
-    form = BillForm()
-  return render(request, 'addbill.html', {'form': form})
-
 def get_bill_list(request):
   #TODO optimize
   data = serializers.serialize("json", Bill.objects.all())
   #print(data)
   return HttpResponse(data)
+
 def bill(request, bill_id):
   try:
     bill = Bill.objects.get(id = bill_id)
@@ -72,3 +62,6 @@ def bill(request, bill_id):
   subjects = Bill.deserialize(bill.subjects)
   context = {'bill': bill, 'authors': authors, 'subjects': subjects }#, 'annotation_list': annotation_list}
   return render(request, 'bill.html', context)
+
+def bill_list(request):
+  return render(request, 'bill-list.html')

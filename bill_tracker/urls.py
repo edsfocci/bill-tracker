@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-import annotation_app.views
+#import annotation_app.views
 
 urlpatterns = [
   #  url(r'^$', annotation_app.views.index, name='index'),
