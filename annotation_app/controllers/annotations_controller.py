@@ -57,8 +57,8 @@ def all(request):
     data['ranges'] = [{
       'startOffset': annotation.ranges_start_offset,
       'endOffset': annotation.ranges_end_offset,
-      'start': '',
-      'end': ''
+      'start': annotation.ranges_start,
+      'end': annotation.ranges_end
     }]
     data['tags'] = json.loads(annotation.tags) if annotation.tags else []
     read_perm = annotation.permissions_read
@@ -76,6 +76,8 @@ def create_update(request, annotation_id=None):
   input_data['tags'] = json.dumps(input_data['tags'])
   input_data['ranges_start_offset'] = input_data['ranges'][0]['startOffset']
   input_data['ranges_end_offset'] = input_data['ranges'][0]['endOffset']
+  input_data['ranges_start'] = input_data['ranges'][0]['start']
+  input_data['ranges_end'] = input_data['ranges'][0]['end']
   input_data['permissions_read'] = json.dumps(input_data['permissions']['read'])
 
   form = AnnotationEditForm(input_data) if annotation_id else \
@@ -93,6 +95,8 @@ def create_update(request, annotation_id=None):
     annotation.quote = data['quote']
     annotation.ranges_start_offset = data['ranges_start_offset']
     annotation.ranges_end_offset = data['ranges_end_offset']
+    annotation.ranges_start = data['ranges_start']
+    annotation.ranges_end = data['ranges_end']
     annotation.tags = data['tags']
     annotation.permissions_read = data['permissions_read']
     annotation.save()

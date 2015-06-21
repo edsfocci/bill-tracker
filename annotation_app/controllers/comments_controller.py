@@ -5,14 +5,14 @@ from annotation_app.forms import CommentAddForm, CommentEditForm
 
 def add_comment(request):
   if request.method == 'GET':
-    form = CommentAddForm(initial={'annotation': request.POST['add_for']})
+    form = CommentAddForm(initial={'annotation_id': request.POST['add_for']})
     return render(request, 'commentform.html', {'form': form, 'method': 'add'})
   elif request.method == 'POST':
     form = CommentAddForm(request.POST)
     if form.is_valid():
       data = form.cleaned_data
       comment = Comment()
-      comment.annotation = Annotation.objects.get(id = data['annotation'])
+      comment.annotation = Annotation.objects.get(id = data['annotation_id'])
       comment.text = data['text']
       comment.save()
       return HttpResponseRedirect('/comments/%d/' % comment.id)
@@ -41,6 +41,6 @@ def edit_comment(request, comment_id):
       return HttpResponseRedirect('/comments/%d/' % comment.id)
   else:
     form = CommentEditForm(initial={'id': comment.id,
-      'annotation': comment.annotation.id, 'text': comment.text})
+      'annotation_id': comment.annotation.id, 'text': comment.text})
   return render(request, 'commentform.html',
     {'form': form, 'method': 'edit', 'id': comment.id})
