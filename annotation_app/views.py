@@ -21,12 +21,7 @@ import json
 
 ---BILL----
 def bill_list(request):
-  #moved to controllers/bills_controller.py
-
-def get_bill_list(request):#does do something other than 
-#bill_list?
-  #TODO optimize
-  #moved to controllers/bills_controller.py
+  return render(request, 'bill-list.html')
 
 def add_bill(request):
   #moved to controllers/bill_controller.py
@@ -35,21 +30,25 @@ def add_bill(request):
 def bill(request, bill_id):
 #moved to controllers/bills_controller.py
 
+def get_bill_list(request):
+  #TODO optimize
+  #moved to controllers/bills_controller.py
+
 ---SENATOR---
 def author_list(request):
-  #moved to controllers/senators_controller.py
-#pipes authors to front end
-def get_author_list(request):
-  #does this do something different?
-  #TODO optimize
-  #moved to controllers/senators_controller.py
+  return render(request, 'author-list.html')
 
 def save_authors(bill, authors):
-  #moved to controllers/senators_controller.py
+  #moved to controllers/bill_controller.py
 
 @ensure_csrf_cookie
 def author(request, author_id):
 #moved to controllers/senators_controller.py
+
+#pipes authors to front end
+def get_author_list(request):
+  #TODO optimize
+  #moved to controllers/senators_controller.py
 
 #pipes bills by author to the front end.
 def get_author_bills(request):
@@ -57,13 +56,11 @@ def get_author_bills(request):
 
 
 ---SUBJECT---
-def subject(request, subject_id):
- #moved to controllers/subjects_controller.py
 def subject_list(request):
-  #moved to controllers/subjects_controller.py
+  return render(request, 'subject-list.html')
 
 def save_subjects(bill, subjects):
-  #moved to controllers/subjects_controller.py
+  #moved to controllers/bill_controller.py
 
 # pipes all subjects to front end.
 def get_subject_list(request):

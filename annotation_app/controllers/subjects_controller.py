@@ -1,8 +1,3 @@
-
-
-def subject_list(request):
-  return render(request, 'subject-list.html')
-
 def save_subjects(bill, subjects):
   #TODO fix duplicate subjects
   for subject_name in subjects:
@@ -36,4 +31,3 @@ def subject(request, subject_id):
     raise Http404
   context = {'subject': subject}
   return render(request, 'subject.html', context)
-
