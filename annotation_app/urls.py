@@ -31,7 +31,7 @@ urlpatterns = [
   url(r'^authors/$', views.author_list, name='authors'),
   url(r'get_author_list/$', views.get_author_list, name='get_author_list'),
   url(r'get_author_bills/$', views.get_author_bills, name='get_author_bills'),
-  url(r'^authors/(?P<author_id>\d+)/$', views.author, name='author'),
+  url(r'^authors/(?P<author_id>\d+)/$', views.author, name='author'),#model for this needs to be changed to inlude more than one bill.
 
   # Subjects routes
   url(r'^subjects/$', views.subject_list, name='subjects'),

@@ -8,6 +8,7 @@ from annotation_app.bill_parse import Bill_Import
 from django.core import serializers
  #get_history,
 
+from annotation_app.controllers.bills_controller import pull_bill_text
 from annotation_app.models import Bill, Senator, Subject
 from annotation_app.forms import BillForm
 import json
@@ -26,61 +27,8 @@ def author_list(request):
   return render(request, 'author-list.html')
 
 def add_bill(request):
-  if request.method == 'POST':
-    form = BillForm(request.POST)
+  return pull_bill_text(request)
 
-    if form.is_valid():
-      data = form.cleaned_data
-      bill_num = data["number"]
-      bill = Bill.objects.filter(number=bill_num)
-      # If you find bill in the database, it is the first element in QuerySet
-      if bill:
-          bill = bill[0]
-      # If bill is not in the database, pull it from TLO website
-      if not bill:
-        data = form.cleaned_data
-        bill = Bill()
-        bill.number = data['number']
-        bill_import = Bill_Import()
-        bill_import.set_bill_num(str(bill.number))
-        bill_import.pull_billtext()
-        bill_list = bill_import.billtext
-        bill.text = Bill.serialize(bill_list)
-        bill_import.pull_history()
-        bill_import.set_data()
-        bill.authors = Bill.serialize(bill_import.authors)
-        bill.coauthors = Bill.serialize(bill_import.coauthors)
-        bill.subjects = Bill.serialize(bill_import.subjects)
-        bill.cosponsors = Bill.serialize(bill_import.cosponsors)
-        bill.sponsors = Bill.serialize(bill_import.sponsors)
-        bill.save()
-
-        save_authors(bill, bill_import.authors)
-        save_subjects(bill, bill_import.subjects)
-
-      if 'format' in request.POST:
-        return HttpResponse(serializers.serialize(request.POST['format'],
-          [bill]))
-      else:
-        return HttpResponseRedirect('/bills/%d/' % bill.id)
-  else:
-    form = BillForm()
-  return render(request, 'addbill.html', {'form': form})
-
-def save_authors(bill, authors):
-  #TODO fix duplicate authors
-  for author in authors:
-      senator = Senator.objects.filter(name=author)
-      # If this senator is not in the db, add her/him
-      if not senator:
-        senator = Senator()
-        senator.name = author
-        senator.committee = "comittee" # TODO fix hardcode
-        senator.is_chair = False # TODO fix hardcode
-        senator.save()
-        # Associate this senator with imported bill
-        senator.bills.add(bill)
-        senator.save()
 
 def save_subjects(bill, subjects):
   #TODO fix duplicate subjects
@@ -94,7 +42,8 @@ def save_subjects(bill, subjects):
       # Associate this subject with imported bill
       subject.bills.add(bill)
       subject.save()
-
+#do we need get_bill_text?      
+'''
 def get_bill_text(number):
 
   if not number.isalnum():
@@ -121,7 +70,7 @@ def get_bill_text(number):
     span_id += 1
 
   return span_text
-
+'''
 
 @ensure_csrf_cookie
 def bill(request, bill_id):
@@ -137,15 +86,16 @@ def bill(request, bill_id):
   return render(request, 'bill.html', context)
 
 @ensure_csrf_cookie
-def author(request, author_id):
+def author(request, author_id):#model for this needs to be changed to inlude more than one bill.
   try:
     author = Senator.objects.get(id = author_id)
   except Senator.DoesNotExist:
     raise Http404
   context = {'author': author}
   return render(request, 'author.html', context)
-
+#what is this cookie?
 @ensure_csrf_cookie
+#pipes a subject to the front end
 def subject(request, subject_id):
   try:
     subject = Subject.objects.get(id = subject_id)
@@ -153,25 +103,25 @@ def subject(request, subject_id):
     raise Http404
   context = {'subject': subject}
   return render(request, 'subject.html', context)
-
+#pipes all bills to front end.
 def get_bill_list(request):
   #TODO optimize
   data = serializers.serialize("json", Bill.objects.all())
-  print(data)
+  #print(data)
   return HttpResponse(data)
-
+# pipes all subjects to front end.
 def get_subject_list(request):
   #TODO optimize
   data = serializers.serialize("json", Subject.objects.all())
   print(data)
   return HttpResponse(data)
-
+#pipes authors to front end
 def get_author_list(request):
   #TODO optimize
   data = serializers.serialize("json", Senator.objects.all())
   print(data)
   return HttpResponse(data)
-
+#pipes bills by author to the front end.
 def get_author_bills(request):
   author_id = request.GET.get("id")
   #TODO optimize
@@ -181,6 +131,7 @@ def get_author_bills(request):
   print(data)
   return HttpResponse(data)
 
+#pipes subjects to the front end.
 def get_subject_bills(request):
   subject_id = request.GET.get("id")
   #TODO optimize
