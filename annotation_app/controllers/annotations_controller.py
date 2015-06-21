@@ -4,6 +4,10 @@ from annotation_app.forms import AnnotationAddForm, AnnotationEditForm
 import re, json
 
 ### Controller-level routes
+# annotations and annotation routes to controller actions below.
+# annotations handles the annotation-list and creating a new annotation
+# annotation handles individual annotations that have an id (update and delete)
+
 def annotations(request):
   if request.method == 'GET':
     return all(request)
@@ -28,6 +32,10 @@ def annotation(request, annotation_id):
   #   return render(request, 'annotation.html', context)
 
 ### Controller actions
+# These handle all the actual processing of requests
+# all: annotation-list
+# create_update: create or update a new or existing annotation
+# delete: divides an annotation's id by zero, ending it's existence, forever
 
 def all(request):
   bill_id = re.search(r'bills/(\d+)/$',
@@ -49,8 +57,8 @@ def all(request):
     data['ranges'] = [{
       'startOffset': annotation.ranges_start_offset,
       'endOffset': annotation.ranges_end_offset,
-      'start': '',
-      'end': ''
+      'start': annotation.ranges_start,
+      'end': annotation.ranges_end
     }]
     data['tags'] = json.loads(annotation.tags) if annotation.tags else []
     read_perm = annotation.permissions_read
@@ -68,6 +76,8 @@ def create_update(request, annotation_id=None):
   input_data['tags'] = json.dumps(input_data['tags'])
   input_data['ranges_start_offset'] = input_data['ranges'][0]['startOffset']
   input_data['ranges_end_offset'] = input_data['ranges'][0]['endOffset']
+  input_data['ranges_start'] = input_data['ranges'][0]['start']
+  input_data['ranges_end'] = input_data['ranges'][0]['end']
   input_data['permissions_read'] = json.dumps(input_data['permissions']['read'])
 
   form = AnnotationEditForm(input_data) if annotation_id else \
@@ -85,6 +95,8 @@ def create_update(request, annotation_id=None):
     annotation.quote = data['quote']
     annotation.ranges_start_offset = data['ranges_start_offset']
     annotation.ranges_end_offset = data['ranges_end_offset']
+    annotation.ranges_start = data['ranges_start']
+    annotation.ranges_end = data['ranges_end']
     annotation.tags = data['tags']
     annotation.permissions_read = data['permissions_read']
     annotation.save()
@@ -105,6 +117,7 @@ def delete(annotation_id):
 
 ### Helper functions
 
+# Converts datetime to milliseconds since epoch
 import datetime
 def unix_time(dt):
   naive = dt.replace(tzinfo=None)

@@ -33,6 +33,12 @@ window.onload = function() {
   //   return cookieValue;
   // }
   // var csrftoken = getCookie('csrftoken');
+
+  // $("center").each(function(){
+  //   $(this).replaceWith('<div style="text-align:center;">' + $(this).html() +
+  //     '</div>');
+  // });
+
   var csrftoken = $.cookie('csrftoken');
   // console.log(csrftoken);
 
@@ -62,7 +68,10 @@ window.onload = function() {
   showViewPermissionsCheckbox: true,
   showEditPermissionsCheckbox: false
   });
-  $('.billarea').annotator().annotator('addPlugin', 'AnnotatorViewer');
+
+  // margin side-tab and scrollbar
+  billarea.annotator('addPlugin', 'AnnotatorViewer');
+  $('#anotacions-uoc-panel').slimscroll({height: '100%'});
 
   billarea.annotator('addPlugin', 'Store', {
     // The endpoint of the store on your server.

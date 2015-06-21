@@ -4,20 +4,18 @@ from annotation_app.models import Comment, Annotation
 from annotation_app.forms import CommentAddForm, CommentEditForm
 
 def add_comment(request):
-  if request.method == 'POST':
-    if 'add_for' in request.POST:
-      form = CommentAddForm(initial={'annotation': comment.annotation})
-      return render(request, 'addcomment.html',
-        {'form': form, 'method': 'add'})
-    else:
-      form = CommentAddForm(request.POST)
-      if form.is_valid():
-        data = form.cleaned_data
-        r = Comment()
-        r.annotation = Annotation.objects.get(id = request.POST['annotation'])
-        r.text = data['text']
-        r.save()
-        return HttpResponseRedirect('/comments/%d/' % r.id)
+  if request.method == 'GET':
+    form = CommentAddForm(initial={'annotation_id': request.POST['add_for']})
+    return render(request, 'commentform.html', {'form': form, 'method': 'add'})
+  elif request.method == 'POST':
+    form = CommentAddForm(request.POST)
+    if form.is_valid():
+      data = form.cleaned_data
+      comment = Comment()
+      comment.annotation = Annotation.objects.get(id = data['annotation_id'])
+      comment.text = data['text']
+      comment.save()
+      return HttpResponseRedirect('/comments/%d/' % comment.id)
   raise Http404
 
 def comment(request, comment_id):
@@ -43,6 +41,6 @@ def edit_comment(request, comment_id):
       return HttpResponseRedirect('/comments/%d/' % comment.id)
   else:
     form = CommentEditForm(initial={'id': comment.id,
-      'annotation': comment.annotation, 'text': comment.text})
+      'annotation_id': comment.annotation.id, 'text': comment.text})
   return render(request, 'commentform.html',
     {'form': form, 'method': 'edit', 'id': comment.id})
