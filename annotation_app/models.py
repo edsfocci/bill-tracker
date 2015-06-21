@@ -44,8 +44,8 @@ class Annotation(models.Model):
   quote = models.TextField(null=True)
   # uri = models.CharField(max_length=255)
 
-  # ranges_start = models.CharField(max_length=255)
-  # ranges_end = models.CharField(max_length=255)
+  ranges_start = models.CharField(max_length=255, null=True)
+  ranges_end = models.CharField(max_length=255, null=True)
   ranges_start_offset = models.IntegerField(null=True)
   ranges_end_offset = models.IntegerField(null=True)
 
