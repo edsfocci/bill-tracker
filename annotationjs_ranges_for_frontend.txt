@@ -1,0 +1,38 @@
+$ python manage.py shell
+
+**(InteractiveConsole)**
+>>> from annotation_app.models import Annotation
+>>> ann = Annotation.objects.all()
+
+>>> def present():
+...   print('text\nquote\nranges_start\t\tranges_end\t\tranges_start_offset\tranges_end_offset\n')
+...   for a in ann:
+...     print(a.text+ '\n' + a.quote + '\n' + a.ranges_start + '\t\t' + a.ranges_end + '\t\t' + str(a.ranges_start_offset) + '\t\t\t' + str(a.ranges_end_offset) + '\n')
+... 
+
+>>> present()
+
+**(Output)**
+text
+quote
+ranges_start    ranges_end      ranges_start_offset     ranges_end_offset
+
+Clintonton
+BILL
+/center[1]      /center[1]      3                       7
+
+Yay!
+determine
+/li[28]/u[2]    /li[28]/u[2]    30                      39
+
+Annotation spanning 3 "Li" elements
+penalty.    (2) "Prosecute" means represent the state to impose a   criminal or civil penalty.    (3) "Public integrity
+/li[1]/u[2]     /li[3]/u[1]     33                      22
+
+**(Explanation)**
+So, if you look at the outputs of ranges_start and ranges_end,  it shows the element and a number
+
+If you look at the first one, the annotation is within the 1st "center" element in the element with id="billarea"
+
+In the third one, it shows how it handles multiple elements, or nodes:
+2nd "u" element within 1st "li" element, up to 1st "u" element within 3rd "li" element

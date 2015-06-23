@@ -4,7 +4,7 @@
 }
 
 #submission {
-	visibility: hidden;
+	/* visibility: hidden; */
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -32,6 +32,43 @@
 .container.bill-list nav li {
 	margin: 0 0 20px;
 }
+
+
+
+/* new css */
+
+.container-anotacions {
+	/* display: none !important; */
+	display: block !important;
+}
+
+.container-anotacions .filter-panel {
+	display: none !important;
+}
+
+.annotations-list-uoc {
+	/* width: 230px; */
+	background-color: transparent !important;
+	position: static !important;
+}
+.annotations-list-uoc .rotate {
+	display: none !important;
+}
+
+#submission .form-group {
+	display: none;
+}
+
+.annotator-marginviewer-element {
+	/*
+	position: absolute;
+	right: 0;
+	*/
+}
+
+/* end new css */
+
+
 
 footer {
 	margin: 40px 0 0;

@@ -74,3 +74,36 @@ function submitAnnotation(text)
 	text.value = "";
 
 }
+
+
+
+
+/* ------------ move annotation sidebar to bootstrap column  --------------- */
+
+setTimeout(function(){
+
+	// move sidebar annotations into bootstrap column
+	var sidebar = $('.annotations-list-uoc').detach();
+	$('#submission').append(sidebar);
+
+	// grab highlight positions
+
+	var basePos = $('.billarea').offset().top;
+	console.log('basePos: ' + basePos);
+
+	$('.annotator-wrapper .annotator-hl').each(function(){
+		var highlightId = $(this).attr('data-annotation-id');
+		var highlightPos = $(this).offset().top;
+		var diffPos = highlightPos - basePos;
+
+		console.log('data-' + highlightId + ': ' + highlightPos);
+
+		// console.log('diff: ' + diffPos);
+
+		// $('#submission #annotation-' + highlightId).css('margin-top',diffPos + 'px');
+
+		// var annotationId = $(this).attr('data-annotation-id').val();
+		// console.log(annotationId);
+	});
+
+},4000);
