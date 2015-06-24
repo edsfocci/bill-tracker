@@ -1,12 +1,69 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+{% block page_specific_stylesheets %}
+<style>
+  .bills-2-0 span {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #legis-session, #legis-chamber {
+    font-size: 15pt;
+  }
+
+  #legis-session, #bill-number, #bill-submit {
+    position: relative;
+    bottom: 35px;
+  }
+
+  #legis-chamber {
+    display: inline-block;
+  }
+
+  label {
+    font-weight: normal;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container">
   <div id="page1" class="page" style="text-align:center;">
     <h1>{{ copy }}</h1>
     <br />
-    <a class="btn btn-primary get-started" href="/">Let's Get Started</a>
+    <form action="/addbill/" method="post" class="form bills-2-0">
+      {% csrf_token %}
+      <!-- HARDCODE WARNING -->
+      <input type="hidden" name="session" value="84R" />
+
+      <!-- Placeholder for being able to
+        select State or National, and Session -->
+      <span id="legis-session">Session: Texas 84R</span>
+
+      <!-- Dropdown to select where the bill originated: Senate or House -->
+      <span id="legis-chamber">
+      Senate or House Bill:<br />
+        <input type="radio" name="chamber_origin" value="S" id="SB"
+        checked="checked" />
+        <label for="SB">Senate Bill</label>
+        <br />
+        <input type="radio" name="chamber_origin" value="H" id="HB"
+        disabled="disabled" />
+        <label for="HB" style="text-decoration:line-through;color:#CCC;">
+          House Bill
+        </label>
+      </span>
+
+      <span id="bill-number">
+        <input type="number" id="id_number" name="number" placeholder="Number"
+        min="1" autofocus="autofocus" />
+      </span>
+
+      <span id="bill-submit">
+        <input type="submit" class="btn btn-primary" value="Annotate Bill !" />
+      </span>
+    </form>
   </div>
 </div>
 {% endblock %}
