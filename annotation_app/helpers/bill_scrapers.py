@@ -1,3 +1,10 @@
+#####
+# Bill scrapers
+# -----
+# All the public functions do is scrape,
+# no processing (except converting xml to dict whenever possible;
+# minor processing)
+
 from urllib import request
 import re, xmltodict
 from bs4 import BeautifulSoup
@@ -21,8 +28,10 @@ def keep_trying_ftpopen(url, tries=7):
 
 ### Public functions
 
-# initial_data format:
+# INPUT: initial_data format:
 # {'session': '84R', 'chamber_origin': 'S', 'number': 5}
+
+# OUTPUT: bill_text, FORMAT: byte_string
 
 def scrape_bill_text(initial_data):
   bill_data = initial_data
@@ -80,8 +89,10 @@ def scrape_bill_text(initial_data):
   # print(''.join(soup[4:]))
   # return
 
-# initial_data format:
+# INPUT: initial_data format:
 # {'session': '84R', 'chamber_origin': 'S', 'number': 5}
+
+# OUTPUT: bill_history, FORMAT: dict
 
 def scrape_bill_history(initial_data):
   bill_data = initial_data
