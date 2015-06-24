@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 # initial_data format:
-# {'session': '84R', 'chamber_origin': 'S', 'number': '5'}
+# {'session': '84R', 'chamber_origin': 'S', 'number': 5}
 
 def scrape_bill_text(initial_data):
   ### Helper functions
