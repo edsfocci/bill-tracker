@@ -22,7 +22,7 @@ class Bill(models.Model):
   def deserialize(object):
     return json.loads(object)
 
-class Senator(models.Model):
+class Senator(models.Model):#model for this needs to be changed to inlude more than one bill.
   name = models.CharField(max_length=255)
   committee = models.CharField(max_length=255)
   is_chair = models.BooleanField()

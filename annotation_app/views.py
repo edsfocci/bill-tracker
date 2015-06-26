@@ -44,7 +44,7 @@ def bill(request, bill_id):
   return render(request, 'bill.html', context)
 
 @ensure_csrf_cookie
-def author(request, author_id):#model for this needs to be changed to inlude more than one bill.
+def author(request, author_id):
   try:
     author = Senator.objects.get(id = author_id)
   except Senator.DoesNotExist:
