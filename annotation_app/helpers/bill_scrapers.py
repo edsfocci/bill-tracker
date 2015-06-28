@@ -9,6 +9,8 @@ from urllib import request
 import re, xmltodict
 from bs4 import BeautifulSoup
 
+from annotation_app.helpers import std as STD
+
 
 ### Helper function
 # ftpopen is not 100% reliable on first try
@@ -65,7 +67,7 @@ def scrape_bill_text(initial_data):
   # Parse folder structure for latest version of bill_text
   response = str(keep_trying_ftpopen(bill_text_files_url))[2:]
   response = response.split('\\r\\n')[:-1]
-  files = list(filter(lambda x: re.search(bill_text_filename_regex, x,
+  files = list(STD.filterr(lambda x: re.search(bill_text_filename_regex, x,
     re.IGNORECASE), response))
 
   from datetime import date
@@ -77,8 +79,8 @@ def scrape_bill_text(initial_data):
     return [bill_date, matches.group(4)]
 
   # Wizardry to actually get the latest filename
-  files = list(map(map_dates_and_filenames, files))
-  bill_text_filename = max(files, key=lambda x: x[0])[1]
+  files = list(STD.mapp(map_dates_and_filenames, files))
+  bill_text_filename = STD.maxx(files, key=lambda x: x[0])[1]
 
   # Get bill text (finally!)
   return keep_trying_ftpopen(bill_text_files_url + bill_text_filename)
