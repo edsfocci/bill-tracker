@@ -105,40 +105,28 @@ def subject(request, subject_id):
   return render(request, 'subject.html', context)
 #pipes all bills to front end.
 def get_bill_list(request):
-  #TODO optimize
   data = serializers.serialize("json", Bill.objects.all())
-  #print(data)
   return HttpResponse(data)
 # pipes all subjects to front end.
 def get_subject_list(request):
-  #TODO optimize
   data = serializers.serialize("json", Subject.objects.all())
-  print(data)
   return HttpResponse(data)
 #pipes authors to front end
 def get_author_list(request):
-  #TODO optimize
   data = serializers.serialize("json", Senator.objects.all())
-  print(data)
   return HttpResponse(data)
 #pipes bills by author to the front end.
 def get_author_bills(request):
   author_id = request.GET.get("id")
-  #TODO optimize
-  data = Senator.objects.get(id=author_id).bills.all()
-  print(data)
-  data = serializers.serialize("json", data)
-  print(data)
+  author_data = Senator.objects.get(id=author_id).bills.all()
+  data = serializers.serialize("json", author_data)
   return HttpResponse(data)
 
 #pipes subjects to the front end.
 def get_subject_bills(request):
   subject_id = request.GET.get("id")
-  #TODO optimize
-  data = Subject.objects.get(id=subject_id).bills.all()
-  print(data)
-  data = serializers.serialize("json", data)
-  print(data)
+  subject_data = Subject.objects.get(id=subject_id).bills.all()
+  data = serializers.serialize("json", subject_data)
   return HttpResponse(data)
 
 
