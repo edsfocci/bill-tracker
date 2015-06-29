@@ -13,24 +13,27 @@ billTracker.controller("BillsListController", function($scope, $http) {
         for (index = 0; index < data.length; index++) {
             bills_list.push(data[index]["fields"]);
             bills_list[index]["id"] = data[index]["pk"];
+            // Name of the bill is the first 1000 characters of its text.
+            // Used for displaying in bill list.
+            bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
         }
         $scope.bills = bills_list;
 
     });
-})
+});
 
-.filter('highlight', function($sce) {
-  return function (bill, search) {
+billTracker.filter('highlight', function($sce) {
+    // object is bill/author/subject
+  return function (object, search) {
 
-      text = bill.text.substring(0, 1000);
+      text = object.name;
       if (text && (search || angular.isNumber(search))) {
           text = text.toString();
           search = search.toString();
           text = text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>');
       }
-
-      // Need to return as trusted html, otherwise it throws unsafe error
-      return $sce.trustAsHtml('<li class="active"><a href="/bills/' + bill.id + '/">'
+      // Need to return as trusted html, otherwise angular throws "unsafe html" error
+      return $sce.trustAsHtml('<li class="active"><a href="/bills/' + object.id + '/">'
             + text + '</li>');
   }
 
@@ -47,7 +50,7 @@ billTracker.controller("AuthorListController", function($scope, $http) {
             author_list.push(data[index]["fields"]);
             author_list[index]["id"] = data[index]["pk"];
         }
-        console.log(author_list);
+
         $scope.authors = author_list;
     });
 });
@@ -62,7 +65,7 @@ billTracker.controller("SubjectListController", function($scope, $http) {
             subject_list.push(data[index]["fields"]);
             subject_list[index]["id"] = data[index]["pk"];
         }
-        console.log(subject_list);
+
         $scope.subjects = subject_list;
     });
 });
@@ -77,7 +80,7 @@ billTracker.controller("BillsByAuthorController", function($scope, $window, $htt
             bills_list.push(data[index]["fields"]);
             bills_list[index]["id"] = data[index]["pk"];
         }
-        console.log(bills_list);
+
         $scope.bills = bills_list;
     });
 });
@@ -92,7 +95,7 @@ billTracker.controller("BillsBySubjectController", function($scope, $window, $ht
             bills_list.push(data[index]["fields"]);
             bills_list[index]["id"] = data[index]["pk"];
         }
-        console.log(bills_list);
+
         $scope.bills = bills_list;
     });
 });
