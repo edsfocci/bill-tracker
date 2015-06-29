@@ -11,11 +11,8 @@
 
   <div class="container bill-list" ng-controller="AuthorListController">
     {% verbatim %}
-    <ul class="nav nav-pills nav-stacked" ng-repeat="author in authors | filter:query" ng-cloak>
-
-        <li class="active" ><a href="/authors/{{ author.id }}/">
-          {{  author.name }}
-        </a></li>
+    <ul class="nav nav-pills nav-stacked" ng-repeat="author in authors | filter:query"
+        ng-bind-html="author | highlight:query" ng-cloak>
 
     </ul>
 
