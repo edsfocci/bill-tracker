@@ -86,24 +86,74 @@ setTimeout(function(){
 	var sidebar = $('.annotations-list-uoc').detach();
 	$('#submission').append(sidebar);
 
+	// since right sidebar elements are absolute, right sidebar needs height or everything dissapears
+	var billAreaHeight = $('.billarea').height();
+	$('#submission').css('height',billAreaHeight + 'px');
+
+	// init vars for annotation y pos calculations
+	var basePos = $('.billarea').offset().top;
+	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+
+
+	// TODO: Make sure annotations don't appear on top of each other!
+	// annotation y pos calculations
+	$('.annotator-wrapper .annotator-hl').each(function(){
+
+		var highlightId = $(this).attr('data-annotation-id');
+		var highlightPos = $(this).offset().top;
+		var annotationSelector = '#submission #annotation-' + highlightId;
+		var top = highlightPos - basePos - offset;
+		// var annotationHeight = $(annotationSelector).height();
+
+		$(annotationSelector).css('top', top + 'px');
+
+	});
+
+	/*
 	// grab highlight positions
 
+	// base position is top of document to .billarea since first annotation starts at .billarea
 	var basePos = $('.billarea').offset().top;
-	console.log('basePos: ' + basePos);
+	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+	var lastAnnotationBillAreaYPos = null;
+	var newAnnotationBillAreaYPos = null;
+	var topMargin = null;
+	var distanceToBillArea = null;
+	var distanceToTopOfLastAnnotation = null;
 
+	// runs a little function on every highlight and sets every corresponding annotation to the same y position as its highlight 
 	$('.annotator-wrapper .annotator-hl').each(function(){
 		var highlightId = $(this).attr('data-annotation-id');
 		var highlightPos = $(this).offset().top;
-		var diffPos = highlightPos - basePos;
+		var annotationSelector = '#submission #annotation-' + highlightId;
+		var annotationHeight = $(annotationSelector).height();
 
-		console.log('data-' + highlightId + ': ' + highlightPos);
+		// first highlight's top margin is its highlight y position - base position, ie. distance from top of .billarea
+		if (lastAnnotationBillAreaYPos == null) {
 
-		// console.log('diff: ' + diffPos);
+			distanceToBillArea = highlightPos - basePos - offset;
+			marginTop = distanceToBillArea;
+			$(annotationSelector).css('margin-top',distanceToBillArea + 'px');
+			lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
+			console.log('first run lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+			console.log('');
 
-		// $('#submission #annotation-' + highlightId).css('margin-top',diffPos + 'px');
+		// all other highlights' top margins are distance from highlight y position to last highlight
+		} else {
 
-		// var annotationId = $(this).attr('data-annotation-id').val();
-		// console.log(annotationId);
+			distanceToBillArea = highlightPos - basePos;
+			console.log('distanceToBillArea: ' + distanceToBillArea);
+			console.log('starting lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+			marginTop = distanceToBillArea - lastAnnotationBillAreaYPos - offset;
+			$(annotationSelector).css('margin-top',marginTop + 'px');
+			lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
+			console.log('new lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+			console.log('');
+
+		}
+
 	});
 
-},4000);
+	*/
+
+},1000);
