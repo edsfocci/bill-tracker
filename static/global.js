@@ -101,11 +101,18 @@ if ( $('.billarea').length ) {
 			var basePos = $('.billarea').offset().top;
 			var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
 			var annotations = [];
+			var test;
 
 			// annotation y pos calculations
-			$('.annotator-wrapper .annotator-hl').each(function(){
+			$('.annotator-wrapper .annotator-hl').each(function(index){
 
 				var highlightId = $(this).attr('data-annotation-id');
+
+				// prevents duplicate id entries (where highlight is broken into two with same id)
+				if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
+					return;
+				}
+
 				var highlightPos = $(this).offset().top;
 				var annotationSelector = '#submission #annotation-' + highlightId;
 				var top = highlightPos - basePos - offset;
@@ -135,17 +142,21 @@ if ( $('.billarea').length ) {
 
 		}
 
-		// TODO: make new object of actual annotation positions as this advances & compare against that, not the highlight positions
+
+
+		var annotationLocations = [];
+
 		for (var i = 0; i < annotations.length; i++) {
-			
+
 			var thisAnnotation = annotations[i];
 			var targetTop = thisAnnotation.topY;
 			var targetBot = thisAnnotation.botY;
 			var actualTop = null;
 
 		    if (i > 0) {
+		    	
 				var j = i - 1;
-				var prevAnnotation = annotations[j];
+				var prevAnnotation = annotationLocations[j];
 				var prevTop = prevAnnotation.topY;
 				var prevBot = prevAnnotation.botY;
 
@@ -155,8 +166,20 @@ if ( $('.billarea').length ) {
 					actualTop = targetTop;
 				}
 
+				annotationLocations.push({
+					id: thisAnnotation.id,
+					topY: targetTop,
+					botY: actualTop + targetBot - targetTop
+				});
+
 			} else {
+
 				actualTop = targetTop;
+				annotationLocations.push({
+					id: thisAnnotation.id,
+					topY: targetTop,
+					botY: actualTop + targetBot - targetTop
+				});
 			}
 
 		    $('#submission #annotation-' + annotations[i].id).css('top', actualTop + 'px');
