@@ -80,80 +80,84 @@ function submitAnnotation(text)
 
 /* ------------ move annotation sidebar to bootstrap column  --------------- */
 
-setTimeout(function(){
+if ( $('.billarea').length ) {
 
-	// move sidebar annotations into bootstrap column
-	var sidebar = $('.annotations-list-uoc').detach();
-	$('#submission').append(sidebar);
+	setTimeout(function(){
 
-	// since right sidebar elements are absolute, right sidebar needs height or everything dissapears
-	var billAreaHeight = $('.billarea').height();
-	$('#submission').css('height',billAreaHeight + 'px');
+		// move sidebar annotations into bootstrap column
+		var sidebar = $('.annotations-list-uoc').detach();
+		$('#submission').append(sidebar);
 
-	// init vars for annotation y pos calculations
-	var basePos = $('.billarea').offset().top;
-	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+		// since right sidebar elements are absolute, right sidebar needs height or everything dissapears
+		var billAreaHeight = $('.billarea').height();
+		$('#submission').css('height',billAreaHeight + 'px');
+
+		// init vars for annotation y pos calculations
+		var basePos = $('.billarea').offset().top;
+		var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
 
 
-	// TODO: Make sure annotations don't appear on top of each other!
-	// annotation y pos calculations
-	$('.annotator-wrapper .annotator-hl').each(function(){
+		// TODO: Make sure annotations don't appear on top of each other!
+		// annotation y pos calculations
+		$('.annotator-wrapper .annotator-hl').each(function(){
 
-		var highlightId = $(this).attr('data-annotation-id');
-		var highlightPos = $(this).offset().top;
-		var annotationSelector = '#submission #annotation-' + highlightId;
-		var top = highlightPos - basePos - offset;
-		// var annotationHeight = $(annotationSelector).height();
+			var highlightId = $(this).attr('data-annotation-id');
+			var highlightPos = $(this).offset().top;
+			var annotationSelector = '#submission #annotation-' + highlightId;
+			var top = highlightPos - basePos - offset;
+			// var annotationHeight = $(annotationSelector).height();
 
-		$(annotationSelector).css('top', top + 'px');
+			$(annotationSelector).css('top', top + 'px');
 
-	});
+		});
 
-	/*
-	// grab highlight positions
+		/*
+		// grab highlight positions
 
-	// base position is top of document to .billarea since first annotation starts at .billarea
-	var basePos = $('.billarea').offset().top;
-	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
-	var lastAnnotationBillAreaYPos = null;
-	var newAnnotationBillAreaYPos = null;
-	var topMargin = null;
-	var distanceToBillArea = null;
-	var distanceToTopOfLastAnnotation = null;
+		// base position is top of document to .billarea since first annotation starts at .billarea
+		var basePos = $('.billarea').offset().top;
+		var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+		var lastAnnotationBillAreaYPos = null;
+		var newAnnotationBillAreaYPos = null;
+		var topMargin = null;
+		var distanceToBillArea = null;
+		var distanceToTopOfLastAnnotation = null;
 
-	// runs a little function on every highlight and sets every corresponding annotation to the same y position as its highlight 
-	$('.annotator-wrapper .annotator-hl').each(function(){
-		var highlightId = $(this).attr('data-annotation-id');
-		var highlightPos = $(this).offset().top;
-		var annotationSelector = '#submission #annotation-' + highlightId;
-		var annotationHeight = $(annotationSelector).height();
+		// runs a little function on every highlight and sets every corresponding annotation to the same y position as its highlight 
+		$('.annotator-wrapper .annotator-hl').each(function(){
+			var highlightId = $(this).attr('data-annotation-id');
+			var highlightPos = $(this).offset().top;
+			var annotationSelector = '#submission #annotation-' + highlightId;
+			var annotationHeight = $(annotationSelector).height();
 
-		// first highlight's top margin is its highlight y position - base position, ie. distance from top of .billarea
-		if (lastAnnotationBillAreaYPos == null) {
+			// first highlight's top margin is its highlight y position - base position, ie. distance from top of .billarea
+			if (lastAnnotationBillAreaYPos == null) {
 
-			distanceToBillArea = highlightPos - basePos - offset;
-			marginTop = distanceToBillArea;
-			$(annotationSelector).css('margin-top',distanceToBillArea + 'px');
-			lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
-			console.log('first run lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
-			console.log('');
+				distanceToBillArea = highlightPos - basePos - offset;
+				marginTop = distanceToBillArea;
+				$(annotationSelector).css('margin-top',distanceToBillArea + 'px');
+				lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
+				console.log('first run lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+				console.log('');
 
-		// all other highlights' top margins are distance from highlight y position to last highlight
-		} else {
+			// all other highlights' top margins are distance from highlight y position to last highlight
+			} else {
 
-			distanceToBillArea = highlightPos - basePos;
-			console.log('distanceToBillArea: ' + distanceToBillArea);
-			console.log('starting lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
-			marginTop = distanceToBillArea - lastAnnotationBillAreaYPos - offset;
-			$(annotationSelector).css('margin-top',marginTop + 'px');
-			lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
-			console.log('new lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
-			console.log('');
+				distanceToBillArea = highlightPos - basePos;
+				console.log('distanceToBillArea: ' + distanceToBillArea);
+				console.log('starting lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+				marginTop = distanceToBillArea - lastAnnotationBillAreaYPos - offset;
+				$(annotationSelector).css('margin-top',marginTop + 'px');
+				lastAnnotationBillAreaYPos = distanceToBillArea + annotationHeight;
+				console.log('new lastAnnotationBillAreaYPos: ' + lastAnnotationBillAreaYPos);
+				console.log('');
 
-		}
+			}
 
-	});
+		});
 
-	*/
+		*/
 
-},1000);
+	},1000);
+
+}
