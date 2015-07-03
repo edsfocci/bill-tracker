@@ -84,6 +84,7 @@ if ( $('.billarea').length ) {
 
 	setTimeout(function(){
 
+
 		// move sidebar annotations into bootstrap column
 		var sidebar = $('.annotations-list-uoc').detach();
 		$('#submission').append(sidebar);
@@ -92,60 +93,87 @@ if ( $('.billarea').length ) {
 		var billAreaHeight = $('.billarea').height();
 		$('#submission').css('height',billAreaHeight + 'px');
 
-		var annotations = getAnnotationsArray();
+		
 
-		// makes an annotations array of objects with top & bottom y properties
-		function getAnnotationsArray() {
 
-			// init vars for annotation y pos calculations
-			var basePos = $('.billarea').offset().top;
-			var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
-			var annotations = [];
-			var test;
 
-			// annotation y pos calculations
-			$('.annotator-wrapper .annotator-hl').each(function(index){
+		// makes an annotations array (with y values equal to the corresponding highlights' y values)
+		var annotations = {};
 
-				var highlightId = $(this).attr('data-annotation-id');
+		// init vars for annotation y pos calculations
+		var basePos = $('.billarea').offset().top;
+		var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+		var annotations = [];
+		var test;
 
-				// prevents duplicate id entries (where highlight is broken into two with same id)
-				if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
-					return;
-				}
+		// annotation y pos calculations
+		$('.annotator-wrapper .annotator-hl').each(function(index){
 
-				var highlightPos = $(this).offset().top;
-				var annotationSelector = '#submission #annotation-' + highlightId;
-				var top = highlightPos - basePos - offset;
-				var annotationHeight = $(annotationSelector).height();
+			var highlightId = $(this).attr('data-annotation-id');
 
-				annotations.push({
-					id: highlightId,
-					topY: top,
-					botY: top + annotationHeight
-				});
-
-			});
-
-			function compare(a,b) {
-				if (a.top < b.top) {
-					return -1;
-				}
-				if (a.top > b.top) {
-					return 1;
-				}
-				return 0;
+			// prevents duplicate id entries (where highlight is broken into two with same id)
+			if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
+				return;
 			}
 
-			annotations.sort(compare);
+			var highlightPos = $(this).offset().top;
+			var annotationSelector = '#submission #annotation-' + highlightId;
+			var highlightTop = highlightPos - basePos - offset;
+			var annotationHeight = $(annotationSelector).height();
 
-			return annotations;
+			var annotationTop = null;
 
-		}
+			if (index==0) {
+					
+				annotationTop = highlightTop;					
+
+			} else {
+
+				var prevIndex = index - 1;
+				var prevAnnotation = annotations[prevIndex];
+				var targetTop = highlightTop;
+				var targetBot = highlightTop + annotationHeight;
+				var prevTop = prevAnnotation.topY;
+				var prevBot = prevAnnotation.botY;
+
+				if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+					annotationTop = prevBot + 15;
+				} else {
+					annotationTop = targetTop;
+				}
+
+			}
+
+			annotations.push({
+				id: highlightId,
+				highlightY: highlightTop,
+				annotationHeight: annotationHeight,
+				topY: annotationTop,
+				botY: annotationTop + annotationHeight
+			});	
+
+			$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
+
+		});
+
+		// function compare(a,b) {
+		// 	if (a.top < b.top) {
+		// 		return -1;
+		// 	}
+		// 	if (a.top > b.top) {
+		// 		return 1;
+		// 	}
+		// 	return 0;
+		// }
+		// annotations.sort(compare);
 
 
 
+
+		/*
 		var annotationLocations = [];
 
+		// places annotations so they don't overlap
 		for (var i = 0; i < annotations.length; i++) {
 
 			var thisAnnotation = annotations[i];
@@ -185,6 +213,9 @@ if ( $('.billarea').length ) {
 		    $('#submission #annotation-' + annotations[i].id).css('top', actualTop + 'px');
 
 		}
+		*/
+
+
 
 	},1000);
 
