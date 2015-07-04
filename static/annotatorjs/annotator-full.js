@@ -1055,13 +1055,14 @@
       }
       annotation.quote = annotation.quote.join(' / ');
       $(annotation.highlights).data('annotation', annotation);
-      $(annotation.highlights).attr('data-annotation-id', annotation.id);
+      var cl = $(annotation.highlights).attr('class')
+      $(annotation.highlights).attr('class', annotation.id + " " + cl);
       return annotation;
     };
 
     Annotator.prototype.updateAnnotation = function(annotation) {
       this.publish('beforeAnnotationUpdated', [annotation]);
-      $(annotation.highlights).attr('data-annotation-id', annotation.id);
+      $(annotation.highlights).attr('class', annotation.id);
       this.publish('annotationUpdated', [annotation]);
       return annotation;
     };
