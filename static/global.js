@@ -78,12 +78,16 @@ function submitAnnotation(text)
 
 
 
-/* ------------ move annotation sidebar to bootstrap column  --------------- */
+/* ------------------- setup annotation right sidebar --------------- */
 
 if ( $('.billarea').length ) {
 
-	setTimeout(function(){
+	// init vars for annotation y pos calculations
+	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+	var annotations = [];
+	var basePos = $('.billarea').offset().top;
 
+	setTimeout(function(){
 
 		// move sidebar annotations into bootstrap column
 		var sidebar = $('.annotations-list-uoc').detach();
@@ -93,130 +97,65 @@ if ( $('.billarea').length ) {
 		var billAreaHeight = $('.billarea').height();
 		$('#submission').css('height',billAreaHeight + 'px');
 
-		
-
-
-
-		// makes an annotations array (with y values equal to the corresponding highlights' y values)
-		var annotations = {};
-
-		// init vars for annotation y pos calculations
-		var basePos = $('.billarea').offset().top;
-		var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
-		var annotations = [];
-		var test;
-
-		// annotation y pos calculations
+		// annotation y position calculations - makes sure annotations don't overlap
 		$('.annotator-wrapper .annotator-hl').each(function(index){
 
-			var highlightId = $(this).attr('data-annotation-id');
+			var highlight = $(this);
+			var highlightId = highlight.attr('data-annotation-id');
 
-			// prevents duplicate id entries (where highlight is broken into two with same id)
-			if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
-				return;
-			}
-
-			var highlightPos = $(this).offset().top;
-			var annotationSelector = '#submission #annotation-' + highlightId;
-			var highlightTop = highlightPos - basePos - offset;
-			var annotationHeight = $(annotationSelector).height();
-
-			var annotationTop = null;
-
-			if (index==0) {
-					
-				annotationTop = highlightTop;					
-
-			} else {
-
-				var prevIndex = index - 1;
-				var prevAnnotation = annotations[prevIndex];
-				var targetTop = highlightTop;
-				var targetBot = highlightTop + annotationHeight;
-				var prevTop = prevAnnotation.topY;
-				var prevBot = prevAnnotation.botY;
-
-				if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
-					annotationTop = prevBot + 15;
-				} else {
-					annotationTop = targetTop;
-				}
-
-			}
-
-			annotations.push({
-				id: highlightId,
-				highlightY: highlightTop,
-				annotationHeight: annotationHeight,
-				topY: annotationTop,
-				botY: annotationTop + annotationHeight
-			});	
-
-			$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
+			placeAnnotation(index, highlight, highlightId);
 
 		});
 
-		// function compare(a,b) {
-		// 	if (a.top < b.top) {
-		// 		return -1;
-		// 	}
-		// 	if (a.top > b.top) {
-		// 		return 1;
-		// 	}
-		// 	return 0;
-		// }
-		// annotations.sort(compare);
+	},1000);
 
 
 
+	function placeAnnotation(index, highlight, highlightId){
 
-		/*
-		var annotationLocations = [];
+		// prevents duplicate id entries (where highlight is broken into two with same id)
+		if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
+			return;
+		}
 
-		// places annotations so they don't overlap
-		for (var i = 0; i < annotations.length; i++) {
+		var highlightPos = highlight.offset().top;
+		var annotationSelector = '#submission #annotation-' + highlightId;
+		var highlightTop = highlightPos - basePos - offset;
+		var annotationHeight = $(annotationSelector).height();
 
-			var thisAnnotation = annotations[i];
-			var targetTop = thisAnnotation.topY;
-			var targetBot = thisAnnotation.botY;
-			var actualTop = null;
+		var annotationTop = null;
 
-		    if (i > 0) {
-		    	
-				var j = i - 1;
-				var prevAnnotation = annotationLocations[j];
-				var prevTop = prevAnnotation.topY;
-				var prevBot = prevAnnotation.botY;
+		if (index==0) {
+				
+			annotationTop = highlightTop;					
 
-				if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
-					actualTop = prevBot + 15;
-				} else {
-					actualTop = targetTop;
-				}
+		} else {
 
-				annotationLocations.push({
-					id: thisAnnotation.id,
-					topY: targetTop,
-					botY: actualTop + targetBot - targetTop
-				});
+			var prevIndex = index - 1;
+			var prevAnnotation = annotations[prevIndex];
+			var targetTop = highlightTop;
+			var targetBot = highlightTop + annotationHeight;
+			var prevTop = prevAnnotation.topY;
+			var prevBot = prevAnnotation.botY;
 
+			if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+				annotationTop = prevBot + 15;
 			} else {
-
-				actualTop = targetTop;
-				annotationLocations.push({
-					id: thisAnnotation.id,
-					topY: targetTop,
-					botY: actualTop + targetBot - targetTop
-				});
+				annotationTop = targetTop;
 			}
 
-		    $('#submission #annotation-' + annotations[i].id).css('top', actualTop + 'px');
-
 		}
-		*/
 
+		annotations.push({
+			id: highlightId,
+			highlightY: highlightTop,
+			annotationHeight: annotationHeight,
+			topY: annotationTop,
+			botY: annotationTop + annotationHeight
+		});	
 
+		$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
 
-	},1000);
+	}
 
 }
