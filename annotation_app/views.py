@@ -8,7 +8,7 @@ from annotation_app.bill_parse import Bill_Import
 from django.core import serializers
  #get_history,
 
-from annotation_app.controllers.bills_controller import pull_bill_text
+from annotation_app.controllers.bills_controller import pull_bill
 from annotation_app.models import Bill, Senator, Subject
 from annotation_app.forms import BillForm
 import json
@@ -27,50 +27,8 @@ def author_list(request):
   return render(request, 'author-list.html')
 
 def add_bill(request):
-  return pull_bill_text(request)
+  return pull_bill(request)
 
-
-def save_subjects(bill, subjects):
-  #TODO fix duplicate subjects
-  for subject_name in subjects:
-    subject = Subject.objects.filter(name=subject_name)
-    # If this subject is not in the db, add her/him
-    if not subject:
-      subject = Subject()
-      subject.name = subject_name
-      subject.save()
-      # Associate this subject with imported bill
-      subject.bills.add(bill)
-      subject.save()
-#do we need get_bill_text?      
-'''
-def get_bill_text(number):
-
-  if not number.isalnum():
-    None
-  # Queries only senate bills in legislative session 84R
-  url = "http://www.capitol.state.tx.us/tlodocs/84R/billtext/html/SB000" + number + "I.htm"
-  #this suffix changes depending on what stage the bill is at. we could give them an option
-
-  res = requests.get(url)
-  if not res.status_code == requests.codes.ok:
-    return None
-
-  html = bs4.BeautifulSoup(res.text)
-  clean_text = html.get_text()
-  # this is actually a list of sentences
-  sentence_list = clean_text.split('.')
-  span_text = ""
-  span_id = 0
-
-  for sentence in sentence_list:
-    modified_sentence = sentence.replace('\n',"").replace('\t',"").replace('\xa0',"").replace('\r',"")
-    span = '<span id=' + str(span_id) + '>' + modified_sentence + '</span>'
-    span_text += span
-    span_id += 1
-
-  return span_text
-'''
 
 @ensure_csrf_cookie
 def bill(request, bill_id):
@@ -86,7 +44,7 @@ def bill(request, bill_id):
   return render(request, 'bill.html', context)
 
 @ensure_csrf_cookie
-def author(request, author_id):#model for this needs to be changed to inlude more than one bill.
+def author(request, author_id):
   try:
     author = Senator.objects.get(id = author_id)
   except Senator.DoesNotExist:
