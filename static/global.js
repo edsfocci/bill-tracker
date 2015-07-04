@@ -217,6 +217,7 @@ if ( $('.billarea').length ) {
 								
 								isCollision = true;
 								targetTop = testBot + 15;
+								targetBot = targetTop + annotationHeight;
 
 							}
 						}
@@ -231,7 +232,7 @@ if ( $('.billarea').length ) {
 						
 						// TODO: Fix infinite recursion bug in here somewhere.  Step through.
 						isCollision = false;
-						// testAnnotationCollision();
+						testAnnotationCollision();
 
 					}
 					
