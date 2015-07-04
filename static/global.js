@@ -224,13 +224,14 @@ if ( $('.billarea').length ) {
 					}
 
 					if (!isCollision) {
-						console.log('1');
+						
 						annotationTop = targetTop;
 
 					} else {
-						console.log('2');
+						
+						// TODO: Fix infinite recursion bug in here somewhere.  Step through.
 						isCollision = false;
-						testAnnotationCollision();
+						// testAnnotationCollision();
 
 					}
 					
