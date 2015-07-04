@@ -116,15 +116,61 @@ if ( $('.billarea').length ) {
 	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
 	function placeNewAnnotation (newAnnotation) {
 
-		var index = $('.annotator-wrapper .annotator-hl').length + 1;
+		// console.log(newAnnotation);
+
 		var highlightId = newAnnotation.highlights[0].id;
-		var highlight = $('.annotator-wrapper #' + highlightId);
+		var highlights = $('.annotator-wrapper .annotator-hl');
 
-		var highlightSelector = '#' + highlightId;
+		var allIdsSame = true;
+		for (var i=0; i<highlights.length; i++) {
+			var isIdSameAsNewOne = $(highlights[i]).attr('id') == highlightId;
+			if (isIdSameAsNewOne == false) {
+				allIdsSame = false;
+			}
+		}
 
-		setTimeout(function(){
-			$(highlightSelector).css('border','1px solid #ff0000');
-		},2500);
+		// if first new annotation since page load
+		if (allIdsSame) {
+
+			for (var i=0; i<highlights.length; i++) {
+				if ( $(highlights[i]).attr('data-annotation-id') === undefined ) {
+					$(highlights[i]).css('border','1px solid red');
+				}
+			}
+
+		// if second or later annotation since page load
+		} else {
+			//
+		}
+
+		
+
+		
+		
+
+		// for (var i=0; i<highlights.length; i++) {
+		// 	if ( $(highlights[i]).attr('data-annotation-id') === undefined ) {
+		// 		console.log('found');
+		// 	}
+		// }
+
+		// var index = $('.annotator-wrapper .annotator-hl').length + 1;
+		// var highlightId = newAnnotation.highlights[0].id;
+		// var highlightSelector = '.annotator-wrapper #' + highlightId;
+
+		// setTimeout(function(){
+		// 	var highlight = document.querySelector(highlightSelector);
+		// 	// var highlight = $('.annotator-wrapper #' + highlightId);
+		// 	console.log(highlight);
+		// },2500);
+		
+		
+
+		// var highlightSelector = '#' + highlightId;
+
+		// console.log(highlightId);
+
+		//$(highlightSelector).css('border','1px solid #ff0000');
 
 		// placeAnnotation(index, highlight, highlightId);		
 
