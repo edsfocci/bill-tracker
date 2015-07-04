@@ -117,10 +117,16 @@ if ( $('.billarea').length ) {
 	function placeNewAnnotation (newAnnotation) {
 
 		var index = $('.annotator-wrapper .annotator-hl').length + 1;
-		var highlightId = newAnnotation.data_creacio;
-		var highlight = $('.annotator-wrapper .annotator-hl#' + highlightId);
+		var highlightId = newAnnotation.highlights[0].id;
+		var highlight = $('.annotator-wrapper #' + highlightId);
 
-		placeAnnotation(index, highlight, highlightId);		
+		var highlightSelector = '#' + highlightId;
+
+		setTimeout(function(){
+			$(highlightSelector).css('border','1px solid #ff0000');
+		},2500);
+
+		// placeAnnotation(index, highlight, highlightId);		
 
 	}
 
