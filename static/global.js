@@ -116,10 +116,13 @@ if ( $('.billarea').length ) {
 	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
 	function placeNewAnnotation (newAnnotation) {
 
-		// console.log(newAnnotation);
+		console.log(newAnnotation);
 
 		var highlightId = newAnnotation.highlights[0].id;
 		var highlights = $('.annotator-wrapper .annotator-hl');
+		var numAnnotations = $('li.annotator-marginviewer-element').length;
+
+		console.log(numAnnotations);
 
 		var allIdsSame = true;
 		for (var i=0; i<highlights.length; i++) {
@@ -134,45 +137,24 @@ if ( $('.billarea').length ) {
 
 			for (var i=0; i<highlights.length; i++) {
 				if ( $(highlights[i]).attr('data-annotation-id') === undefined ) {
+					
 					$(highlights[i]).css('border','1px solid red');
+					$('#submission #annotation-' + highlightId).css('border','1px solid red');
+
+					// placeAnnotation(index, highlight, highlightId);	
+
 				}
 			}
 
 		// if second or later annotation since page load
 		} else {
-			//
-		}
+			
+			$('.annotator-wrapper #' + highlightId).css('border','1px solid red');
+			$('#submission #annotation-' + highlightId).css('border','1px solid red');
 
-		
+			// placeAnnotation(index, highlight, highlightId);	
 
-		
-		
-
-		// for (var i=0; i<highlights.length; i++) {
-		// 	if ( $(highlights[i]).attr('data-annotation-id') === undefined ) {
-		// 		console.log('found');
-		// 	}
-		// }
-
-		// var index = $('.annotator-wrapper .annotator-hl').length + 1;
-		// var highlightId = newAnnotation.highlights[0].id;
-		// var highlightSelector = '.annotator-wrapper #' + highlightId;
-
-		// setTimeout(function(){
-		// 	var highlight = document.querySelector(highlightSelector);
-		// 	// var highlight = $('.annotator-wrapper #' + highlightId);
-		// 	console.log(highlight);
-		// },2500);
-		
-		
-
-		// var highlightSelector = '#' + highlightId;
-
-		// console.log(highlightId);
-
-		//$(highlightSelector).css('border','1px solid #ff0000');
-
-		// placeAnnotation(index, highlight, highlightId);		
+		}	
 
 	}
 
