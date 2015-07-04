@@ -103,7 +103,7 @@ if ( $('.billarea').length ) {
 			var highlight = $(this);
 			var highlightId = highlight.attr('data-annotation-id');
 
-			placeAnnotation(index, highlight, highlightId);
+			placeAnnotation(index, highlight, highlightId, true);
 
 		});
 
@@ -116,13 +116,11 @@ if ( $('.billarea').length ) {
 	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
 	function placeNewAnnotation (newAnnotation) {
 
-		console.log(newAnnotation);
+		// console.log(newAnnotation);
 
 		var highlightId = newAnnotation.highlights[0].id;
 		var highlights = $('.annotator-wrapper .annotator-hl');
-		var numAnnotations = $('li.annotator-marginviewer-element').length;
-
-		console.log(numAnnotations);
+		var index = $('li.annotator-marginviewer-element').length - 1;
 
 		var allIdsSame = true;
 		for (var i=0; i<highlights.length; i++) {
@@ -138,10 +136,10 @@ if ( $('.billarea').length ) {
 			for (var i=0; i<highlights.length; i++) {
 				if ( $(highlights[i]).attr('data-annotation-id') === undefined ) {
 					
-					$(highlights[i]).css('border','1px solid red');
-					$('#submission #annotation-' + highlightId).css('border','1px solid red');
+					var highlight = $(highlights[i]);
+					// $('#submission #annotation-' + highlightId).css('border','1px solid red');
 
-					// placeAnnotation(index, highlight, highlightId);	
+					placeAnnotation(index, highlight, highlightId);	
 
 				}
 			}
@@ -149,18 +147,20 @@ if ( $('.billarea').length ) {
 		// if second or later annotation since page load
 		} else {
 			
-			$('.annotator-wrapper #' + highlightId).css('border','1px solid red');
-			$('#submission #annotation-' + highlightId).css('border','1px solid red');
+			var highlight = $('.annotator-wrapper #' + highlightId);
+			// $('#submission #annotation-' + highlightId).css('border','1px solid red');
 
-			// placeAnnotation(index, highlight, highlightId);	
+			placeAnnotation(index, highlight, highlightId);	
 
 		}	
 
 	}
 
 
-
-	function placeAnnotation(index, highlight, highlightId){
+	// fourth param (alreadyExisting)
+	// 		- true for just loading already existing annotations (like on page load)
+	//		- false for placing new annotations (like user just saved a new annotation)
+	function placeAnnotation(index, highlight, highlightId, alreadyExisting){
 
 		// prevents duplicate id entries (where highlight is broken into two with same id)
 		if ( annotations.length && (annotations[index - 1].id == highlightId) ) {
@@ -180,17 +180,62 @@ if ( $('.billarea').length ) {
 
 		} else {
 
-			var prevIndex = index - 1;
-			var prevAnnotation = annotations[prevIndex];
-			var targetTop = highlightTop;
-			var targetBot = highlightTop + annotationHeight;
-			var prevTop = prevAnnotation.topY;
-			var prevBot = prevAnnotation.botY;
+			// just loading already existing annotations (like on page load)
+			if (alreadyExisting) {
 
-			if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
-				annotationTop = prevBot + 15;
+				var prevIndex = index - 1;
+				var prevAnnotation = annotations[prevIndex];
+				var targetTop = highlightTop;
+				var targetBot = highlightTop + annotationHeight;
+				var prevTop = prevAnnotation.topY;
+				var prevBot = prevAnnotation.botY;
+
+				if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+					annotationTop = prevBot + 15;
+				} else {
+					annotationTop = targetTop;
+				}
+
+			// placing new annotations (like user just saved a new annotation)
 			} else {
-				annotationTop = targetTop;
+
+				var isCollision = false;
+				var targetTop = highlightTop;
+				var targetBot = highlightTop + annotationHeight;
+
+				testAnnotationCollision();
+
+				function testAnnotationCollision() {
+					for (var i=0; i<annotations.length; i++) {
+
+						if (!isCollision) {
+							var testAnnotation = annotations[i];
+							var testTop = testAnnotation.topY;
+							var testBot = testAnnotation.botY;
+
+							if ( (targetTop > testTop) && (targetTop < testBot) || (targetBot > testTop) && (targetBot < testBot) ) {
+								
+								isCollision = true;
+								targetTop = testBot + 15;
+
+							}
+						}
+
+					}
+
+					if (!isCollision) {
+						console.log('1');
+						annotationTop = targetTop;
+
+					} else {
+						console.log('2');
+						isCollision = false;
+						testAnnotationCollision();
+
+					}
+					
+				}
+
 			}
 
 		}
