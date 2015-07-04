@@ -116,8 +116,11 @@ if ( $('.billarea').length ) {
 	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
 	function placeNewAnnotation (newAnnotation) {
 
-		console.log(newAnnotation.data_creacio);
-		// console.log(annotations);
+		var index = $('.annotator-wrapper .annotator-hl').length + 1;
+		var highlightId = newAnnotation.data_creacio;
+		var highlight = $('.annotator-wrapper .annotator-hl#' + highlightId);
+
+		placeAnnotation(index, highlight, highlightId);		
 
 	}
 
