@@ -111,6 +111,18 @@ if ( $('.billarea').length ) {
 
 
 
+
+	// this is a custom tweak to the annotator.js library.
+	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
+	function placeNewAnnotation (newAnnotation) {
+
+		console.log(newAnnotation.data_creacio);
+		// console.log(annotations);
+
+	}
+
+
+
 	function placeAnnotation(index, highlight, highlightId){
 
 		// prevents duplicate id entries (where highlight is broken into two with same id)

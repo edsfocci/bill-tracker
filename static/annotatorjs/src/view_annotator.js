@@ -228,6 +228,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
     AnnotatorViewer.prototype.onAnnotationCreated = function(annotation) { 
 
+      /* this is custom for billtracker - it's in static/global.js */
+      placeNewAnnotation(annotation);
+
       this.createReferenceAnnotation(annotation);
       $('#count-anotations').text($(".container-anotacions").find('.annotator-marginviewer-element').length );
     };
