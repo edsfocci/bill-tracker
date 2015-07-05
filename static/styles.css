@@ -61,6 +61,8 @@
 
 .annotator-marginviewer-element {
 	position: absolute;
+	left: 0;
+	width: 100% !important;
 }
 
 /* end new css */
