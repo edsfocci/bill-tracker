@@ -126,9 +126,20 @@ if ( $('.billarea').length ) {
 	// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
 	function placeNewAnnotation (newAnnotation) {
 
-		var highlight = $('.undefined.annotator-hl');
-		var highlightId = newAnnotation.highlights[0].id;
-		var highlights = $('.annotator-wrapper .annotator-hl');
+		// first grab the newest highlight
+		var newHighlights = $('.undefined.annotator-hl');
+		function compare(a,b) {
+		  if ( parseInt($(a).attr('id')) < parseInt($(b).attr('id')))
+		    return -1;
+		  if ( parseInt($(a).attr('id')) > parseInt($(b).attr('id')))
+		    return 1;
+		  return 0;
+		}
+		newHighlights.sort(compare);
+		var highlight = $(newHighlights[newHighlights.length - 1]);
+
+		
+		var highlightId = highlight.id;
 		var index = $('li.annotator-marginviewer-element').length - 1;
 		var highlightPos = highlight.offset().top;
 		var annotationSelector = '#submission #annotation-' + highlightId;
@@ -184,6 +195,7 @@ if ( $('.billarea').length ) {
 			topY: annotationTop,
 			botY: annotationTop + annotationHeight
 		});	
+		
 
 	}
 
