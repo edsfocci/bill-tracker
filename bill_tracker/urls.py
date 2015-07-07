@@ -14,10 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+import docs.views
+# Deprecated
+import annotation_app as annote_app
+
 
 urlpatterns = [
-  url(r'^', include('annotation_app.urls')),
+  url(r'^$', docs.views.home, name='home'),
+
+  url(r'^bills/', include('annotation_app.routes.bills_routes')),
+  # Deprecated
+  url(r'^get_bill_list/$', annote_app.views.get_bill_list),
+  url(r'^addbill/$', annote_app.views.add_bill),
+
+  url(r'^authors/', include('annotation_app.routes.authors_routes')),
+  # Deprecated
+  url(r'^get_author_list/$', annote_app.views.get_author_list),
+  url(r'^get_author_bills/$', annote_app.views.get_author_bills),
+
+  url(r'^subjects/', include('annotation_app.routes.subjects_routes')),
+  # Deprecated
+  url(r'^get_subject_list/$', annote_app.views.get_subject_list),
+  url(r'^get_subject_bills/$', annote_app.views.get_subject_bills),
+
   url(r'^annotations/', include('annotation_app.routes.annotations_routes')),
   url(r'^docs/', include('docs.urls')),
 ]
-
