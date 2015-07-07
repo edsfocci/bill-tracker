@@ -32,7 +32,7 @@
   <div id="page1" class="page" style="text-align:center;">
     <h1>{{ copy }}</h1>
     <br />
-    <form action="/addbill/" method="post" class="form bills-2-0">
+    <form action="/bills/" method="post" class="form bills-2-0">
       {% csrf_token %}
       <!-- HARDCODE WARNING -->
       <input type="hidden" name="session" value="84R" />

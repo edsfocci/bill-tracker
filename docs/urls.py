@@ -17,5 +17,5 @@ from django.conf.urls import url
 from docs import views
 
 urlpatterns = [
-  url(r'^home/$', views.home, name='home'),
+  url(r'^home/$', views.home, name='docs-home'),
 ]

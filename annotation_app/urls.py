@@ -19,26 +19,6 @@ from annotation_app.controllers import comments_controller, clients_controller
 from annotation_app import views
 
 urlpatterns = [
-  # Bills routes
-  url(r'^$', views.bill_list, name='bill_list'),
-  url(r'^bills/$', views.bill_list, name='bills'),
-  url(r'get_bill_list/$', views.get_bill_list, name='get_bill_list'),
-  url(r'^addbill/$', views.add_bill, name='add_bill'),
-  url(r'^bills/(?P<bill_id>\d+)/$', views.bill, name='bill'),
-
-  # Authors routes
-  url(r'^authors/$', views.author_list, name='authors'),
-  url(r'get_author_list/$', views.get_author_list, name='get_author_list'),
-  url(r'get_author_bills/$', views.get_author_bills, name='get_author_bills'),
-  url(r'^authors/(?P<author_id>\d+)/$', views.author, name='author'),#model for this needs to be changed to inlude more than one bill.
-
-  # Subjects routes
-  url(r'^subjects/$', views.subject_list, name='subjects'),
-  url(r'get_subject_list/$', views.get_subject_list, name='get_subject_list'),
-  url(r'get_subject_bills/$', views.get_subject_bills,
-    name='get_subject_bills'),
-  url(r'^subjects/(?P<subject_id>\d+)/$', views.subject, name='subject'),
-
   # Comments routes
   url(r'^addcomment/$', comments_controller.add_comment, name='add_comment'),
   url(r'^comments/(?P<comment_id>\d+)/$', comments_controller.comment,
@@ -50,7 +30,4 @@ urlpatterns = [
   url(r'^example-client/$', clients_controller.example_client,
     name='example_client'),
   url(r'^megalith/$', clients_controller.megalith, name='megalith'),
-
-  # Deprecated
-  # url(r'^addannotation/$', views.add_annotation, name='add_annotation'),
 ]
