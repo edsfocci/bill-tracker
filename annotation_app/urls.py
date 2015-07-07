@@ -14,8 +14,7 @@ Including another URLconf
   2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from annotation_app.controllers import annotations_controller,\
-  comments_controller, clients_controller
+from annotation_app.controllers import comments_controller, clients_controller
 # Deprecated
 from annotation_app import views
 
@@ -40,12 +39,6 @@ urlpatterns = [
     name='get_subject_bills'),
   url(r'^subjects/(?P<subject_id>\d+)/$', views.subject, name='subject'),
 
-  # Annotations routes
-  url(r'^annotations/$', annotations_controller.annotations,
-    name='annotations'),
-  url(r'^annotations/(?P<annotation_id>\d+)/$',
-    annotations_controller.annotation, name='annotation'),
-
   # Comments routes
   url(r'^addcomment/$', comments_controller.add_comment, name='add_comment'),
   url(r'^comments/(?P<comment_id>\d+)/$', comments_controller.comment,
@@ -59,6 +52,5 @@ urlpatterns = [
   url(r'^megalith/$', clients_controller.megalith, name='megalith'),
 
   # Deprecated
-  # url(r'^index/$', views.index),
   # url(r'^addannotation/$', views.add_annotation, name='add_annotation'),
 ]

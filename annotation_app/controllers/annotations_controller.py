@@ -3,41 +3,14 @@ from annotation_app.models import Annotation, Bill
 from annotation_app.forms import AnnotationAddForm, AnnotationEditForm
 import re, json
 
-### Controller-level routes
-# annotations and annotation routes to controller actions below.
-# annotations handles the annotation-list and creating a new annotation
-# annotation handles individual annotations that have an id (update and delete)
-
-def annotations(request):
-  if request.method == 'GET':
-    return all(request)
-
-  elif request.method == 'POST':
-    return create_update(request)
-
-def annotation(request, annotation_id):
-  if request.method == 'PUT':
-    return create_update(request, annotation_id)
-
-  elif request.method == 'DELETE':
-    return delete(annotation_id)
-
-  # elif request.method == 'GET':
-  #   try:
-  #     annotation = Annotation.objects.get(id = annotation_id)
-  #   except Annotation.DoesNotExist:
-  #     raise Http404
-  #   comment_list = annotation.comment_set.all()
-  #   context = {'annotation': annotation, 'comment_list': comment_list}
-  #   return render(request, 'annotation.html', context)
 
 ### Controller actions
 # These handle all the actual processing of requests
-# all: annotation-list
+# list: annotation_list
 # create_update: create or update a new or existing annotation
 # delete: divides an annotation's id by zero, ending it's existence, forever
 
-def all(request):
+def list(request):
   bill_id = re.search(r'bills/(\d+)/$',
     request.META['HTTP_REFERER']).group(1)
   bill = Bill.objects.get(id = bill_id)
@@ -70,6 +43,7 @@ def all(request):
     }
     annotation_list.append(data)
   return HttpResponse(json.dumps(annotation_list))
+
 
 def create_update(request, annotation_id=None):
   input_data = json.loads(request.body.decode("utf-8"))
@@ -106,6 +80,7 @@ def create_update(request, annotation_id=None):
   else:
     return HttpResponse(status=400)
 
+
 def delete(annotation_id):
   try:
     annotation = Annotation.objects.get(id = annotation_id)
@@ -114,6 +89,7 @@ def delete(annotation_id):
 
   annotation.delete()
   return HttpResponse("{}")
+
 
 ### Helper functions
 
@@ -124,6 +100,7 @@ def unix_time(dt):
   epoch = datetime.datetime.utcfromtimestamp(0)
   delta = naive - epoch
   return int(delta.total_seconds() * 1000)
+
 
 ### Deprecated
 # def add_annotation(request):

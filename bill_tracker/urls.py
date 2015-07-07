@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 
 urlpatterns = [
   url(r'^', include('annotation_app.urls')),
+  url(r'^annotations/', include('annotation_app.routes.annotations_routes')),
   url(r'^docs/', include('docs.urls')),
 ]
 
