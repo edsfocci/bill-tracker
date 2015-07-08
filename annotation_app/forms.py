@@ -2,6 +2,8 @@ from django import forms
 
 
 class BillForm(forms.Form):
+  session = forms.CharField()
+  chamber_origin = forms.CharField()
   number = forms.IntegerField()
 
 

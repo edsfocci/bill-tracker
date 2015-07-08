@@ -1,21 +1,9 @@
-import bs4
 from django.core import serializers
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-import requests
-from annotation_app.bill_parse import Bill_Import
-from django.core import serializers
- #get_history,
-
-from annotation_app.controllers.bills_controller import pull_bill
 from annotation_app.models import Bill, Senator, Subject
-from annotation_app.forms import BillForm
-import json
 
-# Deprecated
-# def index(request):
-#   return render(request, 'base.html')
 
 def bill_list(request):
   return render(request, 'bill-list.html')
@@ -25,9 +13,6 @@ def subject_list(request):
 
 def author_list(request):
   return render(request, 'author-list.html')
-
-def add_bill(request):
-  return pull_bill(request)
 
 
 @ensure_csrf_cookie
@@ -41,7 +26,7 @@ def bill(request, bill_id):
   authors = Bill.deserialize(bill.authors)
   subjects = Bill.deserialize(bill.subjects)
   context = {'bill': bill, 'authors': authors, 'subjects': subjects }#, 'annotation_list': annotation_list}
-  return render(request, 'bill.html', context)
+  return render(request, 'bill_future.html', context)
 
 @ensure_csrf_cookie
 def author(request, author_id):
@@ -88,7 +73,8 @@ def get_subject_bills(request):
   return HttpResponse(data)
 
 
-import re
+# Deprecated, sorry God
+import json, re
 
 ### For the love of Linus, don't touch this!!!
 # This does text post-processing before sending to the templates
