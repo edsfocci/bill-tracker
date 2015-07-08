@@ -58,8 +58,8 @@ window.onload = function() {
   var billarea = $(".billarea").annotator();
   var propietary = 'demoUser'
   billarea.annotator('addPlugin', 'Permissions', {
-  user: propietary,
-  permissions: {
+    user: propietary,
+    permissions: {
       'read': [propietary],
       'update': [propietary],
       'delete': [propietary],
@@ -104,4 +104,69 @@ window.onload = function() {
   // FYI: Tags are space-separated, not comma-separated
   // (Learned that from experience)
   billarea.annotator('addPlugin', 'Tags')
+
+  // Bill-info: Helper functions
+  var showAuthors = function() {
+    var auth_size = window.authors.length;
+    var auth_half = Math.ceil(auth_size / 2);
+
+    var auth_left = window.authors.slice(0, auth_half);
+    var auth_right = window.authors.slice(auth_half, auth_size);
+
+    $('#billinfo-left').html(auth_left.join('<br />'));
+    $('#billinfo-right').html(auth_right.join('<br />'));
+  };
+
+  var showSubjects = function() {
+    var subj_size = window.subjects.length;
+    var subj_half = Math.ceil(subj_size / 2);
+
+    var subj_left = window.subjects.slice(0, subj_half);
+    var subj_right = window.subjects.slice(subj_half, subj_size);
+
+    $('#billinfo-left').html(subj_left.join('<br />'));
+    $('#billinfo-right').html(subj_right.join('<br />'));
+  };
+
+  // Bill-info: Main code
+  window.billInfoLoaded = false;
+  $.post('http://localhost:8000/bills/get-bill-info/',
+    {  bill_id: window.bill_id, format: 'json' },
+    function(data) {
+      data = $.parseJSON(data)
+      window.authors = data.authors
+      window.subjects = data.subjects
+
+      if ($('#btn-authors').hasClass("btn-selected")) {
+        showAuthors();
+      } else if ($('#btn-subjects').hasClass("btn-selected")) {
+        showSubjects();
+      }
+
+      window.billInfoLoaded = true;
+  });
+
+  $('#btn-authors').click(function (e) {
+    $('#btn-subjects').removeClass("btn-selected");
+    $('#btn-authors').addClass("btn-selected");
+
+    if (window.billInfoLoaded) {
+      showAuthors();
+
+    } else {
+      $('#billinfo-left').html("Loading...");
+    }
+  });
+
+  $('#btn-subjects').click(function (e) {
+    $('#btn-authors').removeClass("btn-selected");
+    $('#btn-subjects').addClass("btn-selected");
+
+    if (window.billInfoLoaded) {
+      showSubjects();
+
+    } else {
+      $('#billinfo-left').html("Loading...");
+    }
+  });
 };

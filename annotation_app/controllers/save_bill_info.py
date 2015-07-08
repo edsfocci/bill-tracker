@@ -6,6 +6,8 @@ from annotation_app.bill_parse import Bill_Import_Call
 def save_bill(number):
 	bill = Bill()
 	bill.number = number
+	bill.chamber_origin = "S"
+	bill.session = "84R"
 	bill_import = Bill_Import_Call(number)
 	bill_list = bill_import.billtext
 	bill.text = Bill.serialize(bill_list)

@@ -3,30 +3,39 @@ import json
 
 
 class Bill(models.Model):
+  session = models.CharField(max_length=3)
+  chamber_origin = models.CharField(max_length=1)
+  number = models.IntegerField()
   text = models.TextField()
-  number = models.IntegerField(default=0)
-  stage = models.IntegerField(default=0)
-  origin = models.CharField(max_length=255, default="null")
-  last_action = models.CharField(max_length=255, default= "null")
-  caption_version = models.CharField(max_length=255, default= "null")
-  caption_text = models.TextField(default="null")
-  coauthors = models.CharField(max_length=255, default= "null")
-  sponsors = models.CharField(max_length=255, default="null")
-  cosponsors = models.CharField(max_length=255, default= "null")
-  subjects = models.TextField(default="null")
-  authors = models.TextField(default="null")
 
+  # Deprecated
+  authors = models.TextField(null=True)
+  subjects = models.TextField(null=True)
+
+  # Not deprecated (yet)
+  stage = models.IntegerField(null=True)
+  last_action = models.CharField(max_length=255, null=True)
+  caption_version = models.CharField(max_length=255, null=True)
+  caption_text = models.TextField(null=True)
+  coauthors = models.CharField(max_length=255, null=True)
+  sponsors = models.CharField(max_length=255, null=True)
+  cosponsors = models.CharField(max_length=255, null=True)
+
+  # Deprecated
   def serialize(object):
     return json.dumps(object)
 
   def deserialize(object):
     return json.loads(object)
 
+
 class Senator(models.Model):#model for this needs to be changed to inlude more than one bill.
   name = models.CharField(max_length=255)
-  committee = models.CharField(max_length=255)
-  is_chair = models.BooleanField()
   bills = models.ManyToManyField(Bill)
+
+  committee = models.CharField(max_length=255, null=True)
+  is_chair = models.BooleanField(default=False)
+
 
 class Subject(models.Model):
   name = models.CharField(max_length=255)
@@ -75,6 +84,7 @@ class Annotation(models.Model):
 #   },
 #   'data_creacio': 1434156917763     # created datetime in iso8601 format (added by backend)
 # }
+
 
 class Comment(models.Model):
   annotation = models.ForeignKey(Annotation)

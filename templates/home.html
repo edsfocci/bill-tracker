@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% load staticfiles %}
 {% block page_specific_stylesheets %}
 <style>
@@ -19,6 +20,11 @@
 
   #legis-chamber {
     display: inline-block;
+    margin: 0 10px;
+  }
+
+  #legis-chamber label:first-of-type {
+    margin-top: 5px;
   }
 
   label {
@@ -27,11 +33,13 @@
 </style>
 {% endblock %}
 
+
 {% block content %}
 <div class="container">
   <div id="page1" class="page" style="text-align:center;">
     <h1>{{ copy }}</h1>
     <br />
+
     <form action="/bills/" method="post" class="form bills-2-0">
       {% csrf_token %}
       <!-- HARDCODE WARNING -->
@@ -43,7 +51,7 @@
 
       <!-- Dropdown to select where the bill originated: Senate or House -->
       <span id="legis-chamber">
-      Senate or House Bill:<br />
+        Senate or House Bill:<br />
         <input type="radio" name="chamber_origin" value="S" id="SB"
         checked="checked" />
         <label for="SB">Senate Bill</label>
@@ -63,6 +71,7 @@
       <span id="bill-submit">
         <input type="submit" class="btn btn-primary" value="Annotate Bill !" />
       </span>
+
     </form>
   </div>
 </div>
