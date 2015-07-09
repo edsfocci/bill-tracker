@@ -3,11 +3,11 @@ from annotation_app.forms import BillForm
 from django.core import serializers
 from annotation_app.bill_parse import Bill_Import_Call
 
-def save_bill(number):
+def save_bill(number, chamber_origin, session):
 	bill = Bill()
 	bill.number = number
-	bill.chamber_origin = "S"
-	bill.session = "84R"
+	bill.chamber_origin = chamber_origin
+	bill.session = session
 	bill_import = Bill_Import_Call(number)
 	bill_list = bill_import.billtext
 	bill.text = Bill.serialize(bill_list)
