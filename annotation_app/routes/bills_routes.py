@@ -13,7 +13,7 @@ def bills(request):
     return views.bill_list(request)
 
   elif request.method == 'POST':
-    return bills_controller.pull_bill(request)
+    return bills_controller.create(request)
 
 
 ### Bills URLs
@@ -24,7 +24,9 @@ urlpatterns = [
     name='get_bill_info'),
   url(r'^get_bill_list/$', views.get_bill_list, name='get_bill_list'),
   # Deprecated
-  url(r'^(?P<bill_id>\d+)/$', views.bill, name='bill'),
+  url(r'^(?P<bill_id>\d+)/$', bills_controller.redirect_get_one, name='bill'),
+  url(r'^(?P<bill_slug>[SHsh][Bb]\d+)/$', bills_controller.get_one,
+    name='bill_by_slug'),
 
   # Deprecated
   url(r'^addbill/$', bills_controller.pull_bill, name='add_bill'),

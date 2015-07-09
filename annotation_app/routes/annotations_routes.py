@@ -9,7 +9,7 @@ from annotation_app.controllers import annotations_controller
 
 def annotations(request):
   if request.method == 'GET':
-    return annotations_controller.list(request)
+    return annotations_controller.get_list(request)
 
   elif request.method == 'POST':
     return annotations_controller.create_update(request)

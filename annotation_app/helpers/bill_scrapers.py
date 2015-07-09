@@ -17,10 +17,13 @@ from annotation_app.helpers import std as STD
 def keep_trying_ftpopen(url, tries=7):
   # TODO: figure out optimal number of 'tries'
 
-  # One last try, allow exception
+  # One last try, return None if fail
   if tries <= 1:
-    with request.urlopen(url) as response:
-      return response.read()
+    try:
+      with request.urlopen(url) as response:
+        return response.read()
+    except:
+      return
 
   try:
     with request.urlopen(url) as response:
@@ -28,12 +31,14 @@ def keep_trying_ftpopen(url, tries=7):
   except:
     return keep_trying_ftpopen(url, tries=tries-1)
 
+
 ### Public functions
 
 # INPUT: initial_data format:
 # {'session': '84R', 'chamber_origin': 'S', 'number': 5}
 
 # OUTPUT: bill_text, FORMAT: byte_string
+#   If not found, return None
 
 def scrape_bill_text(initial_data):
   bill_data = initial_data
@@ -65,7 +70,11 @@ def scrape_bill_text(initial_data):
     ch_abbr, bill_number.zfill(5))
 
   # Parse folder structure for latest version of bill_text
-  response = str(keep_trying_ftpopen(bill_text_files_url))[2:]
+  response = keep_trying_ftpopen(bill_text_files_url)
+  if response == None:
+    return response
+
+  response = str(response)[2:]
   response = response.split('\\r\\n')[:-1]
   files = list(STD.filterr(lambda x: re.search(bill_text_filename_regex, x,
     re.IGNORECASE), response))
@@ -91,10 +100,12 @@ def scrape_bill_text(initial_data):
   # print(''.join(soup[4:]))
   # return
 
+
 # INPUT: initial_data format:
 # {'session': '84R', 'chamber_origin': 'S', 'number': 5}
 
 # OUTPUT: bill_history, FORMAT: dict
+#   If not found, return None
 
 def scrape_bill_history(initial_data):
   bill_data = initial_data
@@ -123,12 +134,16 @@ def scrape_bill_history(initial_data):
       bill_data['session'], chamber, ch_abbr, '000', bill_number, 1)
 
   # Get XML data
-  response = str(keep_trying_ftpopen(bill_hist_file_url))
-  return xmltodict.parse(response[14:-1])['billhistory']
+  response = keep_trying_ftpopen(bill_hist_file_url)
+  if response == None:
+    return response
+
+  return xmltodict.parse(str(response)[14:-1])['billhistory']
 
   # Get only data I want
   # bill_data['caption'] = data['caption']['#text']
   # bill_data['history_url'] = bill_hist_file_url
+
 
 # input = {'session': '84R', 'chamber_origin': 'S', 'number': 5}
 ### Testers
@@ -140,7 +155,9 @@ def scrape_bill_history_test():
   return scrape_bill_history(
     {'session': '84R', 'chamber_origin': 'S', 'number': 5})
 
+
 ### Speed test
-# from timeit import Timer
-# t = Timer(lambda: bill_scrape(input))
-# print(t.timeit(number=1))
+def speedtest():
+  from timeit import Timer
+  t = Timer(lambda: scrape_bill_history_test())
+  print(t.timeit(number=1))

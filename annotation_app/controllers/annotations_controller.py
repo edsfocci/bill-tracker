@@ -6,14 +6,12 @@ import re, json
 
 ### Controller actions
 # These handle all the actual processing of requests
-# list: annotation_list
+# get_list: get annotation_list for particular bill
 # create_update: create or update a new or existing annotation
 # delete: divides an annotation's id by zero, ending it's existence, forever
 
-def list(request):
-  bill_id = re.search(r'bills/(\d+)/$',
-    request.META['HTTP_REFERER']).group(1)
-  bill = Bill.objects.get(id = bill_id)
+def get_list(request):
+  bill = Bill.objects.get(id = request.COOKIES['bill_id'])
   annotations = bill.annotation_set.all()
   annotation_list = []
   counter = 1
