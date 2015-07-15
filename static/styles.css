@@ -33,10 +33,6 @@
 	margin: 0 0 20px;
 }
 
-
-
-/* new css */
-
 .container-anotacions {
 	/* display: none !important; */
 	display: block !important;
@@ -65,7 +61,40 @@
 	width: 100% !important;
 }
 
-/* end new css */
+li div.annotator-marginviewer-text,
+li div.annotator-marginviewer-date {
+	background-color: transparent;
+	border-bottom: none;
+	padding-bottom: 0;
+	font-size: 12px;
+}
+
+li div.annotator-marginviewer-date {
+	line-height: 1;
+}
+
+li div.annotator-marginviewer-text .hightlight {
+	display: none;
+}
+
+li div.annotator-marginviewer-text .anotador_text {
+	padding: .5em 0 .5em 0.1em;
+}
+
+li div.annotator-marginviewer-footer {
+	padding-top: 0;
+	background-color: transparent;
+}
+
+li div.annotator-marginviewer-footer .label {
+	padding-left: 0;
+	border: none;
+	font-weight: normal;
+}
+li div.annotator-marginviewer-footer img {
+	display: none;
+}
+
 
 
 
