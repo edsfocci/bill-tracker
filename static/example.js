@@ -29,7 +29,10 @@ $.ajaxSetup({
   }
 });
 
-$.post('http://localhost:8000/addbill/',
+
+var billTrackerUrl = window.location.origin;
+
+$.post(billTrackerUrl + '/addbill/',
   { number: 10, format: 'json' },
   function(data) {
     data = $.parseJSON(data)[0]
