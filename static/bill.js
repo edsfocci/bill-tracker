@@ -128,9 +128,12 @@ window.onload = function() {
     $('#billinfo-right').html(subj_right.join('<br />'));
   };
 
+
   // Bill-info: Main code
+  var billTrackerUrl = window.location.origin;
+
   window.billInfoLoaded = false;
-  $.post('http://localhost:8000/bills/get-bill-info/',
+  $.post(billTrackerUrl + '/bills/get-bill-info/',
     {  bill_id: window.bill_id, format: 'json' },
     function(data) {
       data = $.parseJSON(data)
