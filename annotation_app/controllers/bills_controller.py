@@ -84,9 +84,8 @@ def create(request):
       bill.chamber_origin = data['chamber_origin']
       bill.number = data['number']
       bill.text = bill_text
-      bill.save()
 
-      from annotation_app.htmllogic import htmltext
+      from annotation_app.helpers.htmllogic import htmltext
       bill.text = htmltext(bill.text)
       bill.save()
 
