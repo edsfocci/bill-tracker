@@ -1,7 +1,7 @@
-import re
-import bs4
-import requests
-from annotation_app import htmllogic
+import re, bs4, requests
+from annotation_app.helpers import htmllogic
+
+
 class Bill_Import():
 
     def __init__(self):
