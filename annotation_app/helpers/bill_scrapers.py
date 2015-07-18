@@ -7,8 +7,8 @@
 
 from urllib import request
 import re, xmltodict
-from bs4 import BeautifulSoup
 
+# Deprecated: will be removed after July 2015
 from annotation_app.helpers import std as STD
 
 
@@ -56,8 +56,10 @@ def scrape_bill_text(initial_data):
     chamber = 'senate'
   elif ch_abbr == 'H':
     chamber = 'house'
+  else:
+    return
 
-  # Get proper bill_hist_file_url & bill_text_file_url
+  # Get proper bill_text_file_url
   bill_number = str(bill_data['number'])
   if bill_data['number'] > 99:
     bill_text_files_url = bill_text_files_url_unformatted.format(
@@ -79,6 +81,10 @@ def scrape_bill_text(initial_data):
   files = list(STD.filterr(lambda x: re.search(bill_text_filename_regex, x,
     re.IGNORECASE), response))
 
+  # If len(files) is 0, no files found
+  if len(files) == 0:
+    return
+
   from datetime import date
   def map_dates_and_filenames(text):
     matches = re.search('^(\d+)-(\d+)-(\d+).+' + '(' +\
@@ -93,12 +99,6 @@ def scrape_bill_text(initial_data):
 
   # Get bill text (finally!)
   return keep_trying_ftpopen(bill_text_files_url + bill_text_filename)
-
-  # soup = BeautifulSoup(bill_text).find_all('table')[1].find_all('td')
-  # soup = list(filter(lambda x: not re.search('meta', str(x)), soup))
-  # soup = list(map(lambda x: x.get_text(), soup))
-  # print(''.join(soup[4:]))
-  # return
 
 
 # INPUT: initial_data format:
@@ -121,8 +121,10 @@ def scrape_bill_history(initial_data):
     chamber = 'senate'
   elif ch_abbr == 'H':
     chamber = 'house'
+  else:
+    return
 
-  # Get proper bill_hist_file_url & bill_text_file_url
+  # Get proper bill_hist_file_url
   bill_number = str(bill_data['number'])
   if bill_data['number'] > 99:
     bill_hist_file_url = bill_hist_file_url_unformatted.format(
