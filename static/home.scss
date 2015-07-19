@@ -1,0 +1,28 @@
+.bills-2-0 span {
+  margin-left: 5px;
+  margin-right: 5px; 
+}
+
+#legis-session,
+#legis-chamber {
+  font-size: 15pt;
+}
+
+#legis-session, 
+#bill-number, 
+#bill-submit {
+  position: relative;
+  bottom: 35px;
+}
+
+#legis-chamber {
+  display: inline-block;
+  margin: 0 10px;
+  label:first-of-type {
+	  margin-top: 5px;
+	}
+}
+
+label {
+  font-weight: normal;
+}
