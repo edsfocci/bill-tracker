@@ -1,28 +1,43 @@
-.bills-2-0 span {
-  margin-left: 5px;
-  margin-right: 5px; 
-}
+.home {
 
-#legis-session,
-#legis-chamber {
-  font-size: 15pt;
-}
+  .banner {
+    height: 510px;
+    background: url("../images/thelukeparker-14170034048.jpg");
+    background-size: cover;
+    h1,
+    span,
+    label {
+      color: #fff;
+    }
 
-#legis-session, 
-#bill-number, 
-#bill-submit {
-  position: relative;
-  bottom: 35px;
-}
+  }
 
-#legis-chamber {
-  display: inline-block;
-  margin: 0 10px;
-  label:first-of-type {
-	  margin-top: 5px;
-	}
-}
+  .bills-2-0 span {
+    margin-left: 5px;
+    margin-right: 5px; 
+  }
 
-label {
-  font-weight: normal;
+  #legis-session,
+  #legis-chamber {
+    font-size: 15pt;
+  }
+
+  #legis-session, 
+  #bill-number, 
+  #bill-submit {
+    position: relative;
+    bottom: 35px;
+  }
+
+  #legis-chamber {
+    display: inline-block;
+    margin: 0 10px;
+    label:first-of-type {
+      margin-top: 5px;
+    }
+  }
+
+  label {
+    font-weight: normal;
+  }
 }
