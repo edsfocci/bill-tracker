@@ -1,62 +1,75 @@
 #billinfo-group, #billinfo-group .btn, .billarea {
-  font-size: 15px; }
+  font-size: 15px;
+}
 
 .annotated {
-  background-color: yellow; }
+  background-color: yellow; 
+}
 
 span {
-  border: 1px solid white; }
+  border: 1px solid white;
+}
 
 span:hover {
-  border: 1px solid black; }
+  border: 1px solid black;
+}
 
 .selected-sentence {
   color: white;
-  background-color: blue; }
+  background-color: blue;
+}
 
 #billinfo-group {
   margin-bottom: 15px;
-  padding-right: 0; }
+  padding-right: 0;
+}
 
 /*TODO: Fix button squash problem*/
 /*.col-fixed {
     width: 77px;*/
-/*position: fixed;*/
+    /*position: fixed;*/
 /*}
 
 .col-offset {
     padding-left: 105px;
 }*/
+
 #billinfo-group .btn {
-  padding: 1px 4px; }
+  padding: 1px 4px;
+}
 
 #btn-authors {
-  border-bottom: 1px solid white; }
+  border-bottom: 1px solid white;
+}
 
 #btn-subjects {
-  border-top: 1px solid white; }
+  border-top: 1px solid white;
+}
 
 #billinfo {
   /*width: 750px;*/
   /*display: inline-block;*/
   /*height: 200px;*/
   /*overflow-y: auto;*/
-  padding: 0 0 0 5px; }
+  padding: 0 0 0 5px;
+}
 
 #billinfo-left {
   padding: 0 8px 0 0;
-  /*margin-right: 15px;*/ }
+  /*margin-right: 15px;*/
+}
 
 #billinfo-right {
   padding: 0 0 0 8px;
-  /*margin-left: 15px;*/ }
+  /*margin-left: 15px;*/
+}
 
 /* Failed attempt to make highlighting more visible */
 /* Problem somehow lies with the opacity of the highlighting */
 /*.billarea {
   background-color: PowderBlue;
 }*/
-.annotator-hl {
-  background-color: rgba(255, 255, 10, 0.5); }
 
-/*# sourceMappingURL=bill.css.map */
+.annotator-hl {
+  background-color: rgba(255,255,10,0.5);
+}
