@@ -1,7 +1,6 @@
 .home .banner {
   height: 510px;
-  background: url("../images/thelukeparker-14170034048.jpg");
-  background-size: cover; }
+  background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
   .home .banner h1,
   .home .banner span,
   .home .banner label {
