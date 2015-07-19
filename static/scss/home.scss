@@ -2,8 +2,7 @@
 
   .banner {
     height: 510px;
-    background: url("../images/thelukeparker-14170034048.jpg");
-    background-size: cover;
+    background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
     h1,
     span,
     label {
