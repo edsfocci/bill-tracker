@@ -56,5 +56,7 @@
         margin-top: 5px; }
     .home form .formBody label {
       font-weight: normal; }
+    .home form .formBody input {
+      color: black; }
 
 /*# sourceMappingURL=home.css.map */
