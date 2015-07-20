@@ -2,3 +2,4 @@
 *.sqlite3
 ENV
 static/.sass-cache
+staticfiles
