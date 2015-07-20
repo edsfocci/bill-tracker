@@ -3,14 +3,14 @@ import random
 
 def home(request):
   copy_list = [
-    'Understand, help others understand, and create ' +
-      'dialog about the proposed laws you care about.',
+    'Understand and create dialog ' +
+      'about the proposed laws you care about.',
 
     'Help the community understand the proposed ' +
-      'laws you feel strongly for, or against.',
+      'laws you feel strongly about.',
 
-    'Know about the laws being proposed in your Texas ' +
-      'State Legislature, for your piece of mind.'
+    'Follow newly proposed Texas laws —' +
+      'for your piece of mind.'
   ]
 
   return render(request, 'home.html', {'copy': random.choice(copy_list)})

@@ -1,29 +1,60 @@
+@media (max-width: 480px) {
+  .home #logo {
+    margin: 35px auto 0;
+    display: block; } }
 .home .banner {
-  height: 510px;
+  height: 570px;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
   .home .banner h1,
   .home .banner span,
   .home .banner label {
     color: #fff; }
-.home .bills-2-0 span {
-  margin-left: 5px;
-  margin-right: 5px; }
-.home #legis-session,
-.home #legis-chamber {
-  font-size: 15pt; }
-.home #legis-session,
-.home #bill-number,
-.home #bill-submit {
-  position: relative;
-  bottom: 35px; }
-.home #legis-chamber {
-  display: inline-block;
-  margin: 0 10px; }
-  .home #legis-chamber label:first-of-type {
-    margin-top: 5px; }
-.home label {
-  font-weight: normal; }
-.home input {
-  color: black; }
+  .home .banner h1 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%; }
+    @media (max-width: 768px) {
+      .home .banner h1 {
+        font-size: 30px;
+        line-height: 1.2; } }
+    @media (max-width: 480px) {
+      .home .banner h1 {
+        font-size: 21px;
+        line-height: 1.2; } }
+.home form {
+  margin: 0 auto;
+  width: 70%;
+  background: #ccc;
+  /*&.bills-2-0 span {
+    margin-left: 5px;
+    margin-right: 5px; 
+  }*/ }
+  .home form #legis-session {
+    padding: 10px;
+    display: block;
+    background: #18bc9c;
+    color: #fff;
+    font-size: 25px; }
+    .home form #legis-session em {
+      display: block;
+      font-size: 12px;
+      font-style: normal; }
+  .home form .formBody {
+    margin-left: 5px;
+    margin-right: 5px; }
+    .home form .formBody #legis-session,
+    .home form .formBody #legis-chamber {
+      font-size: 15pt; }
+    .home form .formBody #bill-number,
+    .home form .formBody #bill-submit {
+      position: relative;
+      bottom: 35px; }
+    .home form .formBody #legis-chamber {
+      display: inline-block;
+      margin: 0 10px; }
+      .home form .formBody #legis-chamber label:first-of-type {
+        margin-top: 5px; }
+    .home form .formBody label {
+      font-weight: normal; }
 
 /*# sourceMappingURL=home.css.map */
