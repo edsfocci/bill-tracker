@@ -68,34 +68,37 @@
         <br />
 
         <form action="/bills/" method="post" class="form bills-2-0">
+          <!-- Placeholder for being able to
+            select State or National, and Session -->
+          <span id="legis-session">Find a bill <em>Session Texas 84R</em></span>
+
           {% csrf_token %}
+          
           <!-- HARDCODE WARNING -->
           <input type="hidden" name="session" value="84R" />
 
-          <!-- Placeholder for being able to
-            select State or National, and Session -->
-          <span id="legis-session">Session: Texas 84R</span>
+          <div class="formBody">
+            <!-- Dropdown to select where the bill originated: Senate or House -->
+            <span id="legis-chamber">
+              <!-- Senate or House Bill:<br /> -->
+              <input type="radio" name="chamber_origin" value="S" id="SB" />
+              <label for="SB">Senate Bill</label>
+              <br />
+              <input type="radio" name="chamber_origin" value="H" id="HB" />
+              <label for="HB">
+                House Bill
+              </label>
+            </span>
 
-          <!-- Dropdown to select where the bill originated: Senate or House -->
-          <span id="legis-chamber">
-            Senate or House Bill:<br />
-            <input type="radio" name="chamber_origin" value="S" id="SB" />
-            <label for="SB">Senate Bill</label>
-            <br />
-            <input type="radio" name="chamber_origin" value="H" id="HB" />
-            <label for="HB">
-              House Bill
-            </label>
-          </span>
+            <span id="bill-number">
+              <input type="number" id="id_number" name="number" placeholder="Number"
+              min="1" autofocus="autofocus" />
+            </span>
 
-          <span id="bill-number">
-            <input type="number" id="id_number" name="number" placeholder="Number"
-            min="1" autofocus="autofocus" />
-          </span>
-
-          <span id="bill-submit">
-            <input type="submit" class="btn btn-info" value="Annotate Bill !" />
-          </span>
+            <span id="bill-submit">
+              <input type="submit" class="btn btn-info" value="Annotate Bill !" />
+            </span>
+          </div>
 
         </form>
       </div>
