@@ -22,51 +22,9 @@ header #logo {
 .container.bill-list nav li {
   margin: 0 0 20px; }
 
+/* Search-specific */
 .highlighted {
   background: yellow; }
-
-/* right column */
-#submission .container-anotacions {
-  /* display: none !important; */
-  display: block !important; }
-  #submission .container-anotacions .filter-panel {
-    display: none !important; }
-#submission .annotations-list-uoc {
-  /* width: 230px; */
-  background-color: transparent !important;
-  position: static !important; }
-#submission .annotations-list-uoc .rotate {
-  display: none !important; }
-#submission .form-group {
-  display: none; }
-#submission .annotator-marginviewer-element {
-  position: absolute;
-  left: 0;
-  width: 100% !important; }
-#submission .annotator-marginviewer-element {
-  position: absolute;
-  left: 0;
-  width: 100% !important; }
-#submission li div.annotator-marginviewer-text, #submission li div.annotator-marginviewer-date {
-  background-color: transparent;
-  border-bottom: none;
-  padding-bottom: 0;
-  font-size: 15px; }
-#submission li div.annotator-marginviewer-date {
-  line-height: 1; }
-#submission li div.annotator-marginviewer-text .hightlight {
-  display: none; }
-#submission li div.annotator-marginviewer-text .anotador_text {
-  padding: .5em 0 .5em 0.1em; }
-#submission li div.annotator-marginviewer-footer {
-  padding-top: 0;
-  background-color: transparent; }
-#submission li div.annotator-marginviewer-footer .label {
-  padding-left: 0;
-  border: none;
-  font-weight: normal; }
-#submission li div.annotator-marginviewer-footer img {
-  display: none; }
 
 footer {
   margin: 40px 0 0; }
