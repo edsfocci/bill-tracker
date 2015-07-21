@@ -5,13 +5,11 @@
 .home .banner {
   height: 570px;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
-  .home .banner h1,
-  .home .banner span,
-  .home .banner label {
+  .home .banner #page1 {
+    text-align: center;
     color: #fff; }
   .home .banner h1 {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 21px auto 31px;
     width: 70%; }
     @media (max-width: 768px) {
       .home .banner h1 {
@@ -24,11 +22,7 @@
 .home form {
   margin: 0 auto;
   width: 70%;
-  background: #ccc;
-  /*&.bills-2-0 span {
-    margin-left: 5px;
-    margin-right: 5px; 
-  }*/ }
+  background: #ccc; }
   .home form #legis-session {
     padding: 10px;
     display: block;
@@ -56,7 +50,7 @@
         margin-top: 5px; }
     .home form .formBody label {
       font-weight: normal; }
-    .home form .formBody input {
+    .home form .formBody #bill-number {
       color: black; }
 
 /*# sourceMappingURL=home.css.map */
