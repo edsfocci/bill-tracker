@@ -8,7 +8,7 @@
 
   {% load staticfiles %}
   <link href="{% static "lib/bootstrap.css" %}" media="screen" rel="stylesheet" />
-  <link href="{% static "global.css" %}" rel="stylesheet" />
+  <link href="{% static "css/global.css" %}" rel="stylesheet" />
 
   {% block page_specific_stylesheets %}{% endblock %}
 </head>
@@ -17,7 +17,8 @@
   <header>  
     <div class="container">
       <a href="/">
-        <img id="logo" src="{% static "images/logo-blue.png" %}" alt="My image"/>
+        <img id="logo" src="{% static "images/logo-blue.png" %}"
+        alt="Bill Tracker logo" />
       </a>
     </div>
 
