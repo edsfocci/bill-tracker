@@ -10,21 +10,21 @@
   .banner {
     height: 570px;
     background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
-    h1,
-    span,
-    label {
+
+    #page1 {
+      text-align: center;
       color: #fff;
     }
 
     h1 {
-      margin-left: auto;
-      margin-right: auto;
+      margin: 21px auto 31px;
       width: 70%;
 
       @media (max-width: 768px) {
         font-size: 30px;
         line-height: 1.2;
       }
+
       @media (max-width: 480px) {
         font-size: 21px;
         line-height: 1.2;
@@ -38,11 +38,6 @@
     margin: 0 auto;
     width: 70%;
     background: #ccc;
-
-    /*&.bills-2-0 span {
-      margin-left: 5px;
-      margin-right: 5px; 
-    }*/
 
     #legis-session {
       padding: 10px;
@@ -77,6 +72,7 @@
       #legis-chamber {
         display: inline-block;
         margin: 0 10px;
+
         label:first-of-type {
           margin-top: 5px;
         }
@@ -86,7 +82,7 @@
         font-weight: normal;
       }
 
-      input {
+      #bill-number {
         color: black;
       }
 

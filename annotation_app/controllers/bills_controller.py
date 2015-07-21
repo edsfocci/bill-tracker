@@ -49,7 +49,7 @@ def get_one(request, bill_slug):
   # annotation_list = bill.annotation_set.all()
 
   context = {'bill': bill}#, 'annotation_list': annotation_list}
-  response = render(request, 'bill_future.html', context)
+  response = render(request, 'bill.html', context)
   response.set_cookie('bill_id', bill.id)
   return response
 

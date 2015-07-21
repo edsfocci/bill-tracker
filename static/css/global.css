@@ -1,0 +1,35 @@
+header #logo {
+  margin: 35px 0 40px 20px;
+  width: 190px; }
+
+.nav-pills > li.active a,
+.nav-pills > li.active a:hover,
+.nav-pills > li.active a:focus {
+  color: black;
+  background-color: #2c3e50; }
+
+.bill-list .nav.nav-pills li a {
+  margin: 0 0 20px; }
+  .bill-list .nav.nav-pills li a span {
+    color: #bbb; }
+  .bill-list .nav.nav-pills li a.addBillButton.btn-primary {
+    margin: 20px 0 0;
+    color: #bbb; }
+
+.containerAddBill h3 {
+  margin: 30px 0 20px; }
+
+.container.bill-list nav li {
+  margin: 0 0 20px; }
+
+/* Search-specific */
+.highlighted {
+  background: yellow; }
+
+footer {
+  margin: 40px 0 0; }
+  footer p {
+    margin-left: 20px;
+    text-align: right; }
+
+/*# sourceMappingURL=styles.css.map */
