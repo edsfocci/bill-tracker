@@ -41,9 +41,8 @@ billTracker.controller("AuthorListController", function($scope, $http) {
         var author_list = [];
         for (index = 0; index < data.length; index++) {
             author_list.push(data[index]["fields"]);
-            // TODO Data[index]["fields"]["bills"] is an array of bill ids related to each author.
-            // TODO For now, we make each author a link to the first bill in that array.
-            author_list[index]["id"] = data[index]["fields"]["bills"][0];
+            author_list[index]["id"] = data[index]["pk"];
+            author_list[index]["model"] = data[index]["model"];
         }
 
         $scope.authors = author_list;
@@ -58,9 +57,8 @@ billTracker.controller("SubjectListController", function($scope, $http) {
         var subject_list = [];
         for (index = 0; index < data.length; index++) {
             subject_list.push(data[index]["fields"]);
-            // TODO Data[index]["fields"]["bills"] is an array of bill ids related to each subject.
-            // TODO For now, we make each subject a link to the first bill in that array.
-            subject_list[index]["id"] = data[index]["fields"]["bills"][0];
+            subject_list[index]["id"] = data[index]["pk"];
+            subject_list[index]["model"] = data[index]["model"];
         }
 
         $scope.subjects = subject_list;
@@ -76,6 +74,9 @@ billTracker.controller("BillsByAuthorController", function($scope, $window, $htt
         for (index = 0; index < data.length; index++) {
             bills_list.push(data[index]["fields"]);
             bills_list[index]["id"] = data[index]["pk"];
+            // Name of the bill is the first 1000 characters of its text.
+            // Used for displaying in bill list.
+            bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
         }
 
         $scope.bills = bills_list;
@@ -91,6 +92,9 @@ billTracker.controller("BillsBySubjectController", function($scope, $window, $ht
         for (index = 0; index < data.length; index++) {
             bills_list.push(data[index]["fields"]);
             bills_list[index]["id"] = data[index]["pk"];
+            // Name of the bill is the first 1000 characters of its text.
+            // Used for displaying in bill list.
+            bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
         }
 
         $scope.bills = bills_list;
@@ -108,9 +112,16 @@ billTracker.filter('highlight', function($sce) {
           search = search.toString();
           text = text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>');
       }
+
+      switcher = {
+          "annotation_app.senator": "authors",
+          "annotation_app.subject": "subjects",
+          "annotation_app.bill": "bills"
+      }
+
       // Need to return as trusted html, otherwise angular throws "unsafe html" error
-      return $sce.trustAsHtml('<li class="active"><a href="/bills/' + object.id + '/">'
-            + text + '</li>');
+      return $sce.trustAsHtml('<li class="active"><a href="/' + switcher[object.model] +
+          '/' + object.id + '/">'+ text + '</li>');
   }
 
 });
