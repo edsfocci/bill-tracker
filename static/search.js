@@ -78,6 +78,7 @@ billTracker.controller("BillsByAuthorController", function($scope, $window, $htt
             // Name of the bill is the first 1000 characters of its text.
             // Used for displaying in bill list.
             bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
+            bills_list[index]["model"] = data[index]["model"];
         }
 
         $scope.bills = bills_list;
@@ -96,6 +97,7 @@ billTracker.controller("BillsBySubjectController", function($scope, $window, $ht
             // Name of the bill is the first 1000 characters of its text.
             // Used for displaying in bill list.
             bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
+            bills_list[index]["model"] = data[index]["model"];
         }
 
         $scope.bills = bills_list;
