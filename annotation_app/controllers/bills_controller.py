@@ -47,17 +47,19 @@ def get_one(request, bill_slug):
   except Bill.DoesNotExist:
     raise Http404
   # annotation_list = bill.annotation_set.all()
-
-  context = {'bill': bill}#, 'annotation_list': annotation_list}
-  response = render(request, 'bill.html', context)
-  response.set_cookie('bill_id', bill.id)
-  return response
+  if request.is_ajax():
+    data = serializers.serialize("json", [bill])
+    return HttpResponse(data)
+  else:
+    context = {'bill': bill}#, 'annotation_list': annotation_list}
+    response = render(request, 'bill.html', context)
+    response.set_cookie('bill_id', bill.id)
+    return response
 
 
 # Cater to deprecated route
 def redirect_get_one(request, bill_id):
   bill = Bill.objects.get(id = bill_id)
-
   return HttpResponseRedirect('/bills/%sB%d/' % (bill.chamber_origin,
     bill.number))
 

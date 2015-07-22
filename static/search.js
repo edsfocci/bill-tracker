@@ -4,6 +4,18 @@ var billTracker = angular.module("bill-tracker", []).config(function($httpProvid
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
 
+billTracker.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+}]);
+
+billTracker.controller("BillController", function($scope, $window, $http) {
+
+    // Retrieve bill with given id from database
+    $http.get("/bills/"+ $window.bill_id).success(function (data) {
+        $scope.bill = data[0]["fields"];
+    });
+});
+
 billTracker.controller("BillsListController", function($scope, $http) {
 
     // Retrieve bills data from database
@@ -18,27 +30,8 @@ billTracker.controller("BillsListController", function($scope, $http) {
             bills_list[index]["name"] = data[index]["fields"]["text"].substring(0, 1000);
         }
         $scope.bills = bills_list;
-
     });
 });
-
-billTracker.filter('highlight', function($sce) {
-    // object is bill/author/subject
-  return function (object, search) {
-
-      text = object.name;
-      if (text && (search || angular.isNumber(search))) {
-          text = text.toString();
-          search = search.toString();
-          text = text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>');
-      }
-      // Need to return as trusted html, otherwise angular throws "unsafe html" error
-      return $sce.trustAsHtml('<li class="active"><a href="/bills/' + object.id + '/">'
-            + text + '</li>');
-  }
-
-});
-
 
 billTracker.controller("AuthorListController", function($scope, $http) {
 
@@ -104,3 +97,37 @@ billTracker.controller("BillsBySubjectController", function($scope, $window, $ht
     });
 });
 
+billTracker.filter('highlight', function($sce) {
+    // object is bill/author/subject
+  return function (object, search) {
+
+      text = object.name;
+
+      if (text && (search || angular.isNumber(search))) {
+          text = text.toString();
+          search = search.toString();
+          text = text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>');
+      }
+      // Need to return as trusted html, otherwise angular throws "unsafe html" error
+      return $sce.trustAsHtml('<li class="active"><a href="/bills/' + object.id + '/">'
+            + text + '</li>');
+  }
+
+});
+
+billTracker.filter('highlightText', function($sce) {
+    // object is bill text
+  return function (object, search) {
+
+      text = object.text;
+
+      if (text && (search || angular.isNumber(search))) {
+          text = text.toString();
+          search = search.toString();
+          text = text.replace(new RegExp(search, 'gi'), '<span class="highlighted">$&</span>');
+      }
+      // Need to return as trusted html, otherwise angular throws "unsafe html" error
+      return $sce.trustAsHtml(text);
+  }
+
+});
