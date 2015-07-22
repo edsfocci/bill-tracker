@@ -48,7 +48,9 @@ billTracker.controller("AuthorListController", function($scope, $http) {
         var author_list = [];
         for (index = 0; index < data.length; index++) {
             author_list.push(data[index]["fields"]);
-            author_list[index]["id"] = data[index]["pk"];
+            // TODO Data[index]["fields"]["bills"] is an array of bill ids related to each author.
+            // TODO For now, we make each author a link to the first bill in that array.
+            author_list[index]["id"] = data[index]["fields"]["bills"][0];
         }
 
         $scope.authors = author_list;
@@ -63,7 +65,9 @@ billTracker.controller("SubjectListController", function($scope, $http) {
         var subject_list = [];
         for (index = 0; index < data.length; index++) {
             subject_list.push(data[index]["fields"]);
-            subject_list[index]["id"] = data[index]["pk"];
+            // TODO Data[index]["fields"]["bills"] is an array of bill ids related to each subject.
+            // TODO For now, we make each subject a link to the first bill in that array.
+            subject_list[index]["id"] = data[index]["fields"]["bills"][0];
         }
 
         $scope.subjects = subject_list;
