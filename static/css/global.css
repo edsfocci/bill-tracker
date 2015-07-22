@@ -24,7 +24,7 @@ header #logo {
 
 /* Search-specific */
 .highlighted {
-  background: white; }
+  background: yellow; }
 
 footer {
   margin: 40px 0 0; }
@@ -32,4 +32,4 @@ footer {
     margin-left: 20px;
     text-align: right; }
 
-/*# sourceMappingURL=global.css.map */
+/*# sourceMappingURL=styles.css.map */
