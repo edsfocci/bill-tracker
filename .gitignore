@@ -1,4 +1,6 @@
 *.pyc
 *.sqlite3
 ENV
-static/.sass-cache
+.sass-cache
+
+bill_tracker/mysecrets.py
