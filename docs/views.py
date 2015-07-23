@@ -14,3 +14,9 @@ def home(request):
   ]
 
   return render(request, 'home.html', {'copy': random.choice(copy_list)})
+
+def about_us(request):
+  return render(request, 'about-us.html')
+
+def contact_us(request):
+  return render(request, 'contact-us.html')
