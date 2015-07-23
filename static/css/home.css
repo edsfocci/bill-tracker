@@ -113,8 +113,12 @@
     margin: 0 20px 0 0;
     font-size: 105px;
     float: left; }
+    .home .marketing.homeSection .featurette i.fa.fa-connectdevelop {
+      font-size: 95px; }
   .home .marketing.homeSection .featurette p.lead {
     margin: 12px 0 0; }
+    .home .marketing.homeSection .featurette p.lead.leadNoTopMargin {
+      margin: 0; }
     .home .marketing.homeSection .featurette p.lead span.featurette-heading {
       padding: 3px 0 0;
       margin: 0 0 4px;
