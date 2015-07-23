@@ -12,33 +12,41 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <!-- Page-specific stylesheets -->
-  <link href="{% static "css/home.css" %}" rel="stylesheet" />
+  <link href="{% static "css/downstream.css" %}" rel="stylesheet" />
 </head>
-<body class="about-us">
+<body class="downstream contactUs">  
 
+  <header>
+
+    <div class="container"> 
+
+      <a id="logoText" href="/">
+        <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
+        alt="Bill Tracker logo" />
+        Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
+      </a>
+
+      <ul id="ultraTopNav">
+        <li><a href="/about-us.html">About Us</a></li>
+        <li><a href="/contact-us.html">Contact Us</a></li>
+      </ul>
+
+    </div>
+
+  </header>
   
 
-    <!--
-    <header>
+  <div class="container mainContent">
 
-      <div class="container"> 
+    <div class="row">
 
-        <a id="logoText" href="/">
-          <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
-          alt="Bill Tracker logo" />
-          Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
-        </a>
+      <h1>Contact Us Us</h1>
 
-        <ul id="ultraTopNav">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
+      <p>Feel free to contact us with this contact form.  We'll get back to you shortly.  We appriciate any and all feedback on Bill Tracker &mdash; bugs, usability issues, ideas or suggestions.</p>      
 
-      </div>
+    </div>
 
-    </header>
-    -->
-  
+  </div>
 
 
   

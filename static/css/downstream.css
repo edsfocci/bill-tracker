@@ -1,0 +1,145 @@
+.downstream h1 {
+  font-weight: 700;
+  border-bottom: 1px solid #2c3e50; }
+.downstream header {
+  padding: 0 0 20px;
+  overflow: hidden;
+  background: #1A4C6D; }
+  .downstream header a#logoText {
+    margin: 50px 0 0;
+    font-size: 32px;
+    color: #fff;
+    display: block;
+    font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    float: left;
+    /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
+    .downstream header a#logoText span {
+      display: inline-block; }
+      .downstream header a#logoText span.fixBigKerningGap {
+        margin-left: -2px; }
+      .downstream header a#logoText span.fixSmallKerningGap {
+        margin-left: -1px; }
+    .downstream header a#logoText:hover, .downstream header a#logoText:active, .downstream header a#logoText:visited {
+      text-decoration: none; }
+    .downstream header a#logoText img#logoImage {
+      margin: -63px 5px 0 0;
+      width: 50px; }
+    @media (max-width: 480px) {
+      .downstream header a#logoText {
+        font-size: 25px; }
+        .downstream header a#logoText img#logoImage {
+          margin: -33px 5px 0 0;
+          width: 30px; } }
+  .downstream header ul#ultraTopNav {
+    margin: 60px 20px 0 0;
+    float: right;
+    overflow: hidden; }
+    .downstream header ul#ultraTopNav li {
+      list-style: none;
+      float: left; }
+      .downstream header ul#ultraTopNav li a {
+        margin: 0 0 0 35px;
+        color: #fff;
+        text-decoration: none; }
+        .downstream header ul#ultraTopNav li a:hover {
+          text-decoration: underline; }
+.downstream .mainContent {
+  margin-top: 50px; }
+  .downstream .mainContent p {
+    margin-bottom: 21px;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.4; }
+    @media (min-width: 768px) {
+      .downstream .mainContent p {
+        font-size: 22.5px; } }
+  .downstream .mainContent .imageWithCaption {
+    margin: 0 15px 20px 0;
+    text-align: center; }
+    .downstream .mainContent .imageWithCaption img {
+      margin: 0 0 5px; }
+    .downstream .mainContent .imageWithCaption span.caption {
+      padding: 0;
+      margin: 0;
+      font-size: 100%;
+      line-height: 1.25;
+      display: inline-block; }
+.downstream footer {
+  padding: 0 0 15px;
+  overflow: hidden; }
+  .downstream footer p.footerPhotoCredit {
+    float: left; }
+  .downstream footer p.footerAbout {
+    float: right; }
+  .downstream footer p a:active, .downstream footer p a:visited {
+    text-decoration: none; }
+  .downstream footer p a:hover {
+    text-decoration: underline; }
+
+  /*
+
+  .marketing.homeSection {
+
+    .tripleIconRow {
+      padding: 80px 0 50px;
+
+      .col-sm-4 {
+        text-align: center;
+
+        i.fa {
+        font-size: 150px;
+        }
+      }
+    }
+
+    .featurette {
+      padding: 5px 0 30px;
+
+      i.fa {
+        margin: 0 20px 0 0;
+        font-size: 105px;
+        float: left;
+        &.fa-connectdevelop {
+          font-size: 95px;
+        }
+      }
+
+      p.lead {
+        margin: 12px 0 0;
+        &.leadNoTopMargin {
+          margin: 4px 0 0;
+        }
+        &.leadNegativeMargin {
+          margin: -8px 0 0;
+        }
+
+        span.featurette-heading {
+          padding: 3px 0 0;
+          margin: 0 0 4px;
+          font-size: 27px;
+          display: block;
+        }
+
+        .quote {
+          font-size: 25px;
+          font-weight: bold;
+          margin: -4px 6px 0 6px;
+          float: none;
+          display: inline-block;;
+        }
+
+      }
+    }
+
+    hr.featurette-divider {
+      margin: 21px 0 30px;
+    }
+
+  }
+
+
+
+*/
+
+/*# sourceMappingURL=downstream.css.map */

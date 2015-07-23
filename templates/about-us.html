@@ -12,33 +12,52 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <!-- Page-specific stylesheets -->
-  <link href="{% static "css/home.css" %}" rel="stylesheet" />
+  <link href="{% static "css/downstream.css" %}" rel="stylesheet" />
 </head>
-<body class="about-us">
+<body class="downstream aboutUs">  
 
+  <header>
+
+    <div class="container"> 
+
+      <a id="logoText" href="/">
+        <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
+        alt="Bill Tracker logo" />
+        Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
+      </a>
+
+      <ul id="ultraTopNav">
+        <li><a href="/about-us.html">About Us</a></li>
+        <li><a href="/contact-us.html">Contact Us</a></li>
+      </ul>
+
+    </div>
+
+  </header>
   
 
-    <!--
-    <header>
+  <div class="container mainContent">
 
-      <div class="container"> 
+    <div class="row">
 
-        <a id="logoText" href="/">
-          <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
-          alt="Bill Tracker logo" />
-          Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
-        </a>
+      <h1>About Us</h1>
 
-        <ul id="ultraTopNav">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-
+      <div class="imageWithCaption">
+        <img src="{% static "images/team-billtracker-1.jpg" %}" alt="team billtracker" width="100%">
+        <span class="caption">
+          Team Bill Tracker at 2015 ATX Hack For Change. Left to right: Rahul, Dee, Matt, Filip, Laura & Ed
+        </span>
       </div>
 
-    </header>
-    -->
-  
+      <p>Bill Tracker started as a weekend hackathon project at the 2015 <a href="http://atxhackforchange.org/" target="_blank">ATX Hack For Change</a>. After the hackathon, we continued working on it for a few months to get it live.  Our team had about seven people during the hackathon and afterwards dropped to about four.  We built Bill Tracker to build something of social value for our community and to work on our programming skills.</p>
+
+      <p>We believe that although Texas legislation is available to the public, that there aren't many people following it and that often legislation is passed which constiuents would disagree with. Our aim was to build a tool which would be fun and easy enough to use that non-lawyers would use it and powerful and popular enough that lawyers and political action committees would also use it.</p>
+
+      
+
+    </div>
+
+  </div>
 
 
   
