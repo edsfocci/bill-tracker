@@ -21,6 +21,8 @@ import annotation_app as annote_app
 
 urlpatterns = [
   url(r'^$', docs.views.home, name='home'),
+  url(r'^about-us/', docs.views.about_us),
+  url(r'^contact-us/', docs.views.contact_us),
 
   url(r'^bills/', include('annotation_app.routes.bills_routes')),
   # Deprecated
