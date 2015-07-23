@@ -1,89 +1,162 @@
 .home {
 
-  @media (max-width: 480px) {
-    #logo {
-      margin: 35px auto 0; 
-      display: block;
+  a#logoText {
+    margin: 50px 0 0;
+    font-size: 32px;
+    color: #fff;
+    display: block;
+    font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+
+    // fixes font kerning
+    span {
+      display: inline-block;
+      &.fixBigKerningGap {
+        margin-left: -2px;
+      }
+      &.fixSmallKerningGap {
+        margin-left: -1px; 
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:visited {
+      text-decoration: none;
+    }
+
+    /* logo preview from http://graphicriver.net/item/law-talk/7469608 */
+    img#logoImage {
+      margin: -63px 5px 0 0;
+      width: 50px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 25px;
+
+      img#logoImage {
+        margin: -33px 5px 0 0;
+        width: 30px;
+      }
+
     } 
+
   }
 
   .banner {
-    height: 570px;
+    /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
+    height:100vh;
     background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
 
-    #page1 {
+    .bannerContent {
+      margin: 20px auto;
+      color: #fff;
       text-align: center;
-      color: #fff;
-    }
 
-    h1 {
-      margin: 21px auto 31px;
-      width: 70%;
+      h1 {
+        margin: 0 auto;
+        width: 70%;
 
-      @media (max-width: 768px) {
-        font-size: 30px;
-        line-height: 1.2;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 21px;
-        line-height: 1.2;
-      }
-
-    }
-
-  }
-
-  form {
-    margin: 0 auto;
-    width: 70%;
-    background: #ccc;
-
-    #legis-session {
-      padding: 10px;
-      display: block;
-      background: #18bc9c;
-      color: #fff;
-      font-size: 25px;
-      
-      em {
-        display: block;
-        font-size: 12px;
-        font-style: normal;
-      }
-
-    }
-
-    .formBody {
-      margin-left: 5px;
-      margin-right: 5px;       
-
-      #legis-session,
-      #legis-chamber {
-        font-size: 15pt;
-      }
-
-      #bill-number, 
-      #bill-submit {
-        position: relative;
-        bottom: 35px;
-      }
-
-      #legis-chamber {
-        display: inline-block;
-        margin: 0 10px;
-
-        label:first-of-type {
-          margin-top: 5px;
+        @media (max-width: 768px) {
+          font-size: 30px;
+          line-height: 1.2;
         }
+
+        @media (max-width: 480px) {
+          font-size: 21px;
+          line-height: 1.2;
+        }
+
       }
 
-      label {
-        font-weight: normal;
+    }
+
+    $formFontColor: #999;
+    $formFontSize: 20px;
+
+    form {
+      margin: 64px auto 0;
+      width: 70%;
+      background: #FDFDFD;
+
+      #legis-session {
+        padding: 10px 0 19px;
+        display: block;
+        background: #18bc9c;
+        font-size: 31px;
+        
+        em {
+          display: block;
+          font-size: 15px;
+          font-style: normal;
+          line-height: 7px;
+        }
+
       }
 
-      #bill-number {
-        color: black;
+      .formBody {
+        padding: 30px 0px 53px;
+        margin-left: 5px;
+        margin-right: 5px;       
+
+        #legis-chamber label,
+        #bill-number input {
+          font-size: $formFontSize;
+        }
+
+        #legis-chamber {
+          margin: 0 auto;
+          width: 255px;
+          text-align: left;
+          display: block;
+
+          input {
+            margin-top: 0;
+            font-size: 20px;
+            position: relative;
+            bottom: 2px;
+            &#HB {
+              margin-left: 21px;
+            }
+          }
+          label {
+            margin-left: 5px;
+          }
+
+        }
+
+        #bill-number {
+          margin: 7px 0 0;
+          color: #000;
+          display: block;
+          input {
+            padding: 0 0 2px 6px;
+            height: 35px;
+            width: 260px;
+            color: #999;
+            line-height: 22px;
+          }
+        }
+
+        #bill-submit { 
+          margin: 11px 0 0;
+          display: block;
+          button {
+            padding: 0;
+            width: 260px;
+            height: 39px;
+            color: #F5F5F5;
+            font-size: $formFontSize;
+            line-height: 17px;
+          }
+        }
+
+        label {
+          margin: 0 0 0 10px;
+          color: $formFontColor;
+          font-weight: normal;
+        }
+
       }
 
     }

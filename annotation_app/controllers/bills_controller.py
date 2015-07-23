@@ -8,9 +8,11 @@ from annotation_app.helpers.bill_scrapers import scrape_bill_text,\
 	scrape_bill_history
 import json
 
-from annotation_app.controllers.save_bill_info import save_bill
+# Deprecated
+from annotation_app.controllers.save_bill_info_deprecated import save_bill
 
 
+# Deprecated
 def pull_bill(request):
 	if request.method == 'POST':
 		form = BillForm(request.POST)
@@ -47,17 +49,19 @@ def get_one(request, bill_slug):
   except Bill.DoesNotExist:
     raise Http404
   # annotation_list = bill.annotation_set.all()
-
-  context = {'bill': bill}#, 'annotation_list': annotation_list}
-  response = render(request, 'bill.html', context)
-  response.set_cookie('bill_id', bill.id)
-  return response
+  if request.is_ajax():
+    data = serializers.serialize("json", [bill])
+    return HttpResponse(data)
+  else:
+    context = {'bill': bill}#, 'annotation_list': annotation_list}
+    response = render(request, 'bill.html', context)
+    response.set_cookie('bill_id', bill.id)
+    return response
 
 
 # Cater to deprecated route
 def redirect_get_one(request, bill_id):
   bill = Bill.objects.get(id = bill_id)
-
   return HttpResponseRedirect('/bills/%sB%d/' % (bill.chamber_origin,
     bill.number))
 
@@ -120,6 +124,8 @@ def get_bill_info(request):
       bill.authors = json.dumps(authors)
 
       subjects = tmi_data['subjects']['subject']
+      if type(subjects) != type([]):
+        subjects = [subjects]
       # Deprecated
       bill.subjects = json.dumps(subjects)
 
@@ -131,10 +137,40 @@ def get_bill_info(request):
       for subject in subjects:
         subjects_controller.create(subject, bill.id)
 
+    elif len(bill.subject_set.all()) == 0:
+      bill_data = {}
+      bill_data['session'] = bill.session
+      bill_data['chamber_origin'] = bill.chamber_origin
+      bill_data['number'] = bill.number
+
+      tmi_data = scrape_bill_history(bill_data)
+
+      subjects = tmi_data['subjects']['subject']
+      if type(subjects) != type([]):
+        subjects = [subjects]
+      # Deprecated
+      bill.subjects = json.dumps(subjects)
+
+      bill.save()
+
+      for subject in subjects:
+        subjects_controller.create(subject, bill.id)
+
     authors = bill.senator_set.all()
     authors = list(map(lambda author: author.name, authors))
 
     subjects = bill.subject_set.all()
+    if len(subjects[0].name) == 1:
+      for subject in subjects:
+        bills = subject.bills.all()
+
+        for bill in bills:
+          bill.subject_set.remove(subject)
+
+        subject.delete()
+
+      return get_bill_info(request)
+
     subjects = list(map(lambda subject: subject.name, subjects))
 
     data = {}
