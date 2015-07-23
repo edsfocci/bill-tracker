@@ -190,10 +190,16 @@
         margin: 0 20px 0 0;
         font-size: 105px;
         float: left;
+        &.fa-connectdevelop {
+          font-size: 95px;
+        }
       }
 
       p.lead {
         margin: 12px 0 0;
+        &.leadNoTopMargin {
+          margin: 0;
+        }
 
         span.featurette-heading {
           padding: 3px 0 0;
