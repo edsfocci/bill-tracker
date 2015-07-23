@@ -8,116 +8,118 @@
   }
 
   .banner {
-    height: 570px;
+    height:100vh;
     background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
 
-    #page1 {
-      text-align: center;
+    .bannerContent {
+      margin: 20px auto;
       color: #fff;
-    }
+      text-align: center;
 
-    h1 {
-      margin: 21px auto 31px;
-      width: 70%;
-
-      @media (max-width: 768px) {
-        font-size: 30px;
-        line-height: 1.2;
-      }
-
-      @media (max-width: 480px) {
-        font-size: 21px;
-        line-height: 1.2;
-      }
-
-    }
-
-  }
-
-  $formFontColor: #999;
-  $formFontSize: 20px;
-
-  form {
-    margin: 0 auto;
-    width: 70%;
-    background: #FDFDFD;
-
-    #legis-session {
-      padding: 10px;
-      display: block;
-      background: #18bc9c;
-      color: #formFontColor;
-      font-size: 25px;
-      
-      em {
-        display: block;
-        font-size: 12px;
-        font-style: normal;
-      }
-
-    }
-
-    .formBody {
-      padding: 10px 0px 25px;
-      margin-left: 5px;
-      margin-right: 5px;       
-
-      #legis-chamber label,
-      #bill-number input {
-        font-size: $formFontSize;
-      }
-
-      #legis-chamber {
+      h1 {
         margin: 0 auto;
-        width: 255px;
-        text-align: left;
-        display: block;
+        width: 70%;
 
-        input {
-          margin-top: 0;
-          font-size: 20px;
-          position: relative;
-          bottom: 2px;
-          &#HB {
-            margin-left: 21px;
+        @media (max-width: 768px) {
+          font-size: 30px;
+          line-height: 1.2;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 21px;
+          line-height: 1.2;
+        }
+
+      }
+
+    }
+
+    $formFontColor: #999;
+    $formFontSize: 20px;
+
+    form {
+      margin: 64px auto 0;
+      width: 70%;
+      background: #FDFDFD;
+
+      #legis-session {
+        padding: 10px 0 19px;
+        display: block;
+        background: #18bc9c;
+        font-size: 31px;
+        
+        em {
+          display: block;
+          font-size: 15px;
+          font-style: normal;
+          line-height: 7px;
+        }
+
+      }
+
+      .formBody {
+        padding: 30px 0px 53px;
+        margin-left: 5px;
+        margin-right: 5px;       
+
+        #legis-chamber label,
+        #bill-number input {
+          font-size: $formFontSize;
+        }
+
+        #legis-chamber {
+          margin: 0 auto;
+          width: 255px;
+          text-align: left;
+          display: block;
+
+          input {
+            margin-top: 0;
+            font-size: 20px;
+            position: relative;
+            bottom: 2px;
+            &#HB {
+              margin-left: 21px;
+            }
+          }
+          label {
+            margin-left: 5px;
+          }
+
+        }
+
+        #bill-number {
+          margin: 7px 0 0;
+          color: #000;
+          display: block;
+          input {
+            padding: 0 0 2px 6px;
+            height: 35px;
+            width: 260px;
+            color: #999;
+            line-height: 22px;
           }
         }
+
+        #bill-submit { 
+          margin: 11px 0 0;
+          display: block;
+          button {
+            padding: 0;
+            width: 260px;
+            height: 39px;
+            color: #F5F5F5;
+            font-size: $formFontSize;
+            line-height: 17px;
+          }
+        }
+
         label {
-          margin-left: 5px;
+          margin: 0 0 0 10px;
+          color: $formFontColor;
+          font-weight: normal;
         }
 
-      }
-
-      #bill-number {
-        margin: 7px 0 0;
-        color: #000;
-        display: block;
-        input {
-          padding: 0 0 2px 6px;
-          height: 35px;
-          width: 260px;
-          color: #999;
-          line-height: 22px;
-        }
-      }
-
-      #bill-submit { 
-        margin: 11px 0 0;
-        display: block;
-        button {
-          padding: 0;
-          width: 260px;
-          height: 39px;
-          color: #F5F5F5;
-          font-size: $formFontSize;
-          line-height: 17px;
-        }
-      }
-
-      label {
-        margin: 0 0 0 10px;
-        color: $formFontColor;
-        font-weight: normal;
       }
 
     }

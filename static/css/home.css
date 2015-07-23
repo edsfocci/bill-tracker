@@ -3,80 +3,81 @@
     margin: 35px auto 0;
     display: block; } }
 .home .banner {
-  height: 570px;
+  height: 100vh;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
-  .home .banner #page1 {
-    text-align: center;
-    color: #fff; }
-  .home .banner h1 {
-    margin: 21px auto 31px;
-    width: 70%; }
-    @media (max-width: 768px) {
-      .home .banner h1 {
-        font-size: 30px;
-        line-height: 1.2; } }
-    @media (max-width: 480px) {
-      .home .banner h1 {
-        font-size: 21px;
-        line-height: 1.2; } }
-.home form {
-  margin: 0 auto;
-  width: 70%;
-  background: #FDFDFD; }
-  .home form #legis-session {
-    padding: 10px;
-    display: block;
-    background: #18bc9c;
-    color: #formFontColor;
-    font-size: 25px; }
-    .home form #legis-session em {
-      display: block;
-      font-size: 12px;
-      font-style: normal; }
-  .home form .formBody {
-    padding: 10px 0px 25px;
-    margin-left: 5px;
-    margin-right: 5px; }
-    .home form .formBody #legis-chamber label,
-    .home form .formBody #bill-number input {
-      font-size: 20px; }
-    .home form .formBody #legis-chamber {
+  .home .banner .bannerContent {
+    margin: 20px auto;
+    color: #fff;
+    text-align: center; }
+    .home .banner .bannerContent h1 {
       margin: 0 auto;
-      width: 255px;
-      text-align: left;
-      display: block; }
-      .home form .formBody #legis-chamber input {
-        margin-top: 0;
-        font-size: 20px;
-        position: relative;
-        bottom: 2px; }
-        .home form .formBody #legis-chamber input#HB {
-          margin-left: 21px; }
-      .home form .formBody #legis-chamber label {
-        margin-left: 5px; }
-    .home form .formBody #bill-number {
-      margin: 7px 0 0;
-      color: #000;
-      display: block; }
-      .home form .formBody #bill-number input {
-        padding: 0 0 2px 6px;
-        height: 35px;
-        width: 260px;
+      width: 70%; }
+      @media (max-width: 768px) {
+        .home .banner .bannerContent h1 {
+          font-size: 30px;
+          line-height: 1.2; } }
+      @media (max-width: 480px) {
+        .home .banner .bannerContent h1 {
+          font-size: 21px;
+          line-height: 1.2; } }
+  .home .banner form {
+    margin: 64px auto 0;
+    width: 70%;
+    background: #FDFDFD; }
+    .home .banner form #legis-session {
+      padding: 10px 0 19px;
+      display: block;
+      background: #18bc9c;
+      font-size: 31px; }
+      .home .banner form #legis-session em {
+        display: block;
+        font-size: 15px;
+        font-style: normal;
+        line-height: 7px; }
+    .home .banner form .formBody {
+      padding: 30px 0px 53px;
+      margin-left: 5px;
+      margin-right: 5px; }
+      .home .banner form .formBody #legis-chamber label,
+      .home .banner form .formBody #bill-number input {
+        font-size: 20px; }
+      .home .banner form .formBody #legis-chamber {
+        margin: 0 auto;
+        width: 255px;
+        text-align: left;
+        display: block; }
+        .home .banner form .formBody #legis-chamber input {
+          margin-top: 0;
+          font-size: 20px;
+          position: relative;
+          bottom: 2px; }
+          .home .banner form .formBody #legis-chamber input#HB {
+            margin-left: 21px; }
+        .home .banner form .formBody #legis-chamber label {
+          margin-left: 5px; }
+      .home .banner form .formBody #bill-number {
+        margin: 7px 0 0;
+        color: #000;
+        display: block; }
+        .home .banner form .formBody #bill-number input {
+          padding: 0 0 2px 6px;
+          height: 35px;
+          width: 260px;
+          color: #999;
+          line-height: 22px; }
+      .home .banner form .formBody #bill-submit {
+        margin: 11px 0 0;
+        display: block; }
+        .home .banner form .formBody #bill-submit button {
+          padding: 0;
+          width: 260px;
+          height: 39px;
+          color: #F5F5F5;
+          font-size: 20px;
+          line-height: 17px; }
+      .home .banner form .formBody label {
+        margin: 0 0 0 10px;
         color: #999;
-        line-height: 22px; }
-    .home form .formBody #bill-submit {
-      margin: 11px 0 0;
-      display: block; }
-      .home form .formBody #bill-submit button {
-        padding: 0;
-        width: 260px;
-        height: 39px;
-        color: #F5F5F5;
-        font-size: 20px;
-        line-height: 17px; }
-    .home form .formBody label {
-      margin: 0 0 0 10px;
-      color: #999;
-      font-weight: normal; }
+        font-weight: normal; }
 
 /*# sourceMappingURL=home.css.map */
