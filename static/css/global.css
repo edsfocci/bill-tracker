@@ -1,3 +1,6 @@
+.btn {
+  border-radius: 0; }
+
 header #logo {
   margin: 35px 0 40px 20px;
   width: 190px; }
@@ -32,4 +35,4 @@ footer {
     margin-left: 20px;
     text-align: right; }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=global.css.map */
