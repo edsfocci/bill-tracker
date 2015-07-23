@@ -1,8 +1,30 @@
-@media (max-width: 480px) {
-  .home #logo {
-    margin: 35px auto 0;
-    display: block; } }
+.home a#logoText {
+  margin: 50px 0 0;
+  font-size: 32px;
+  color: #fff;
+  display: block;
+  font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
+  .home a#logoText span {
+    display: inline-block; }
+    .home a#logoText span.fixBigKerningGap {
+      margin-left: -2px; }
+    .home a#logoText span.fixSmallKerningGap {
+      margin-left: -1px; }
+  .home a#logoText:hover, .home a#logoText:active, .home a#logoText:visited {
+    text-decoration: none; }
+  .home a#logoText img#logoImage {
+    margin: -63px 5px 0 0;
+    width: 50px; }
+  @media (max-width: 480px) {
+    .home a#logoText {
+      font-size: 25px; }
+      .home a#logoText img#logoImage {
+        margin: -33px 5px 0 0;
+        width: 30px; } }
 .home .banner {
+  /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
   height: 100vh;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
   .home .banner .bannerContent {
