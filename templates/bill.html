@@ -15,7 +15,7 @@
 
 
 {% block content %}
-<div class="container" ng-controller="BillController">
+<div class="container"><!-- ng-controller="BillController"-->
 <div class="row">
 
 
@@ -46,11 +46,10 @@
     </div>
   </div>
 
-  {% verbatim %}
-  <div class="col-xs-8 billarea" ng-bind-html="bill | highlightText:query">
-
+  <div class="col-xs-8 billarea"><!-- data-ng-bind-html="bill | highlightText:query"-->
+  {{ bill.text|safe }}
   </div>
-  {% endverbatim %}
+
   <div class="col-xs-4" id="submission">
 
     {% if annotation_list %} 
