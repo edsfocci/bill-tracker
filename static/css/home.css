@@ -2,31 +2,48 @@
   /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
   height: 100vh;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
-  .home .banner.homeSection header a#logoText {
-    margin: 50px 0 0;
-    font-size: 32px;
-    color: #fff;
-    display: block;
-    font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
-    .home .banner.homeSection header a#logoText span {
-      display: inline-block; }
-      .home .banner.homeSection header a#logoText span.fixBigKerningGap {
-        margin-left: -2px; }
-      .home .banner.homeSection header a#logoText span.fixSmallKerningGap {
-        margin-left: -1px; }
-    .home .banner.homeSection header a#logoText:hover, .home .banner.homeSection header a#logoText:active, .home .banner.homeSection header a#logoText:visited {
-      text-decoration: none; }
-    .home .banner.homeSection header a#logoText img#logoImage {
-      margin: -63px 5px 0 0;
-      width: 50px; }
-    @media (max-width: 480px) {
-      .home .banner.homeSection header a#logoText {
-        font-size: 25px; }
-        .home .banner.homeSection header a#logoText img#logoImage {
-          margin: -33px 5px 0 0;
-          width: 30px; } }
+  .home .banner.homeSection header {
+    padding: 0 0 20px;
+    overflow: hidden; }
+    .home .banner.homeSection header a#logoText {
+      margin: 50px 0 0;
+      font-size: 32px;
+      color: #fff;
+      display: block;
+      font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      float: left;
+      /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
+      .home .banner.homeSection header a#logoText span {
+        display: inline-block; }
+        .home .banner.homeSection header a#logoText span.fixBigKerningGap {
+          margin-left: -2px; }
+        .home .banner.homeSection header a#logoText span.fixSmallKerningGap {
+          margin-left: -1px; }
+      .home .banner.homeSection header a#logoText:hover, .home .banner.homeSection header a#logoText:active, .home .banner.homeSection header a#logoText:visited {
+        text-decoration: none; }
+      .home .banner.homeSection header a#logoText img#logoImage {
+        margin: -63px 5px 0 0;
+        width: 50px; }
+      @media (max-width: 480px) {
+        .home .banner.homeSection header a#logoText {
+          font-size: 25px; }
+          .home .banner.homeSection header a#logoText img#logoImage {
+            margin: -33px 5px 0 0;
+            width: 30px; } }
+    .home .banner.homeSection header ul#ultraTopNav {
+      margin: 60px 20px 0 0;
+      float: right;
+      overflow: hidden; }
+      .home .banner.homeSection header ul#ultraTopNav li {
+        list-style: none;
+        float: left; }
+        .home .banner.homeSection header ul#ultraTopNav li a {
+          margin: 0 0 0 35px;
+          color: #fff;
+          text-decoration: none; }
+          .home .banner.homeSection header ul#ultraTopNav li a:hover {
+            text-decoration: underline; }
   .home .banner.homeSection .bannerContent {
     margin: 20px auto;
     color: #fff;
@@ -118,7 +135,9 @@
   .home .marketing.homeSection .featurette p.lead {
     margin: 12px 0 0; }
     .home .marketing.homeSection .featurette p.lead.leadNoTopMargin {
-      margin: 0; }
+      margin: 4px 0 0; }
+    .home .marketing.homeSection .featurette p.lead.leadNegativeMargin {
+      margin: -8px 0 0; }
     .home .marketing.homeSection .featurette p.lead span.featurette-heading {
       padding: 3px 0 0;
       margin: 0 0 4px;
@@ -132,5 +151,17 @@
       display: inline-block; }
 .home .marketing.homeSection hr.featurette-divider {
   margin: 21px 0 30px; }
+
+footer {
+  padding: 0 0 15px;
+  overflow: hidden; }
+  footer p.footerPhotoCredit {
+    float: left; }
+  footer p.footerAbout {
+    float: right; }
+  footer p a:active, footer p a:visited {
+    text-decoration: none; }
+  footer p a:hover {
+    text-decoration: underline; }
 
 /*# sourceMappingURL=home.css.map */
