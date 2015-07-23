@@ -9,6 +9,7 @@
   {% load staticfiles %}
   <link href="{% static "lib/bootstrap.css" %}" media="screen" rel="stylesheet" />
   <link href="{% static "css/global.css" %}" rel="stylesheet" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <!-- Page-specific stylesheets -->
   <link href="{% static "css/home.css" %}" rel="stylesheet" />
@@ -35,7 +36,7 @@
         <form action="/bills/" method="post" class="form">
           <!-- Placeholder for being able to
             select State or National, and Session -->
-          <span id="legis-session">Find a bill <em>Session Texas 84R</em></span>
+          <span id="legis-session">Find a bill <em>Texas Session 84R</em></span>
 
           {% csrf_token %}
           
@@ -46,9 +47,8 @@
             <!-- Dropdown to select where the bill originated: Senate or House -->
             <span id="legis-chamber">
               <!-- Senate or House Bill:<br /> -->
-              <input type="radio" name="chamber_origin" value="S" id="SB" />
+              <input type="radio" name="chamber_origin" checked="checked" value="S" id="SB" />
               <label for="SB">Senate Bill</label>
-              <br />
               <input type="radio" name="chamber_origin" value="H" id="HB" />
               <label for="HB">
                 House Bill
@@ -56,12 +56,15 @@
             </span>
 
             <span id="bill-number">
-              <input type="number" id="id_number" name="number" placeholder="Number"
+              <input type="number" id="id_number" name="number" placeholder="Bill Number"
               min="1" autofocus="autofocus" />
             </span>
 
             <span id="bill-submit">
-              <input type="submit" class="btn btn-info" value="Annotate Bill !" />
+              <button type="submit" class="btn btn-info">
+                <i class="fa fa-pencil"></i>
+                &nbsp;Annotate Bill!
+              </button>  
             </span>
           </div>
 

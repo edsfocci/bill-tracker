@@ -34,7 +34,8 @@
 
   }
 
-  $formFontColor: #666;
+  $formFontColor: #999;
+  $formFontSize: 20px;
 
   form {
     margin: 0 auto;
@@ -61,31 +62,56 @@
       margin-left: 5px;
       margin-right: 5px;       
 
-      #legis-session,
-      #legis-chamber {
-        font-size: 15pt;
+      #legis-chamber label,
+      #bill-number input {
+        font-size: $formFontSize;
       }
 
       #legis-chamber {
         margin: 0 auto;
-        width: 125px;
+        width: 255px;
         text-align: left;
         display: block;
 
-        label:first-of-type {
-          margin-top: 5px;
+        input {
+          margin-top: 0;
+          font-size: 20px;
+          position: relative;
+          bottom: 2px;
+          &#HB {
+            margin-left: 21px;
+          }
         }
+        label {
+          margin-left: 5px;
+        }
+
       }
 
       #bill-number {
-        margin: 15px 0 0;
+        margin: 7px 0 0;
         color: #000;
         display: block;
+        input {
+          padding: 0 0 2px 6px;
+          height: 35px;
+          width: 260px;
+          color: #999;
+          line-height: 22px;
+        }
       }
 
-      #bill-submit {
+      #bill-submit { 
         margin: 11px 0 0;
         display: block;
+        button {
+          padding: 0;
+          width: 260px;
+          height: 39px;
+          color: #F5F5F5;
+          font-size: $formFontSize;
+          line-height: 17px;
+        }
       }
 
       label {
