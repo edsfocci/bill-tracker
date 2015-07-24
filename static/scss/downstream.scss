@@ -136,8 +136,22 @@ $textBlue: #2c3e50;
   }
 
   &.contactUs {
-    #success_message{ 
-      display: none;
+    #contact_form {
+      
+      button[type="submit"] {
+        width: 100%;
+      }
+
+      #success_message{ 
+        display: none;
+      }
+      
+      &.form-horizontal {
+        .has-feedback .form-control-feedback {
+          top: 15px;
+        }
+      }
+
     }
   }
 
