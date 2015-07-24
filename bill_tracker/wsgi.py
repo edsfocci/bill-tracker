@@ -14,3 +14,8 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bill_tracker.settings")
 
 application = get_wsgi_application()
+
+
+if os.getenv('PRODUCTION'):
+  from dj_static import Cling
+  application = Cling(application)
