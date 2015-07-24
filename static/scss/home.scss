@@ -218,7 +218,7 @@
     .tripleIconRow {
       padding: 80px 0 50px;
 
-      .col-sm-4 {
+      .marketingItem {
         text-align: center;
 
         i.fa {
@@ -253,14 +253,56 @@
           margin: 0 0 4px;
           font-size: 27px;
           display: block;
+
+          @media (max-width: 478px) {
+            display: block;
+            clear: left;
+
+            span.text-muted {
+              display: block;
+              clear: left;
+            }
+          }
+
         }
 
-        .quote {
-          font-size: 25px;
-          font-weight: bold;
-          margin: -4px 6px 0 6px;
-          float: none;
-          display: inline-block;;
+        &.quote {
+          
+          .featurette-heading {
+            @media (max-width: 572px) {
+              padding: 20px 0 14px;
+            }
+          }
+
+          br {
+            @media (max-width: 991px) {
+              display: none;
+            }
+          }
+
+          .quoteIcon {
+            font-size: 25px;
+            font-weight: bold;
+            margin: 0 6px 0 6px;
+            float: none;
+            display: inline-block;
+
+            &.fa-quote-left {
+              margin-top: -4px;
+            }
+
+            &.fa-quote-right {
+              margin-top: 0;
+            }
+          }
+
+          .endOfQuote {
+            display: inline;
+            @media (max-width: 446px) {
+              display: block;
+            }
+          }
+
         }
 
       }
@@ -279,12 +321,37 @@ footer {
   overflow: hidden; 
 
   p {
-    &.footerPhotoCredit {
+    margin: 0;
+
+    &.footerItem1 {
       float: left;
     }
-    &.footerAbout {
+
+    &.footerItem2 {
       float: right;
     }
+
+    &.footerItem3 {
+      margin-right: 10px;
+      float: right;
+    }
+
+    @media (max-width: 768px) {
+      &.footerItem2 {
+        clear: left;
+      }
+      &.footerItem3 {
+        float: left;
+        clear: left;
+      }
+    }
+
+    @media (max-width: 478px) {
+      &.footerItem2 {
+        float: left;
+      }
+    }
+
     a {
       &:active,
       &:visited {
