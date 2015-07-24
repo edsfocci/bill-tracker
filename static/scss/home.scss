@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     z-index: 0; 
-    background-image: url["../images/thelukeparker-14170034048.jpg"] ;
+    background-image: url("../images/thelukeparker-14170034048.jpg");
     background-repeat:no-repeat;
     background-position: center center;
     -webkit-background-size: cover;
@@ -117,7 +117,8 @@
 
     form {
       margin: 64px auto 0;
-      width: 70%;
+      max-width: 360px;
+      min-width: 278px;
       background: #FDFDFD;
 
       #legis-session {
@@ -136,7 +137,7 @@
       }
 
       .formBody {
-        padding: 30px 0px 53px;
+        padding: 22px 0px 29px;
         margin-left: 5px;
         margin-right: 5px;       
 
@@ -152,24 +153,28 @@
           display: block;
 
           input {
-            margin-top: 0;
-            font-size: 20px;
-            position: relative;
-            bottom: 2px;
+            margin-top: 4px;
+            font-size: 15px;
+
+            &#SB {
+              margin-left: 15px;
+            }
 
             &#HB {
-              margin-left: 21px;
+              margin-left: 34px;
             }
+
           }
 
           label {
             margin-left: 5px;
+            font-size: 15px;
           }
 
         }
 
         #bill-number {
-          margin: 7px 0 0;
+          margin: 14px 0 0;
           color: #000;
           display: block;
 
@@ -183,7 +188,7 @@
         }
 
         #bill-submit { 
-          margin: 11px 0 0;
+          margin: 16px 0 0;
           display: block;
 
           button {
