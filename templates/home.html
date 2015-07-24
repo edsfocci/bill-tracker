@@ -10,153 +10,189 @@
   <link href="{% static "lib/bootstrap.css" %}" media="screen" rel="stylesheet" />
   <link href="{% static "css/global.css" %}" rel="stylesheet" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static "css/st-menu.css" %}" />
+  <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
+  <script src="{% static "javascript/modernizr.custom.js" %}"></script>
 
   <!-- Page-specific stylesheets -->
   <link href="{% static "css/home.css" %}" rel="stylesheet" />
 </head>
 <body class="home">
 
-  <div class="banner homeSection">
+  <div id="st-container" class="st-container">
+      
+    <!-- content push wrapper -->
+    <div class="st-pusher">
 
-    <header>
-
-      <div class="container"> 
-
-        <a id="logoText" href="/">
-          <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
-          alt="Bill Tracker logo" />
-          Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
-        </a>
-
-        <ul id="ultraTopNav">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
+      <nav class="st-menu st-effect-7" id="menu-7">
+        <h2>Bill Tracker</h2>
+        <ul>
+          <li><a class="icon icon-data" href="about-us.html">About Us</a></li>
+          <li><a class="icon icon-location" href="contact-us.html">Contact Us</a></li>
         </ul>
+      </nav>
 
-      </div>
-
-    </header>
-  
-
-    <!-- Content -->
-    <div class="container bannerContent">
-      <div id="page1" class="page">
-        <h1>{{ copy }}</h1>
-
-        <form action="/bills/" method="post" class="form">
-          <!-- Placeholder for being able to
-            select State or National, and Session -->
-          <span id="legis-session">Find a bill <em>Texas Session 84R</em></span>
-
-          {% csrf_token %}
+      <div class="st-content"><!-- this is the wrapper for the content -->
           
-          <!-- HARDCODE WARNING -->
-          <input type="hidden" name="session" value="84R" />
+          <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
 
-          <div class="formBody">
-            <!-- Dropdown to select where the bill originated: Senate or House -->
-            <span id="legis-chamber">
-              <!-- Senate or House Bill:<br /> -->
-              <input type="radio" name="chamber_origin" checked="checked" value="S" id="SB" />
-              <label for="SB">Senate Bill</label>
-              <input type="radio" name="chamber_origin" value="H" id="HB" />
-              <label for="HB">
-                House Bill
-              </label>
-            </span>
+          <div class="banner homeSection">
 
-            <span id="bill-number">
-              <input type="number" id="id_number" name="number" placeholder="Bill Number"
-              min="1" autofocus="autofocus" />
-            </span>
+            <header>
 
-            <span id="bill-submit">
-              <button type="submit" class="btn btn-info">
+              <div class="container"> 
+
+                <a id="logoText" href="/">
+                  <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
+                  alt="Bill Tracker logo" />
+                  Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
+                </a>
+
+                <div id="st-trigger-effects">
+                  <button id="mobileMenuButton" data-effect="st-effect-7">
+                    <i class="fa fa-bars"></i>
+                  </button>
+                </div>
+
+                <ul id="ultraTopNav">
+                  <li><a href="/about-us.html">About Us</a></li>
+                  <li><a href="/contact-us.html">Contact Us</a></li>
+                </ul>
+
+              </div>
+
+            </header>
+          
+
+            <!-- Content -->
+            <div class="container bannerContent">
+              <div id="page1" class="page">
+                <h1>{{ copy }}</h1>
+
+                <form action="/bills/" method="post" class="form">
+                  <!-- Placeholder for being able to
+                    select State or National, and Session -->
+                  <span id="legis-session">Find a bill <em>Texas Session 84R</em></span>
+
+                  {% csrf_token %}
+                  
+                  <!-- HARDCODE WARNING -->
+                  <input type="hidden" name="session" value="84R" />
+
+                  <div class="formBody">
+                    <!-- Dropdown to select where the bill originated: Senate or House -->
+                    <span id="legis-chamber">
+                      <!-- Senate or House Bill:<br /> -->
+                      <input type="radio" name="chamber_origin" checked="checked" value="S" id="SB" />
+                      <label for="SB">Senate Bill</label>
+                      <input type="radio" name="chamber_origin" value="H" id="HB" />
+                      <label for="HB">
+                        House Bill
+                      </label>
+                    </span>
+
+                    <span id="bill-number">
+                      <input type="number" id="id_number" name="number" placeholder="Bill Number"
+                      min="1" autofocus="autofocus" />
+                    </span>
+
+                    <span id="bill-submit">
+                      <button type="submit" class="btn btn-info">
+                        <i class="fa fa-pencil"></i>
+                        &nbsp;Annotate Bill!
+                      </button>  
+                    </span>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div> <!-- .banner -->
+
+          <div class="container marketing homeSection">
+
+            <div class="row tripleIconRow">
+              <div class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-4 marketingItem">
+                <i class="fa fa-leanpub"></i>
+                <h2>Find Bills</h2>
+                <p>Search any bills from the current Texas legislative session.  We can get bills from the Texas Senate or House.  Search by bill number, title or subject.</p>
+              </div>
+              <div class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-4 marketingItem">
                 <i class="fa fa-pencil"></i>
-                &nbsp;Annotate Bill!
-              </button>  
-            </span>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-  </div> <!-- .banner -->
-
-  <div class="container marketing homeSection">
-
-    <div class="row tripleIconRow">
-      <div class="col-sm-4">
-        <i class="fa fa-leanpub"></i>
-        <h2>Find Bills</h2>
-        <p>Search any bills from the current Texas legislative session.  We can get bills from the Texas Senate or House.  Search by bill number, title or subject.</p>
-      </div>
-      <div class="col-sm-4">
-        <i class="fa fa-pencil"></i>
-        <h2>Annotate</h2>
-        <p>Draw attention to the parts of bills you think warrant comment.  Highlight bill text you think needs comment or elaboration.  Then add your comment.</p>
-      </div>
-      <div class="col-sm-4">
-        <i class="fa fa-bullhorn"></i>
-        <h2>Create Dialog</h2>
-        <p>Whether you're a non-profit, a corporation or a concerned citizen, join the dialog around emerging Texas bills and bring transparency to your cause.</p>
-      </div>
-    </div> <!-- .tripleIconRow -->
+                <h2>Annotate</h2>
+                <p>Draw attention to the parts of bills you think warrant comment.  Highlight bill text you think needs comment or elaboration.  Then add your comment.</p>
+              </div>
+              <div class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-4 marketingItem">
+                <i class="fa fa-bullhorn"></i>
+                <h2>Create Dialog</h2>
+                <p>Whether you're a non-profit, a corporation or a concerned citizen, join the dialog around emerging Texas bills and bring transparency to your cause.</p>
+              </div>
+            </div> <!-- .tripleIconRow -->
 
 
-    <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-sm-12">
-        <i class="fa fa-comment"></i>
-        <p class="lead">
-          <span class="featurette-heading">Open Texas legislation. <span class="text-muted">Comment Away.</span></span>
-          Bill Tracker is an open community platform for tracking and annotating Texas congressional bills.  Legislation is not only transparent here, but it's open for debate.  This is the agora where interested parties can compare notes, debate and discuss the particulars of proposed legislation which will affect them.
-        </p>
-      </div>
-    </div>
+            <div class="row featurette">
+              <div class="col-sm-12">
+                <i class="fa fa-comment"></i>
+                <p class="lead">
+                  <span class="featurette-heading">Open Texas legislation. <span class="text-muted">Comment Away.</span></span>
+                  Bill Tracker is an open community platform for tracking and annotating Texas congressional bills.  Legislation is not only transparent here, but it's open for debate.  This is the agora where interested parties can compare notes, debate and discuss the particulars of proposed legislation which will affect them.
+                </p>
+              </div>
+            </div>
 
-    <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-sm-12">
-        <i class="fa fa-connectdevelop"></i>
-        <p class="lead leadNegativeMargin">
-          <span class="featurette-heading">Crowdsourced Knowledge. <span class="text-muted">Building Community.</span></span>
-          Building on the expertise of many, we all grow when we compare notes on the legislation we care about.  We seek to be the favored legislation hub for lawyers, political action committees, corporate representatives and community activists.  When we come together, we become something greater than just the sum of our parts.
-        </p>
-      </div>
-    </div>
+            <div class="row featurette">
+              <div class="col-sm-12">
+                <i class="fa fa-connectdevelop"></i>
+                <p class="lead leadNegativeMargin">
+                  <span class="featurette-heading">Crowdsourced Knowledge. <span class="text-muted">Building Community.</span></span>
+                  Building on the expertise of many, we all grow when we compare notes on the legislation we care about.  We seek to be the favored legislation hub for lawyers, political action committees, corporate representatives and community activists.  When we come together, we become something greater than just the sum of our parts.
+                </p>
+              </div>
+            </div>
 
-    <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-sm-12">
-        <i class="fa fa-heartbeat"></i>
-        <p class="lead leadNoTopMargin">
-          <span class="featurette-heading">Dialog & Transparency. <span class="text-muted">Democracy's Heartbeat.</span></span>
-          <i class="quote fa fa-quote-left"></i>The whole purpose of democracy is that we may hold counsel with one another.<i class="quote fa fa-quote-right"></i> &mdash; <strong>Woodrow Wilson</strong>
-        </p>
-      </div>
-    </div>
+            <div class="row featurette">
+              <div class="col-sm-12">
+                <i class="fa fa-heartbeat"></i>
+                <p class="lead leadNoTopMargin quote">
+                  <span class="featurette-heading">Dialog & Transparency. <span class="text-muted">Democracy's Heartbeat.</span></span>
+                  <i class="quoteIcon fa fa-quote-left"></i>The whole purpose of democracy is that we may hold counsel with <br><span class="endOfQuote">one another.<i class="quoteIcon fa fa-quote-right"></i> &mdash; <strong>Woodrow Wilson</strong></span>
+                </p>
+              </div>
+            </div>
 
-    <hr class="featurette-divider">
+            <hr class="featurette-divider">
 
-  </div>
+          </div> <!-- marketing -->
 
-  
-  <footer>
-    <div class="container">
-      <p class="footerPhotoCredit">Texas capitol photo by <a target="_blank" href="https://www.flickr.com/photos/thelukeparker/14170034048/in/photolist-nAa8rS-nbT8E6-nbT3P6">Luke Parker</a>.</p>
-      <p class="footerAbout">An <a target="_blank" href="http://atxhackforchange.org/">ATX Hack For Change</a> 2015 project. See our code <a target="_blank" href="https://github.com/bill-tracker/bill-tracker">on Github</a>.</p>
-    </div>
-  </footer>
+          <footer>
+            <div class="container">
+              <p class="footerItem1">Texas capitol photo by <a target="_blank" href="https://www.flickr.com/photos/thelukeparker/14170034048/in/photolist-nAa8rS-nbT8E6-nbT3P6">Luke Parker</a>.</p>
+              <p class="footerItem2">See our code on <a target="_blank" href="https://github.com/bill-tracker/bill-tracker">Github</a>.</p>
+              <p class="footerItem3">An <a target="_blank" href="http://atxhackforchange.org/">ATX Hack For Change</a> 2015 project.</p>
+            </div>
+          </footer>
 
+        </div><!-- /st-content-inner -->
+      
+      </div><!-- /st-content -->
+
+    </div> <!-- st-pusher -->
+
+  </div> <!-- st-container -->
 
   <script src="{% static "lib/jquery-1.10.2.min.js" %}" type="text/javascript"></script>
   <script src="{% static "lib/bootstrap.min.js" %}" type="text/javascript"></script>
   <script src="{% static "global.js" %}" type="text/javascript"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+  <script src="{% static "javascript/classie.js" %}"></script>
+  <script src="{% static "javascript/sidebarEffects.js" %}"></script>
   <!-- <script src="{% static "lib/bootswatch.js" %}"></script> -->
 
 </body>
