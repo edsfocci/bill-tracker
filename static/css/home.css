@@ -1,105 +1,167 @@
-.home a#logoText {
-  margin: 50px 0 0;
-  font-size: 32px;
-  color: #fff;
-  display: block;
-  font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
-  .home a#logoText span {
-    display: inline-block; }
-    .home a#logoText span.fixBigKerningGap {
-      margin-left: -2px; }
-    .home a#logoText span.fixSmallKerningGap {
-      margin-left: -1px; }
-  .home a#logoText:hover, .home a#logoText:active, .home a#logoText:visited {
-    text-decoration: none; }
-  .home a#logoText img#logoImage {
-    margin: -63px 5px 0 0;
-    width: 50px; }
-  @media (max-width: 480px) {
-    .home a#logoText {
-      font-size: 25px; }
-      .home a#logoText img#logoImage {
-        margin: -33px 5px 0 0;
-        width: 30px; } }
-.home .banner {
+.home .banner.homeSection {
   /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
   height: 100vh;
   background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
-  .home .banner .bannerContent {
+  .home .banner.homeSection header {
+    padding: 0 0 20px;
+    overflow: hidden; }
+    .home .banner.homeSection header a#logoText {
+      margin: 50px 0 0;
+      font-size: 32px;
+      color: #fff;
+      display: block;
+      font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      float: left;
+      /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
+      .home .banner.homeSection header a#logoText span {
+        display: inline-block; }
+        .home .banner.homeSection header a#logoText span.fixBigKerningGap {
+          margin-left: -2px; }
+        .home .banner.homeSection header a#logoText span.fixSmallKerningGap {
+          margin-left: -1px; }
+      .home .banner.homeSection header a#logoText:hover, .home .banner.homeSection header a#logoText:active, .home .banner.homeSection header a#logoText:visited {
+        text-decoration: none; }
+      .home .banner.homeSection header a#logoText img#logoImage {
+        margin: -63px 5px 0 0;
+        width: 50px; }
+      @media (max-width: 480px) {
+        .home .banner.homeSection header a#logoText {
+          font-size: 25px; }
+          .home .banner.homeSection header a#logoText img#logoImage {
+            margin: -33px 5px 0 0;
+            width: 30px; } }
+    .home .banner.homeSection header ul#ultraTopNav {
+      margin: 60px 20px 0 0;
+      float: right;
+      overflow: hidden; }
+      .home .banner.homeSection header ul#ultraTopNav li {
+        list-style: none;
+        float: left; }
+        .home .banner.homeSection header ul#ultraTopNav li a {
+          margin: 0 0 0 35px;
+          color: #fff;
+          text-decoration: none; }
+          .home .banner.homeSection header ul#ultraTopNav li a:hover {
+            text-decoration: underline; }
+  .home .banner.homeSection .bannerContent {
     margin: 20px auto;
     color: #fff;
     text-align: center; }
-    .home .banner .bannerContent h1 {
+    .home .banner.homeSection .bannerContent h1 {
       margin: 0 auto;
       width: 70%; }
       @media (max-width: 768px) {
-        .home .banner .bannerContent h1 {
+        .home .banner.homeSection .bannerContent h1 {
           font-size: 30px;
           line-height: 1.2; } }
       @media (max-width: 480px) {
-        .home .banner .bannerContent h1 {
+        .home .banner.homeSection .bannerContent h1 {
           font-size: 21px;
           line-height: 1.2; } }
-  .home .banner form {
+  .home .banner.homeSection form {
     margin: 64px auto 0;
     width: 70%;
     background: #FDFDFD; }
-    .home .banner form #legis-session {
+    .home .banner.homeSection form #legis-session {
       padding: 10px 0 19px;
       display: block;
       background: #18bc9c;
       font-size: 31px; }
-      .home .banner form #legis-session em {
+      .home .banner.homeSection form #legis-session em {
         display: block;
         font-size: 15px;
         font-style: normal;
         line-height: 7px; }
-    .home .banner form .formBody {
+    .home .banner.homeSection form .formBody {
       padding: 30px 0px 53px;
       margin-left: 5px;
       margin-right: 5px; }
-      .home .banner form .formBody #legis-chamber label,
-      .home .banner form .formBody #bill-number input {
+      .home .banner.homeSection form .formBody #legis-chamber label,
+      .home .banner.homeSection form .formBody #bill-number input {
         font-size: 20px; }
-      .home .banner form .formBody #legis-chamber {
+      .home .banner.homeSection form .formBody #legis-chamber {
         margin: 0 auto;
         width: 255px;
         text-align: left;
         display: block; }
-        .home .banner form .formBody #legis-chamber input {
+        .home .banner.homeSection form .formBody #legis-chamber input {
           margin-top: 0;
           font-size: 20px;
           position: relative;
           bottom: 2px; }
-          .home .banner form .formBody #legis-chamber input#HB {
+          .home .banner.homeSection form .formBody #legis-chamber input#HB {
             margin-left: 21px; }
-        .home .banner form .formBody #legis-chamber label {
+        .home .banner.homeSection form .formBody #legis-chamber label {
           margin-left: 5px; }
-      .home .banner form .formBody #bill-number {
+      .home .banner.homeSection form .formBody #bill-number {
         margin: 7px 0 0;
         color: #000;
         display: block; }
-        .home .banner form .formBody #bill-number input {
+        .home .banner.homeSection form .formBody #bill-number input {
           padding: 0 0 2px 6px;
           height: 35px;
           width: 260px;
           color: #999;
           line-height: 22px; }
-      .home .banner form .formBody #bill-submit {
+      .home .banner.homeSection form .formBody #bill-submit {
         margin: 11px 0 0;
         display: block; }
-        .home .banner form .formBody #bill-submit button {
+        .home .banner.homeSection form .formBody #bill-submit button {
           padding: 0;
           width: 260px;
           height: 39px;
           color: #F5F5F5;
           font-size: 20px;
           line-height: 17px; }
-      .home .banner form .formBody label {
+      .home .banner.homeSection form .formBody label {
         margin: 0 0 0 10px;
         color: #999;
         font-weight: normal; }
+.home .marketing.homeSection .tripleIconRow {
+  padding: 80px 0 50px; }
+  .home .marketing.homeSection .tripleIconRow .col-sm-4 {
+    text-align: center; }
+    .home .marketing.homeSection .tripleIconRow .col-sm-4 i.fa {
+      font-size: 150px; }
+.home .marketing.homeSection .featurette {
+  padding: 5px 0 30px; }
+  .home .marketing.homeSection .featurette i.fa {
+    margin: 0 20px 0 0;
+    font-size: 105px;
+    float: left; }
+    .home .marketing.homeSection .featurette i.fa.fa-connectdevelop {
+      font-size: 95px; }
+  .home .marketing.homeSection .featurette p.lead {
+    margin: 12px 0 0; }
+    .home .marketing.homeSection .featurette p.lead.leadNoTopMargin {
+      margin: 4px 0 0; }
+    .home .marketing.homeSection .featurette p.lead.leadNegativeMargin {
+      margin: -8px 0 0; }
+    .home .marketing.homeSection .featurette p.lead span.featurette-heading {
+      padding: 3px 0 0;
+      margin: 0 0 4px;
+      font-size: 27px;
+      display: block; }
+    .home .marketing.homeSection .featurette p.lead .quote {
+      font-size: 25px;
+      font-weight: bold;
+      margin: -4px 6px 0 6px;
+      float: none;
+      display: inline-block; }
+.home .marketing.homeSection hr.featurette-divider {
+  margin: 21px 0 30px; }
+
+footer {
+  padding: 0 0 15px;
+  overflow: hidden; }
+  footer p.footerPhotoCredit {
+    float: left; }
+  footer p.footerAbout {
+    float: right; }
+  footer p a:active, footer p a:visited {
+    text-decoration: none; }
+  footer p a:hover {
+    text-decoration: underline; }
 
 /*# sourceMappingURL=home.css.map */

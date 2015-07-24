@@ -1,52 +1,80 @@
 .home {
 
-  a#logoText {
-    margin: 50px 0 0;
-    font-size: 32px;
-    color: #fff;
-    display: block;
-    font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-
-    // fixes font kerning
-    span {
-      display: inline-block;
-      &.fixBigKerningGap {
-        margin-left: -2px;
-      }
-      &.fixSmallKerningGap {
-        margin-left: -1px; 
-      }
-    }
-
-    &:hover,
-    &:active,
-    &:visited {
-      text-decoration: none;
-    }
-
-    /* logo preview from http://graphicriver.net/item/law-talk/7469608 */
-    img#logoImage {
-      margin: -63px 5px 0 0;
-      width: 50px;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 25px;
-
-      img#logoImage {
-        margin: -33px 5px 0 0;
-        width: 30px;
-      }
-
-    } 
-
-  }
-
-  .banner {
+  .banner.homeSection {
     /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
     height:100vh;
     background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
+
+    header { 
+      padding: 0 0 20px;
+      overflow: hidden;
+
+      a#logoText {
+        margin: 50px 0 0;
+        font-size: 32px;
+        color: #fff;
+        display: block;
+        font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        float: left;
+
+        // fixes font kerning
+        span {
+          display: inline-block;
+          &.fixBigKerningGap {
+            margin-left: -2px;
+          }
+          &.fixSmallKerningGap {
+            margin-left: -1px; 
+          }
+        }
+
+        &:hover,
+        &:active,
+        &:visited {
+          text-decoration: none;
+        }
+
+        /* logo preview from http://graphicriver.net/item/law-talk/7469608 */
+        img#logoImage {
+          margin: -63px 5px 0 0;
+          width: 50px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 25px;
+
+          img#logoImage {
+            margin: -33px 5px 0 0;
+            width: 30px;
+          }
+ 
+        } 
+      }
+
+      ul#ultraTopNav {
+        margin: 60px 20px 0 0;
+        float: right;
+        overflow: hidden;
+
+        li {
+          list-style: none;
+          float: left;
+
+          a {
+            margin: 0 0 0 35px;
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+          }
+        }
+      }
+
+    }
 
     .bannerContent {
       margin: 20px auto;
@@ -115,10 +143,12 @@
             font-size: 20px;
             position: relative;
             bottom: 2px;
+
             &#HB {
               margin-left: 21px;
             }
           }
+
           label {
             margin-left: 5px;
           }
@@ -129,6 +159,7 @@
           margin: 7px 0 0;
           color: #000;
           display: block;
+
           input {
             padding: 0 0 2px 6px;
             height: 35px;
@@ -141,6 +172,7 @@
         #bill-submit { 
           margin: 11px 0 0;
           display: block;
+
           button {
             padding: 0;
             width: 260px;
@@ -163,4 +195,86 @@
 
   }
 
+  .marketing.homeSection {
+
+    .tripleIconRow {
+      padding: 80px 0 50px;
+
+      .col-sm-4 {
+        text-align: center;
+
+        i.fa {
+        font-size: 150px;
+        }
+      }
+    }
+
+    .featurette {
+      padding: 5px 0 30px;
+
+      i.fa {
+        margin: 0 20px 0 0;
+        font-size: 105px;
+        float: left;
+        &.fa-connectdevelop {
+          font-size: 95px;
+        }
+      }
+
+      p.lead {
+        margin: 12px 0 0;
+        &.leadNoTopMargin {
+          margin: 4px 0 0;
+        }
+        &.leadNegativeMargin {
+          margin: -8px 0 0;
+        }
+
+        span.featurette-heading {
+          padding: 3px 0 0;
+          margin: 0 0 4px;
+          font-size: 27px;
+          display: block;
+        }
+
+        .quote {
+          font-size: 25px;
+          font-weight: bold;
+          margin: -4px 6px 0 6px;
+          float: none;
+          display: inline-block;;
+        }
+
+      }
+    }
+
+    hr.featurette-divider {
+      margin: 21px 0 30px;
+    }
+
+  }
+
+}
+
+footer {
+  padding: 0 0 15px;
+  overflow: hidden; 
+
+  p {
+    &.footerPhotoCredit {
+      float: left;
+    }
+    &.footerAbout {
+      float: right;
+    }
+    a {
+      &:active,
+      &:visited {
+        text-decoration: none;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
