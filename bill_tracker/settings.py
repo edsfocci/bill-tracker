@@ -16,73 +16,49 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('MYSECRET')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
-
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'annotation_app',
-    'docs',
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+  'annotation_app',
+  'docs',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+  'django.contrib.sessions.middleware.SessionMiddleware',
+  'django.middleware.common.CommonMiddleware',
+  'django.middleware.csrf.CsrfViewMiddleware',
+  'django.contrib.auth.middleware.AuthenticationMiddleware',
+  'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+  'django.contrib.messages.middleware.MessageMiddleware',
+  'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'bill_tracker.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+  {
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    'APP_DIRS': True,
+    'OPTIONS': {
+      'context_processors': [
+        'django.template.context_processors.debug',
+        'django.template.context_processors.request',
+        'django.contrib.auth.context_processors.auth',
+        'django.contrib.messages.context_processors.messages',
+      ],
     },
+  },
 ]
 
 WSGI_APPLICATION = 'bill_tracker.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 
 # Internationalization
@@ -99,20 +75,64 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES = {'default': dj_database_url.config()}
+if os.getenv('PRODUCTION'):
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+  SECRET_KEY = os.getenv('MYSECRET')
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+  DEBUG = False
 
-# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
+  # Allow all host headers
+  ALLOWED_HOSTS = ['*']
 
-STATICFILES_DIRS = (
+
+  # Parse database configuration from $DATABASE_URL
+  import dj_database_url
+  DATABASES = {'default': dj_database_url.config()}
+
+  # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+  # Static files (CSS, JavaScript, Images)
+  # https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+  STATIC_ROOT = 'staticfiles'
+  STATIC_URL = '/static/'
+
+  STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-)
+  )
+
+
+else: # DEVELOPMENT
+  # Quick-start development settings - unsuitable for production
+  # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+
+  # SECURITY WARNING: keep the secret key used in production secret!
+  SECRET_KEY = 'z9(!-fqsuop(%d_0gf_*crh&98$(1+j4foae=-=n1jhi#mxh*u'
+
+  # SECURITY WARNING: don't run with debug turned on in production!
+  DEBUG = True
+
+  ALLOWED_HOSTS = []
+
+
+  # Database
+  # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+
+  DATABASES = {
+    'default': {
+      'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+  }
+
+
+  # Static files (CSS, JavaScript, Images)
+  # https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+  STATIC_URL = '/static/'
+
+  STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+  )
