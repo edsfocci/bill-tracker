@@ -135,6 +135,12 @@ $textBlue: #2c3e50;
 
   }
 
+  &.contactUs {
+    #success_message{ 
+      display: none;
+    }
+  }
+
 }
 
 

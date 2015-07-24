@@ -76,6 +76,8 @@
     text-decoration: none; }
   .downstream footer p a:hover {
     text-decoration: underline; }
+.downstream.contactUs #success_message {
+  display: none; }
 
   /*
 
