@@ -2,8 +2,21 @@
 
   .banner.homeSection {
     /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
+    /*height:100vh;
+    background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;*/
+    width: 100%;
+    /*height: 100%; */
     height:100vh;
-    background: url('../images/thelukeparker-14170034048.jpg') 50% 50% / cover no-repeat;
+    top: 0;
+    left: 0;
+    z-index: 0; 
+    background-image: url["../images/thelukeparker-14170034048.jpg"] ;
+    background-repeat:no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
     header { 
       padding: 0 0 20px;
