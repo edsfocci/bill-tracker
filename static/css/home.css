@@ -1,167 +1,58 @@
-.home .banner.homeSection {
-  /* banner background from flickr - thelukeparker-14170034048 - we need to add credit to photographer */
-  height: 100vh;
-  background: url("../images/thelukeparker-14170034048.jpg") 50% 50%/cover no-repeat; }
-  .home .banner.homeSection header {
-    padding: 0 0 20px;
-    overflow: hidden; }
-    .home .banner.homeSection header a#logoText {
-      margin: 50px 0 0;
-      font-size: 32px;
-      color: #fff;
-      display: block;
-      font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: 700;
-      float: left;
-      /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
-      .home .banner.homeSection header a#logoText span {
-        display: inline-block; }
-        .home .banner.homeSection header a#logoText span.fixBigKerningGap {
-          margin-left: -2px; }
-        .home .banner.homeSection header a#logoText span.fixSmallKerningGap {
-          margin-left: -1px; }
-      .home .banner.homeSection header a#logoText:hover, .home .banner.homeSection header a#logoText:active, .home .banner.homeSection header a#logoText:visited {
-        text-decoration: none; }
-      .home .banner.homeSection header a#logoText img#logoImage {
-        margin: -63px 5px 0 0;
-        width: 50px; }
-      @media (max-width: 480px) {
-        .home .banner.homeSection header a#logoText {
-          font-size: 25px; }
-          .home .banner.homeSection header a#logoText img#logoImage {
-            margin: -33px 5px 0 0;
-            width: 30px; } }
-    .home .banner.homeSection header ul#ultraTopNav {
-      margin: 60px 20px 0 0;
-      float: right;
-      overflow: hidden; }
-      .home .banner.homeSection header ul#ultraTopNav li {
-        list-style: none;
-        float: left; }
-        .home .banner.homeSection header ul#ultraTopNav li a {
-          margin: 0 0 0 35px;
-          color: #fff;
-          text-decoration: none; }
-          .home .banner.homeSection header ul#ultraTopNav li a:hover {
-            text-decoration: underline; }
-  .home .banner.homeSection .bannerContent {
-    margin: 20px auto;
-    color: #fff;
-    text-align: center; }
-    .home .banner.homeSection .bannerContent h1 {
-      margin: 0 auto;
-      width: 70%; }
-      @media (max-width: 768px) {
-        .home .banner.homeSection .bannerContent h1 {
-          font-size: 30px;
-          line-height: 1.2; } }
-      @media (max-width: 480px) {
-        .home .banner.homeSection .bannerContent h1 {
-          font-size: 21px;
-          line-height: 1.2; } }
-  .home .banner.homeSection form {
-    margin: 64px auto 0;
-    width: 70%;
-    background: #FDFDFD; }
-    .home .banner.homeSection form #legis-session {
-      padding: 10px 0 19px;
-      display: block;
-      background: #18bc9c;
-      font-size: 31px; }
-      .home .banner.homeSection form #legis-session em {
-        display: block;
-        font-size: 15px;
-        font-style: normal;
-        line-height: 7px; }
-    .home .banner.homeSection form .formBody {
-      padding: 30px 0px 53px;
-      margin-left: 5px;
-      margin-right: 5px; }
-      .home .banner.homeSection form .formBody #legis-chamber label,
-      .home .banner.homeSection form .formBody #bill-number input {
-        font-size: 20px; }
-      .home .banner.homeSection form .formBody #legis-chamber {
-        margin: 0 auto;
-        width: 255px;
-        text-align: left;
-        display: block; }
-        .home .banner.homeSection form .formBody #legis-chamber input {
-          margin-top: 0;
-          font-size: 20px;
-          position: relative;
-          bottom: 2px; }
-          .home .banner.homeSection form .formBody #legis-chamber input#HB {
-            margin-left: 21px; }
-        .home .banner.homeSection form .formBody #legis-chamber label {
-          margin-left: 5px; }
-      .home .banner.homeSection form .formBody #bill-number {
-        margin: 7px 0 0;
-        color: #000;
-        display: block; }
-        .home .banner.homeSection form .formBody #bill-number input {
-          padding: 0 0 2px 6px;
-          height: 35px;
-          width: 260px;
-          color: #999;
-          line-height: 22px; }
-      .home .banner.homeSection form .formBody #bill-submit {
-        margin: 11px 0 0;
-        display: block; }
-        .home .banner.homeSection form .formBody #bill-submit button {
-          padding: 0;
-          width: 260px;
-          height: 39px;
-          color: #F5F5F5;
-          font-size: 20px;
-          line-height: 17px; }
-      .home .banner.homeSection form .formBody label {
-        margin: 0 0 0 10px;
-        color: #999;
-        font-weight: normal; }
-.home .marketing.homeSection .tripleIconRow {
-  padding: 80px 0 50px; }
-  .home .marketing.homeSection .tripleIconRow .col-sm-4 {
-    text-align: center; }
-    .home .marketing.homeSection .tripleIconRow .col-sm-4 i.fa {
-      font-size: 150px; }
-.home .marketing.homeSection .featurette {
-  padding: 5px 0 30px; }
-  .home .marketing.homeSection .featurette i.fa {
-    margin: 0 20px 0 0;
-    font-size: 105px;
-    float: left; }
-    .home .marketing.homeSection .featurette i.fa.fa-connectdevelop {
-      font-size: 95px; }
-  .home .marketing.homeSection .featurette p.lead {
-    margin: 12px 0 0; }
-    .home .marketing.homeSection .featurette p.lead.leadNoTopMargin {
-      margin: 4px 0 0; }
-    .home .marketing.homeSection .featurette p.lead.leadNegativeMargin {
-      margin: -8px 0 0; }
-    .home .marketing.homeSection .featurette p.lead span.featurette-heading {
-      padding: 3px 0 0;
-      margin: 0 0 4px;
-      font-size: 27px;
-      display: block; }
-    .home .marketing.homeSection .featurette p.lead .quote {
-      font-size: 25px;
-      font-weight: bold;
-      margin: -4px 6px 0 6px;
-      float: none;
-      display: inline-block; }
-.home .marketing.homeSection hr.featurette-divider {
-  margin: 21px 0 30px; }
+/*
+Error: Invalid CSS after "...ound-image: url": expected ";", was "["../images/the..."
+        on line 13 of scss/home.scss
 
-footer {
-  padding: 0 0 15px;
-  overflow: hidden; }
-  footer p.footerPhotoCredit {
-    float: left; }
-  footer p.footerAbout {
-    float: right; }
-  footer p a:active, footer p a:visited {
-    text-decoration: none; }
-  footer p a:hover {
-    text-decoration: underline; }
+8:     /*height: 100%; *\/
+9:     height:100vh;
+10:     top: 0;
+11:     left: 0;
+12:     z-index: 0; 
+13:     background-image: url["../images/thelukeparker-14170034048.jpg"] ;
+14:     background-repeat:no-repeat;
+15:     background-position: center center;
+16:     -webkit-background-size: cover;
+17:     -moz-background-size: cover;
+18:     -o-background-size: cover;
 
-/*# sourceMappingURL=home.css.map */
+Backtrace:
+scss/home.scss:13
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:1162:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:1098:in `expected'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:1093:in `tok!'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:758:in `block in try_declaration'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:1138:in `call'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:1138:in `rethrow'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:763:in `try_declaration'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:693:in `declaration_or_ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:658:in `block_child'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:650:in `block_contents'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:639:in `block'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:708:in `declaration_or_ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:658:in `block_child'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:647:in `block_contents'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:639:in `block'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:632:in `ruleset'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:657:in `block_child'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:647:in `block_contents'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:117:in `stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/scss/parser.rb:42:in `parse'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/engine.rb:403:in `_to_tree'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:209:in `each'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/lib/sass/plugin/compiler.rb:328:in `block in watch'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:252:in `call'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:252:in `on_change'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.4.15/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...ound-image: url\": expected \";\", was \"[\"../images/the...\"\A         on line 13 of scss/home.scss\A \A 8:     /*height: 100%; */\A 9:     height:100vh;\A 10:     top: 0;\A 11:     left: 0;\A 12:     z-index: 0; \A 13:     background-image: url[\"../images/thelukeparker-14170034048.jpg\"] ;\A 14:     background-repeat:no-repeat;\A 15:     background-position: center center;\A 16:     -webkit-background-size: cover;\A 17:     -moz-background-size: cover;\A 18:     -o-background-size: cover;"; }
