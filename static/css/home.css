@@ -44,6 +44,8 @@
           .home .banner.homeSection header a#logoText img#logoImage {
             margin: -33px 5px 0 0;
             width: 30px; } }
+    .home .banner.homeSection header #st-trigger-effects {
+      display: none; }
     .home .banner.homeSection header ul#ultraTopNav {
       margin: 60px 20px 0 0;
       float: right;
@@ -57,6 +59,11 @@
           text-decoration: none; }
           .home .banner.homeSection header ul#ultraTopNav li a:hover {
             text-decoration: underline; }
+    @media (max-width: 569px) {
+      .home .banner.homeSection header #st-trigger-effects {
+        display: block; }
+      .home .banner.homeSection header ul#ultraTopNav {
+        display: none; } }
   .home .banner.homeSection .bannerContent {
     margin: 20px auto;
     color: #fff;

@@ -65,6 +65,10 @@
         } 
       }
 
+      #st-trigger-effects {
+        display: none;
+      }
+
       ul#ultraTopNav {
         margin: 60px 20px 0 0;
         float: right;
@@ -85,6 +89,17 @@
 
           }
         }
+      }
+
+      @media (max-width: 569px) {
+        #st-trigger-effects {
+          display: block;
+        }
+
+        ul#ultraTopNav {
+          display: none;
+        }
+
       }
 
     }
