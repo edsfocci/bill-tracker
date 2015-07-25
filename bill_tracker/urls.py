@@ -26,18 +26,18 @@ urlpatterns = [
 
   url(r'^bills/', include('annotation_app.routes.bills_routes')),
   # Deprecated
-  url(r'^get_bill_list/$', annote_app.views.get_bill_list),
+  url(r'^get_bill_list/$', annote_app.views_deprecated.get_bill_list),
   url(r'^addbill/$', annote_app.controllers.bills_controller.pull_bill),
 
   url(r'^authors/', include('annotation_app.routes.authors_routes')),
   # Deprecated
-  url(r'^get_author_list/$', annote_app.views.get_author_list),
-  url(r'^get_author_bills/$', annote_app.views.get_author_bills),
+  url(r'^get_author_list/$', annote_app.views_deprecated.get_author_list),
+  url(r'^get_author_bills/$', annote_app.views_deprecated.get_author_bills),
 
   url(r'^subjects/', include('annotation_app.routes.subjects_routes')),
   # Deprecated
-  url(r'^get_subject_list/$', annote_app.views.get_subject_list),
-  url(r'^get_subject_bills/$', annote_app.views.get_subject_bills),
+  url(r'^get_subject_list/$', annote_app.views_deprecated.get_subject_list),
+  url(r'^get_subject_bills/$', annote_app.views_deprecated.get_subject_bills),
 
   url(r'^annotations/', include('annotation_app.routes.annotations_routes')),
   url(r'^docs/', include('docs.urls')),
