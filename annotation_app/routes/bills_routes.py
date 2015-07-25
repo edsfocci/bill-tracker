@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from annotation_app.controllers import bills_controller
 # Deprecated
-from annotation_app import views
+from annotation_app import views_deprecated
 
 
 ### Bills routes
@@ -10,7 +10,7 @@ from annotation_app import views
 
 def bills(request):
   if request.method == 'GET':
-    return views.bill_list(request)
+    return views_deprecated.bill_list(request)
 
   elif request.method == 'POST':
     return bills_controller.create(request)
@@ -22,7 +22,7 @@ urlpatterns = [
   url(r'^$', bills, name='bills'),
   url(r'^get-bill-info/$', bills_controller.get_bill_info,
     name='get_bill_info'),
-  url(r'^get_bill_list/$', views.get_bill_list, name='get_bill_list'),
+  url(r'^get_bill_list/$', views_deprecated.get_bill_list, name='get_bill_list'),
   # Deprecated
   url(r'^(?P<bill_id>\d+)/$', bills_controller.redirect_get_one, name='bill'),
   url(r'^(?P<bill_slug>[SHsh][Bb]\d+)/$', bills_controller.get_one,

@@ -9,7 +9,7 @@ from urllib import request
 import re, xmltodict
 
 # Deprecated: will be removed after July 2015
-from annotation_app.helpers import std as STD
+from annotation_app.helpers import std_deprecated as STD
 
 
 ### Helper function

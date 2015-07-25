@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from annotation_app.controllers import comments_controller, clients_controller
 # Deprecated
-from annotation_app import views
+from annotation_app import views_deprecated
 
 urlpatterns = [
   # Comments routes

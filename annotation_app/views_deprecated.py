@@ -15,6 +15,7 @@ def author_list(request):
   return render(request, 'author-list.html')
 
 
+# Deprecated
 @ensure_csrf_cookie
 def bill(request, bill_id):
   try:
