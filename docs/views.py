@@ -1,6 +1,7 @@
+import random
+from django.conf import settings
 from django.shortcuts import render
 from django import forms
-import random
 from django.core.mail import send_mail
 
 def home(request):
@@ -37,7 +38,7 @@ def sample_contact(request):
             # process the data in form.cleaned_data as required
 
             send_mail('Subject here', 'Here is the message.', 'deeptiboddapati@gmail.com',
-              ['deeptiboddapati@gmail.com'], fail_silently=False)
+              ['deeptiboddapati@gmail.com'], fail_silently=True)
             # redirect to a new URL:
             return render(request, 'contact-us.html')
 
