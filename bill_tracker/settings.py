@@ -85,7 +85,7 @@ if os.getenv('PRODUCTION'):
 
   SECRET_KEY = os.getenv('MYSECRET')
 
-  DEBUG = False
+  DEBUG = True
 
   # Allow all host headers
   ALLOWED_HOSTS = ['*']
