@@ -3,3 +3,4 @@
 ENV
 static/.sass-cache
 staticfiles
+bill_tracker/emailsettings.py
