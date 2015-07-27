@@ -147,3 +147,8 @@ else: # LOCAL
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
   )
+  
+  if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )
