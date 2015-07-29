@@ -87,7 +87,7 @@ USE_TZ = True
 if os.getenv('PRODUCTION'):
   DEBUG = False
 else:
-  DEBUG = False
+  DEBUG = True
 
 
 if os.getenv('HEROKU'):
