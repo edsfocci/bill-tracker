@@ -23,9 +23,10 @@ urlpatterns = [
   url(r'^$', docs.views.home, name='home'),
   url(r'^about-us.html/', docs.views.about_us),
   url(r'^contact-us.html/', docs.views.contact_us),
+  url(r'^blog.html/', docs.views.blog),
   #url(r'^samplecontact/', docs.views.sample_contact),
 
-  url(r'^bills/', include('annotation_app.routes.bills_routes')),
+  url(r'^bills.html/', include('annotation_app.routes.bills_routes')),
   # Deprecated
   url(r'^get_bill_list/$', annote_app.views_deprecated.get_bill_list),
   url(r'^addbill/$', annote_app.controllers.bills_controller.pull_bill),

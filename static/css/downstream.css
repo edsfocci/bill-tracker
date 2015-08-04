@@ -83,6 +83,17 @@
   display: none; }
 .downstream .contactUs #contact_form.form-horizontal .has-feedback .form-control-feedback {
   top: 15px; }
+.downstream .blog h3 {
+  margin: 60px 0 5px;
+  font-size: 200%;
+  font-weight: bold; }
+.downstream .blog h4 {
+  font-size: 150%;
+  font-weight: bold; }
+.downstream .blog p.postInfo {
+  font-size: 100%; }
+.downstream .blog iframe {
+  margin: 10px 0 30px; }
 
   /*
 
