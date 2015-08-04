@@ -77,11 +77,11 @@
     text-decoration: none; }
   .downstream footer p a:hover {
     text-decoration: underline; }
-.downstream.contactUs #contact_form button[type="submit"] {
+.downstream .contactUs #contact_form button[type="submit"] {
   width: 100%; }
-.downstream.contactUs #contact_form #success_message {
+.downstream .contactUs #contact_form #success_message {
   display: none; }
-.downstream.contactUs #contact_form.form-horizontal .has-feedback .form-control-feedback {
+.downstream .contactUs #contact_form.form-horizontal .has-feedback .form-control-feedback {
   top: 15px; }
 
   /*
