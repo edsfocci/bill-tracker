@@ -24,6 +24,7 @@ urlpatterns = [
   url(r'^about-us.html/', docs.views.about_us),
   url(r'^contact-us.html/', docs.views.contact_us),
   url(r'^blog.html/', docs.views.blog),
+  url(r'^bill-listing.html/', docs.views.bill_listing),
   #url(r'^samplecontact/', docs.views.sample_contact),
 
   url(r'^bills/', include('annotation_app.routes.bills_routes')),
