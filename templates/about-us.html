@@ -1,47 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bill Tracker</title>
+{% extends "base.html" %}
 
-  {% load staticfiles %}
-  <link href="{% static "lib/bootstrap.css" %}" media="screen" rel="stylesheet" />
-  <link href="{% static "css/global.css" %}" rel="stylesheet" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
+{% load staticfiles %}
+{% block content %}
 
-  <!-- Page-specific stylesheets -->
-  <link href="{% static "css/downstream.css" %}" rel="stylesheet" />
-</head>
-<body class="downstream aboutUs">  
-
-  <header>
-
-    <div class="container"> 
-
-      <a id="logoText" href="/">
-        <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
-        alt="Bill Tracker logo" />
-        Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
-      </a>
-
-      <ul id="ultraTopNav">
-        <li><a href="/about-us.html">About Us</a></li>
-        <li><a href="/contact-us.html">Contact Us</a></li>
-      </ul>
-
-    </div>
-
-  </header>
-  
 
   <div class="container mainContent">
 
     <div class="row">
 
       <h1>About Us</h1>
+
+      <script src="{% static "annotatorjs/lib/tinymce/tinymce.min.js" %}" type="text/javascript"></script>
 
       <div class="imageWithCaption">
         <img src="{% static "images/team-billtracker-1.jpg" %}" alt="team billtracker" width="100%">
@@ -60,21 +29,4 @@
 
   </div>
 
-
-  
-  <footer>
-    <div class="container">
-      <p class="footerPhotoCredit">Texas capitol photo by <a target="_blank" href="https://www.flickr.com/photos/thelukeparker/14170034048/in/photolist-nAa8rS-nbT8E6-nbT3P6">Luke Parker</a>.</p>
-      <p class="footerAbout">An <a target="_blank" href="http://atxhackforchange.org/">ATX Hack For Change</a> 2015 project. See our code <a target="_blank" href="https://github.com/bill-tracker/bill-tracker">on Github</a>.</p>
-    </div>
-  </footer>
-
-
-  <script src="{% static "lib/jquery-1.10.2.min.js" %}" type="text/javascript"></script>
-  <script src="{% static "lib/bootstrap.min.js" %}" type="text/javascript"></script>
-  <script src="{% static "global.js" %}" type="text/javascript"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
-  <!-- <script src="{% static "lib/bootswatch.js" %}"></script> -->
-
-</body>
-</html>
+{% endblock %}
