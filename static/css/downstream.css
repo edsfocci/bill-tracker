@@ -15,7 +15,8 @@
     float: left;
     /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
     .downstream header a#logoText span {
-      display: inline-block; }
+      display: inline-block;
+      border: none; }
       .downstream header a#logoText span.fixBigKerningGap {
         margin-left: -2px; }
       .downstream header a#logoText span.fixSmallKerningGap {

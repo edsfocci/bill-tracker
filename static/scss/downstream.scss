@@ -24,6 +24,7 @@ $textBlue: #2c3e50;
       // fixes font kerning
       span {
         display: inline-block;
+        border: none;
         &.fixBigKerningGap {
           margin-left: -2px;
         }
