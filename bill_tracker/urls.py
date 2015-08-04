@@ -26,7 +26,7 @@ urlpatterns = [
   url(r'^blog.html/', docs.views.blog),
   #url(r'^samplecontact/', docs.views.sample_contact),
 
-  url(r'^bills.html/', include('annotation_app.routes.bills_routes')),
+  url(r'^bills/', include('annotation_app.routes.bills_routes')),
   # Deprecated
   url(r'^get_bill_list/$', annote_app.views_deprecated.get_bill_list),
   url(r'^addbill/$', annote_app.controllers.bills_controller.pull_bill),

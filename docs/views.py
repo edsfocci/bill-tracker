@@ -27,6 +27,9 @@ def contact_us(request):
 def blog(request):
   return render(request, 'blog.html')
 
+def bill_listing(request):
+  return render(request, 'bill-listing.html')
+
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
