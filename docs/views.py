@@ -24,6 +24,9 @@ def about_us(request):
 def contact_us(request):
   return render(request, 'contact-us.html')
 
+def contact_us(request):
+  return render(request, 'blog.html')
+
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
