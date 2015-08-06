@@ -9,6 +9,11 @@ header {
     margin: 35px 0 40px 20px;
     width: 190px;
   } 
+  button#mobileMenuButton {
+  	&:focus {
+  		outline: 0;
+  	}
+  }
 }
 
 .nav-pills > li.active {
