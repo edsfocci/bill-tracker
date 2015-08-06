@@ -4,6 +4,8 @@
 header #logo {
   margin: 35px 0 40px 20px;
   width: 190px; }
+header button#mobileMenuButton:focus {
+  outline: 0; }
 
 .nav-pills > li.active a,
 .nav-pills > li.active a:hover,
