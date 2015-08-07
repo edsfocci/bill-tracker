@@ -1,10 +1,10 @@
 // bootstrap overrides
 .btn {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 .st-content {
-	background: #fff;
+  background: #fff;
 }
 
 header { 
@@ -57,24 +57,24 @@ header {
   }
 
   #st-trigger-effects {
-		display: none;
-	}
+    display: none;
+  }
 
-	@media (max-width: 569px) {
-		#st-trigger-effects {
-			display: block;
-		}
+  @media (max-width: 650px) {
+    #st-trigger-effects {
+      display: block;
+    }
 
-		ul#ultraTopNav {
-			display: none;
-		}
+    ul#ultraTopNav {
+      display: none;
+    }
 
-	}
+  }
 
   button#mobileMenuButton {
-  	&:focus {
-  		outline: 0;
-  	}
+    &:focus {
+      outline: 0;
+    }
   }
 
   ul#ultraTopNav {
@@ -87,9 +87,13 @@ header {
       float: left;
 
       a {
-        margin: 0 0 0 35px;
+        margin: 0 0 0 20px;
         color: #fff;
         text-decoration: none;
+
+        @media (min-width: 992px) {
+          margin: 0 0 0 35px;
+        }
 
         &:hover {
           text-decoration: underline;
@@ -103,38 +107,38 @@ header {
 
 
 .nav-pills > li.active {
-	a,
-	a:hover,
+  a,
+  a:hover,
 
-	a:focus {
-		color:black;
-		background-color: #2c3e50;
-	} 
+  a:focus {
+    color:black;
+    background-color: #2c3e50;
+  } 
 } 
 
 .bill-list {
-	.nav.nav-pills li { 
-		a {
-			margin: 0 0 20px;
+  .nav.nav-pills li { 
+    a {
+      margin: 0 0 20px;
 
-			span {
-				color: #bbb;
-			}
+      span {
+        color: #bbb;
+      }
 
-			&.addBillButton.btn-primary {
-				margin: 20px 0 0;
-				color: #bbb;
-			}
-		}
-	}
+      &.addBillButton.btn-primary {
+        margin: 20px 0 0;
+        color: #bbb;
+      }
+    }
+  }
 }
 
 .containerAddBill h3 {
-	margin: 30px 0 20px;
+  margin: 30px 0 20px;
 }
 
 .container.bill-list nav li {
-	margin: 0 0 20px;
+  margin: 0 0 20px;
 }
 
 /* Search-specific */
@@ -143,10 +147,10 @@ header {
 }
 
 footer {
-	margin: 40px 0 0;
+  margin: 40px 0 0;
 
-	p {
-		margin-left: 20px;
-		text-align: right;
-	}
+  p {
+    margin-left: 20px;
+    text-align: right;
+  }
 }
