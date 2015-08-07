@@ -37,7 +37,7 @@ header {
           width: 30px; } }
   header #st-trigger-effects {
     display: none; }
-  @media (max-width: 569px) {
+  @media (max-width: 650px) {
     header #st-trigger-effects {
       display: block; }
     header ul#ultraTopNav {
@@ -52,9 +52,12 @@ header {
       list-style: none;
       float: left; }
       header ul#ultraTopNav li a {
-        margin: 0 0 0 35px;
+        margin: 0 0 0 20px;
         color: #fff;
         text-decoration: none; }
+        @media (min-width: 992px) {
+          header ul#ultraTopNav li a {
+            margin: 0 0 0 35px; } }
         header ul#ultraTopNav li a:hover {
           text-decoration: underline; }
 
