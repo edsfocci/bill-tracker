@@ -3,12 +3,31 @@
 	border-radius: 0;
 }
 
+.st-content {
+	background: #fff;
+}
 
 header {
   #logo {
     margin: 35px 0 40px 20px;
     width: 190px;
-  } 
+  }
+
+	#st-trigger-effects {
+		display: none;
+	}
+
+	@media (max-width: 569px) {
+		#st-trigger-effects {
+			display: block;
+		}
+
+		ul#ultraTopNav {
+			display: none;
+		}
+
+	}
+
   button#mobileMenuButton {
   	&:focus {
   		outline: 0;
