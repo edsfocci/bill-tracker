@@ -4,18 +4,59 @@
 .st-content {
   background: #fff; }
 
-header #logo {
-  margin: 35px 0 40px 20px;
-  width: 190px; }
-header #st-trigger-effects {
-  display: none; }
-@media (max-width: 569px) {
+header {
+  padding: 0 0 20px;
+  overflow: hidden;
+  background: #1A4C6D; }
+  header a#logoText {
+    margin: 50px 0 0;
+    font-size: 32px;
+    color: #fff;
+    display: block;
+    font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    float: left;
+    /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
+    header a#logoText span {
+      display: inline-block;
+      border: none; }
+      header a#logoText span.fixBigKerningGap {
+        margin-left: -2px; }
+      header a#logoText span.fixSmallKerningGap {
+        margin-left: -1px; }
+    header a#logoText:hover, header a#logoText:active, header a#logoText:visited {
+      text-decoration: none; }
+    header a#logoText img#logoImage {
+      margin: -63px 5px 0 0;
+      width: 50px; }
+    @media (max-width: 480px) {
+      header a#logoText {
+        font-size: 25px; }
+        header a#logoText img#logoImage {
+          margin: -33px 5px 0 0;
+          width: 30px; } }
   header #st-trigger-effects {
-    display: block; }
+    display: none; }
+  @media (max-width: 569px) {
+    header #st-trigger-effects {
+      display: block; }
+    header ul#ultraTopNav {
+      display: none; } }
+  header button#mobileMenuButton:focus {
+    outline: 0; }
   header ul#ultraTopNav {
-    display: none; } }
-header button#mobileMenuButton:focus {
-  outline: 0; }
+    margin: 60px 20px 0 0;
+    float: right;
+    overflow: hidden; }
+    header ul#ultraTopNav li {
+      list-style: none;
+      float: left; }
+      header ul#ultraTopNav li a {
+        margin: 0 0 0 35px;
+        color: #fff;
+        text-decoration: none; }
+        header ul#ultraTopNav li a:hover {
+          text-decoration: underline; }
 
 .nav-pills > li.active a,
 .nav-pills > li.active a:hover,

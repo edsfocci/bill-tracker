@@ -16,54 +16,7 @@
   -o-background-size: cover;
   background-size: cover; }
   .home .banner.homeSection header {
-    padding: 0 0 20px;
-    overflow: hidden; }
-    .home .banner.homeSection header a#logoText {
-      margin: 50px 0 0;
-      font-size: 32px;
-      color: #fff;
-      display: block;
-      font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: 700;
-      float: left;
-      /* logo preview from http://graphicriver.net/item/law-talk/7469608 */ }
-      .home .banner.homeSection header a#logoText span {
-        display: inline-block; }
-        .home .banner.homeSection header a#logoText span.fixBigKerningGap {
-          margin-left: -2px; }
-        .home .banner.homeSection header a#logoText span.fixSmallKerningGap {
-          margin-left: -1px; }
-      .home .banner.homeSection header a#logoText:hover, .home .banner.homeSection header a#logoText:active, .home .banner.homeSection header a#logoText:visited {
-        text-decoration: none; }
-      .home .banner.homeSection header a#logoText img#logoImage {
-        margin: -63px 5px 0 0;
-        width: 50px; }
-      @media (max-width: 480px) {
-        .home .banner.homeSection header a#logoText {
-          font-size: 25px; }
-          .home .banner.homeSection header a#logoText img#logoImage {
-            margin: -33px 5px 0 0;
-            width: 30px; } }
-    .home .banner.homeSection header #st-trigger-effects {
-      display: none; }
-    .home .banner.homeSection header ul#ultraTopNav {
-      margin: 60px 20px 0 0;
-      float: right;
-      overflow: hidden; }
-      .home .banner.homeSection header ul#ultraTopNav li {
-        list-style: none;
-        float: left; }
-        .home .banner.homeSection header ul#ultraTopNav li a {
-          margin: 0 0 0 35px;
-          color: #fff;
-          text-decoration: none; }
-          .home .banner.homeSection header ul#ultraTopNav li a:hover {
-            text-decoration: underline; }
-    @media (max-width: 569px) {
-      .home .banner.homeSection header #st-trigger-effects {
-        display: block; }
-      .home .banner.homeSection header ul#ultraTopNav {
-        display: none; } }
+    background: none; }
   .home .banner.homeSection .bannerContent {
     margin: 20px auto;
     color: #fff;
