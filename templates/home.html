@@ -17,24 +17,51 @@
   <!-- Page-specific stylesheets -->
   <link href="{% static "css/home.css" %}" rel="stylesheet" />
 </head>
+
 <body class="home">
 
   <div id="st-container" class="st-container">
       
-    <!-- content push wrapper -->
+    <!-- slide out mobile menu -->
     <div class="st-pusher">
 
       <nav class="st-menu st-effect-7" id="menu-7">
-        <h2>Bill Tracker</h2>
+        <a id="logoText" href="/">
+          <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
+          alt="Bill Tracker logo" />
+          Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
+        </a>
         <ul>
-          <li><a class="icon icon-data" href="about-us.html">About Us</a></li>
-          <li><a class="icon icon-location" href="contact-us.html">Contact Us</a></li>
+          <li>
+            <a href="/bill-listing.html">
+              <i class="fa fa-leanpub"></i>
+              &nbsp;Bills
+            </a>
+          </li>
+          <li>
+            <a href="/about-us.html">
+              <i class="fa fa-users"></i>
+              &nbsp;About Us
+            </a>
+          </li>
+          <li>
+            <a href="/blog.html">
+              <i class="fa fa-comments"></i>
+              &nbsp;Blog
+            </a>
+          </li>
+          <li>
+            <a href="/contact-us.html">
+              <i class="fa fa-envelope"></i>
+              &nbsp;Contact Us
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <div class="st-content"><!-- this is the wrapper for the content -->
+      <div class="st-content"> <!-- regular content wrapper -->
           
-          <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+          <div class="st-content-inner"> <!-- extra div for emulating position:fixed of the menu -->
 
           <div class="banner homeSection">
 
@@ -55,7 +82,9 @@
                 </div>
 
                 <ul id="ultraTopNav">
+                  <li><a href="/bill-listing.html">Bills</a></li>
                   <li><a href="/about-us.html">About Us</a></li>
+                  <li><a href="/blog.html">Blog</a></li>
                   <li><a href="/contact-us.html">Contact Us</a></li>
                 </ul>
 

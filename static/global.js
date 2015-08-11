@@ -1,9 +1,7 @@
-
-
 /* -------------- nav click functionality ------------------- */
 
 $('.navbar-collapse a').click(function(e){
-	
+
 	var clickedLink = $(this);
 	var clickedLi = clickedLink.parent();
 	var lis = $('.navbar-collapse li');
@@ -70,7 +68,8 @@ function submitAnnotation(text)
 
 	submissionForm.style.visibility = "hidden";
 	lastClicked.style.backgroundColor = "inherit";
-	alert(annotationText + " submitted as annotation for sentence " + lastClicked.id + ".");
+	alert(annotationText + " submitted as annotation for sentence " +
+		lastClicked.id + ".");
 	text.value = "";
 
 }
@@ -85,7 +84,9 @@ if ( $('.billarea').length ) {
 
 	// init vars for annotation y pos calculations
 	var annotations = [];
-	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+	// about half of highlight height
+	// (this gets top of annotation to top of highlight)
+	var offset = 7; 
 	var basePos = $('.billarea').offset().top;
 
 }
@@ -121,11 +122,12 @@ function arrangeAnnotations() {
 
 }
 
-	
+
 
 
 // this is a custom tweak to the annotator.js library.
-// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
+// it's called from /static/annotatorjs/src/view_annotator.js line 231
+// when an annotation is created
 function placeNewAnnotation (newAnnotation) {
 
 	// first grab the newest highlight
@@ -172,7 +174,8 @@ function placeNewAnnotation (newAnnotation) {
 				var testTop = testAnnotation.topY;
 				var testBot = testAnnotation.botY;
 
-				if ( (targetTop >= testTop) && (targetTop <= testBot) || (targetBot >= testTop) && (targetBot <= testBot) ) {
+				if ( (targetTop >= testTop) && (targetTop <= testBot) ||
+					(targetBot >= testTop) && (targetBot <= testBot) ) {
 					
 					isCollision = true;
 					targetTop = testBot + 15;
@@ -193,20 +196,20 @@ function placeNewAnnotation (newAnnotation) {
 			testAnnotationCollision();
 
 		}
-		
+
 	}
-	
+
 	console.log('annotationTop: ' + annotationTop);
 	$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
-	
+
 	annotations.push({
 		id: highlightId,
 		highlightY: highlightTop,
 		annotationHeight: annotationHeight,
 		topY: annotationTop,
 		botY: annotationTop + annotationHeight
-	});	
-	
+	});
+
 
 }
 
@@ -218,7 +221,7 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 	var annotationTop = null;
 
 	if (index==0) {
-			
+
 		annotationTop = highlightTop + offset;	
 
 	} else {
@@ -230,7 +233,9 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		var prevTop = prevAnnotation.topY;
 		var prevBot = prevAnnotation.botY;
 
-		if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+		if ( (targetTop > prevTop) && (targetTop < prevBot) ||
+			(targetBot > prevTop) && (targetBot < prevBot) ) {
+
 			annotationTop = prevBot + 15;
 		} else {
 			annotationTop = targetTop + offset;
@@ -246,133 +251,6 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		annotationHeight: annotationHeight,
 		topY: annotationTop,
 		botY: annotationTop + annotationHeight
-	});	
+	});
 
 }
-
-
-/* ------------ contact form validation -------------- */
-
-/* from http://codepen.io/jaycbrf/pen/iBszr */
-$(document).ready(function() {
-	$('#contact_form').bootstrapValidator({
-	// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-	feedbackIcons: {
-	    valid: 'fa fa-check',
-	    invalid: 'fa fa-close',
-	    validating: 'fa fa-refresh'
-	},
-	fields: {
-	    first_name: {
-	        validators: {
-	                stringLength: {
-	                min: 2,
-	            },
-	                notEmpty: {
-	                message: 'Please supply your first name'
-	            }
-	        }
-	    },
-	     last_name: {
-	        validators: {
-	             stringLength: {
-	                min: 2,
-	            },
-	            notEmpty: {
-	                message: 'Please supply your last name'
-	            }
-	        }
-	    },
-	    email: {
-	        validators: {
-	            notEmpty: {
-	                message: 'Please supply your email address'
-	            },
-	            emailAddress: {
-	                message: 'Please supply a valid email address'
-	            }
-	        }
-	    },
-	    phone: {
-	        validators: {
-	            notEmpty: {
-	                message: 'Please supply your phone number'
-	            },
-	            phone: {
-	                country: 'US',
-	                message: 'Please supply a vaild phone number with area code'
-	            }
-	        }
-	    },
-	    address: {
-	        validators: {
-	             stringLength: {
-	                min: 8,
-	            },
-	            notEmpty: {
-	                message: 'Please supply your street address'
-	            }
-	        }
-	    },
-	    city: {
-	        validators: {
-	             stringLength: {
-	                min: 4,
-	            },
-	            notEmpty: {
-	                message: 'Please supply your city'
-	            }
-	        }
-	    },
-	    state: {
-	        validators: {
-	            notEmpty: {
-	                message: 'Please select your state'
-	            }
-	        }
-	    },
-	    zip: {
-	        validators: {
-	            notEmpty: {
-	                message: 'Please supply your zip code'
-	            },
-	            zipCode: {
-	                country: 'US',
-	                message: 'Please supply a vaild zip code'
-	            }
-	        }
-	    },
-	    comment: {
-	        validators: {
-	              stringLength: {
-	                min: 10,
-	                max: 200,
-	                message:'Please enter at least 10 characters and no more than 200'
-	            },
-	            notEmpty: {
-	                message: 'Please supply a description of your project'
-	            }
-	            }
-	        }
-	    }
-	})
-	.on('success.form.bv', function(e) {
-	    $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-	        $('#contact_form').data('bootstrapValidator').resetForm();
-
-	    // Prevent form submission
-	    e.preventDefault();
-
-	    // Get the form instance
-	    var $form = $(e.target);
-
-	    // Get the BootstrapValidator instance
-	    var bv = $form.data('bootstrapValidator');
-
-	    // Use Ajax to submit form data
-	    $.post($form.attr('action'), $form.serialize(), function(result) {
-	        console.log(result);
-	    }, 'json');
-	});
-});
-

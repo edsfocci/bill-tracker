@@ -4,12 +4,15 @@ Created on Tue Jun 23 10:00:30 2015
 
 @author: Deepti Boddapati
 /deeptiboddapati
-Currently automattically deletes database files, makes migrations and runs server.
+Automattically deletes database files, makes migrations and runs server.
+
 """
 import manage
 import os
 import shutil
+from random import sample
 
+#figure out what code is being used to save bills now.
 try:
     os.remove("db.sqlite3")
 except(FileNotFoundError):
@@ -25,12 +28,12 @@ for i in os.listdir("annotation_app/migrations"):
             os.remove("annotation_app/migrations/"+i)
         except(FileNotFoundError):
             pass
-        
 
-a = input("want to make migrations?")
 
-if a == 'y':
-    os.system("python manage.py makemigrations")
-    os.system("python manage.py migrate")
-    os.system("python manage.py runserver")
+os.system("python manage.py makemigrations")
+os.system("python manage.py migrate")
+os.system("python manage.py runserver")
      
+bill_nums = sample(range(1500),  30)
+
+#put in code to generate 30 new bills when the migrations are made 

@@ -12,9 +12,17 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+#from .emailsettings import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+'''
+EMAIL_USE_TLS = True
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USERNAME = EMAIL_HOST_USERNAME 
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = 587
+'''
 
 # Application definition
 
@@ -75,11 +83,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+# SECURITY WARNING: don't run with debug turned on in production!
 if os.getenv('PRODUCTION'):
+  DEBUG = False
+else:
+  DEBUG = True
+
+
+if os.getenv('HEROKU'):
 
   SECRET_KEY = os.getenv('MYSECRET')
-
-  DEBUG = False
 
   # Allow all host headers
   ALLOWED_HOSTS = ['*']
@@ -104,16 +117,13 @@ if os.getenv('PRODUCTION'):
   )
 
 
-else: # DEVELOPMENT
+else: # LOCAL
   # Quick-start development settings - unsuitable for production
   # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
   # SECURITY WARNING: keep the secret key used in production secret!
   from bill_tracker import mysecrets
   SECRET_KEY = mysecrets.django_secret
-
-  # SECURITY WARNING: don't run with debug turned on in production!
-  DEBUG = True
 
   ALLOWED_HOSTS = []
 
@@ -142,3 +152,4 @@ else: # DEVELOPMENT
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
   )
+  
