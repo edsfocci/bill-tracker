@@ -176,7 +176,7 @@ function placeNewAnnotation (newAnnotation) {
 				if ( (targetTop >= testTop) && (targetTop <= testBot) || (targetBot >= testTop) && (targetBot <= testBot) ) {
 					
 					isCollision = true;
-					targetTop = testBot + 15;
+					targetTop = testBot + offset;
 					targetBot = targetTop + annotationHeight;
 
 				}
@@ -231,14 +231,54 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		var prevTop = prevAnnotation.topY;
 		var prevBot = prevAnnotation.botY;
 
+		// console.log(annotations.length);
+
 		// there's a bug here
 		// this only checks against last annotation placed, not all already placed
 		// hence https://github.com/bill-tracker/bill-tracker/issues/171
-		if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
-			annotationTop = prevBot + 15;
-		} else {
-			annotationTop = targetTop + offset;
+
+		var isCollision	= false;
+
+		testAnnotationCollision();
+
+		function testAnnotationCollision() {
+			for (var i=0; i<annotations.length; i++) {
+
+				if (!isCollision) {
+					var testAnnotation = annotations[i];
+					var testTop = testAnnotation.topY;
+					var testBot = testAnnotation.botY;
+
+					if ( (targetTop >= testTop) && (targetTop <= testBot) || (targetBot >= testTop) && (targetBot <= testBot) ) {
+						
+						isCollision = true;
+						targetTop = testBot + offset;
+						targetBot = targetTop + annotationHeight;
+
+					}
+				}
+
+			}
+
+			if (!isCollision) {
+				
+				annotationTop = targetTop + offset;
+
+			} else {
+				
+				isCollision = false;
+				testAnnotationCollision();
+
+			}
+			
 		}
+
+
+		// if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+		// 	annotationTop = prevBot + 15;
+		// } else {
+		// 	annotationTop = targetTop + offset;
+		// }
 
 	}
 
