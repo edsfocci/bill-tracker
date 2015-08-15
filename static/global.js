@@ -231,6 +231,9 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		var prevTop = prevAnnotation.topY;
 		var prevBot = prevAnnotation.botY;
 
+		// there's a bug here
+		// this only checks against last annotation placed, not all already placed
+		// hence https://github.com/bill-tracker/bill-tracker/issues/171
 		if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
 			annotationTop = prevBot + 15;
 		} else {
