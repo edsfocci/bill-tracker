@@ -150,16 +150,17 @@ function placeNewAnnotation (newAnnotation) {
 	var index = $('li.annotator-marginviewer-element').length - 1;
 	var highlightPos = highlight.offset().top;
 	var annotationSelector = '#submission #annotation-' + highlightId;
-	var highlightTop = highlightPos - basePos - offset;
+	// var highlightTop = highlightPos - basePos - offset;
+	var highlightTop = highlight[0].offsetTop + offset * 1.5;
 	var annotationHeight = $(annotationSelector).height();
 	var isCollision = false;
 	var targetTop = highlightTop;
 	var targetBot = highlightTop + annotationHeight;
 
-	console.log('highlightPos: ' + highlightPos);
-	console.log('basePos: ' + basePos);
-	console.log('offset: ' + offset);
-	console.log('highlightPos - basePos - offset: ' + targetTop);
+	// console.log('highlightPos: ' + highlightPos);
+	// console.log('basePos: ' + basePos);
+	// console.log('offset: ' + offset);
+	// console.log('highlightPos - basePos - offset: ' + targetTop);
 
 
 	testAnnotationCollision();
@@ -196,7 +197,7 @@ function placeNewAnnotation (newAnnotation) {
 		
 	}
 	
-	console.log('annotationTop: ' + annotationTop);
+	// console.log('annotationTop: ' + annotationTop);
 	$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
 	
 	annotations.push({
