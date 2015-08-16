@@ -5,7 +5,7 @@ from django import forms
 from django.core.mail import send_mail
 
 def home(request):
-  copy_list = [
+  headlines_list = [
     'Understand and create dialog ' +
       'about the proposed laws you care about.',
 
@@ -16,7 +16,8 @@ def home(request):
       'for your piece of mind.'
   ]
 
-  return render(request, 'home.html', {'copy': random.choice(copy_list)})
+  return render(request, 'home.html',
+    {'headline': random.choice(headlines_list)})
 
 def about_us(request):
   return render(request, 'about-us.html')
