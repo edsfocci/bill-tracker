@@ -25,6 +25,8 @@ span:hover {
   .col-offset {
       padding-left: 105px;
   }*/ }
+  #billinfo-group .btn-group-vertical {
+    float: left; }
   #billinfo-group .btn {
     padding: 1px 4px; }
   #billinfo-group #btn-authors {
