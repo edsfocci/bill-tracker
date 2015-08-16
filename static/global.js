@@ -152,16 +152,17 @@ function placeNewAnnotation (newAnnotation) {
 	var index = $('li.annotator-marginviewer-element').length - 1;
 	var highlightPos = highlight.offset().top;
 	var annotationSelector = '#submission #annotation-' + highlightId;
-	var highlightTop = highlightPos - basePos - offset;
+	// var highlightTop = highlightPos - basePos - offset;
+	var highlightTop = highlight[0].offsetTop + offset * 1.5;
 	var annotationHeight = $(annotationSelector).height();
 	var isCollision = false;
 	var targetTop = highlightTop;
 	var targetBot = highlightTop + annotationHeight;
 
-	console.log('highlightPos: ' + highlightPos);
-	console.log('basePos: ' + basePos);
-	console.log('offset: ' + offset);
-	console.log('highlightPos - basePos - offset: ' + targetTop);
+	// console.log('highlightPos: ' + highlightPos);
+	// console.log('basePos: ' + basePos);
+	// console.log('offset: ' + offset);
+	// console.log('highlightPos - basePos - offset: ' + targetTop);
 
 
 	testAnnotationCollision();
@@ -178,7 +179,7 @@ function placeNewAnnotation (newAnnotation) {
 					(targetBot >= testTop) && (targetBot <= testBot) ) {
 					
 					isCollision = true;
-					targetTop = testBot + 15;
+					targetTop = testBot + offset;
 					targetBot = targetTop + annotationHeight;
 
 				}
@@ -198,8 +199,8 @@ function placeNewAnnotation (newAnnotation) {
 		}
 
 	}
-
-	console.log('annotationTop: ' + annotationTop);
+	
+	// console.log('annotationTop: ' + annotationTop);
 	$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
 
 	annotations.push({
@@ -233,13 +234,54 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		var prevTop = prevAnnotation.topY;
 		var prevBot = prevAnnotation.botY;
 
-		if ( (targetTop > prevTop) && (targetTop < prevBot) ||
-			(targetBot > prevTop) && (targetBot < prevBot) ) {
+		// console.log(annotations.length);
 
-			annotationTop = prevBot + 15;
-		} else {
-			annotationTop = targetTop + offset;
+		// there's a bug here
+		// this only checks against last annotation placed, not all already placed
+		// hence https://github.com/bill-tracker/bill-tracker/issues/171
+
+		var isCollision	= false;
+
+		testAnnotationCollision();
+
+		function testAnnotationCollision() {
+			for (var i=0; i<annotations.length; i++) {
+
+				if (!isCollision) {
+					var testAnnotation = annotations[i];
+					var testTop = testAnnotation.topY;
+					var testBot = testAnnotation.botY;
+
+					if ( (targetTop >= testTop) && (targetTop <= testBot) || (targetBot >= testTop) && (targetBot <= testBot) ) {
+						
+						isCollision = true;
+						targetTop = testBot + offset;
+						targetBot = targetTop + annotationHeight;
+
+					}
+				}
+
+			}
+
+			if (!isCollision) {
+				
+				annotationTop = targetTop + offset;
+
+			} else {
+				
+				isCollision = false;
+				testAnnotationCollision();
+
+			}
+			
 		}
+
+
+		// if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
+		// 	annotationTop = prevBot + 15;
+		// } else {
+		// 	annotationTop = targetTop + offset;
+		// }
 
 	}
 
