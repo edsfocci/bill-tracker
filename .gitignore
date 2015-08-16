@@ -6,4 +6,5 @@ staticfiles
 
 */migrations/0*
 
+bill_tracker/mysecrets.py
 bill_tracker/emailsettings.py
