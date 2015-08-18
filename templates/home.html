@@ -112,7 +112,7 @@
 
                   <div class="formBody">
                     <!-- Dropdown to select where the bill originated: Senate or House -->
-                    <span id="legis-chamber">
+                    <span id="legis-chamber" data-step="1" data-intro="Choose whether you're looking for a house or senate bill">
                       <!-- Senate or House Bill:<br /> -->
                       <input type="radio" name="chamber_origin" checked="checked" value="S" id="SB" />
                       <label for="SB">Senate Bill</label>
@@ -122,7 +122,7 @@
                       </label>
                     </span>
 
-                    <span id="bill-number">
+                    <span id="bill-number" data-step="2" data-intro="Enter the bill number">
                       <input type="number" id="id_number" name="number" placeholder="Bill Number"
                       min="1" autofocus="autofocus" />
                     </span>
