@@ -427,8 +427,9 @@ $(document).ready(function() {
 
 
 
-/* ------------ home demo functionality -------------- */
+/* ------------ demo functionality -------------- */
 
+/* homepage demo (page 1) */
 if ( $('body.home').length) {
 
 	document.getElementById('demo').onclick = function() {
@@ -436,5 +437,22 @@ if ( $('body.home').length) {
 	  		window.location.href = 'bills/SB10/?multipage=true';
 		});
 	};
+
+}
+
+/* billpage demo (page 2) */
+
+if ( $('.billarea').length) {
+
+	setTimeout(function(){
+
+		$('.1.annotator-hl').data( "step", 3 );
+		$('.1.annotator-hl').data( "intro", "Highlight some text" );
+
+		if (RegExp('multipage', 'gi').test(window.location.search)) {
+			introJs().start();
+		}
+
+	},1000);
 
 }
