@@ -429,7 +429,7 @@ $(document).ready(function() {
 
 /* ------------ home demo functionality -------------- */
 
-if ( $('body.home').length) ) {
+if ( $('body.home').length) {
 
 	document.getElementById('demo').onclick = function() {
 		introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
