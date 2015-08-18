@@ -20,6 +20,25 @@
 
     header { 
       background: none;
+
+      #ultraTopNav {
+        padding: 10px 0;
+
+        a.demo {
+          padding: 5px;
+          margin: -10px 0 0 15px;
+          color: #18bc9c;
+          border: 1px solid #18bc9c;
+          &:hover {
+            text-decoration: none;
+            color: #fff;
+            border-color: #18bc9c;
+            background: #18bc9c;
+          }
+        }
+      }
+
+
     }
 
     .bannerContent {
