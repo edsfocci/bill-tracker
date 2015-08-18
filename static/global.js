@@ -424,3 +424,17 @@ $(document).ready(function() {
 	    }, 'json');
 	});
 });
+
+
+
+/* ------------ home demo functionality -------------- */
+
+if ( $('body.home').length) ) {
+
+	document.getElementById('demo').onclick = function() {
+		introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+	  		window.location.href = 'bills/SB10/?multipage=true';
+		});
+	};
+
+}
