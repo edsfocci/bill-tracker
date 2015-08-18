@@ -7,18 +7,17 @@
 
 ## <a name="getting-started"></a>Getting Started on your Local Computer
 
-**Install Python 3**:
+**Install Python 3:**
 
-https://www.python.org/downloads/
-or
+https://www.python.org/downloads/ or
 
 http://conda.pydata.org/miniconda.html
 
-**Clone our repo**:
+**Clone our repo:**
 
     git clone https://github.com/bill-tracker/bill-tracker.git
 
-**Install all *local* dependencies**:
+**Install all *local* dependencies:**
 
     pip install -r requirements_local.txt
 
@@ -30,15 +29,15 @@ https://groups.google.com/a/continuum.io/forum/#!topic/conda/PiM9sjWyXFU
 
 Or, you can install the dependencies manually if you wish / need.
 
-**Initialization**:
+**Initialization:**
 
     python reset_migrations.py
 
-**Run server**:
+**Run server:**
 
     python manage.py runserver
 
-**Check out this app on your browser
+**Check out this app on your browser:**
 
 Go to: http://localhost:8000/
 
