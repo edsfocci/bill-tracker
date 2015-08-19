@@ -11,9 +11,6 @@ except(ImportError): # Python2 compatibility
   import urllib as request
 import re, xmltodict
 
-# Deprecated: will be removed after July 2015
-from annotation_app.helpers import std_deprecated as STD
-
 
 ### Helper function
 # ftpopen is not 100% reliable on first try
@@ -81,7 +78,7 @@ def scrape_bill_text(initial_data):
     return response
 
   response = response.decode('utf-8').split('\r\n')[:-1]
-  files = list(STD.filterr(lambda x: re.search(bill_text_filename_regex, x,
+  files = list(filter(lambda x: re.search(bill_text_filename_regex, x,
     re.IGNORECASE), response))
 
   # If len(files) is 0, no files found
@@ -97,8 +94,8 @@ def scrape_bill_text(initial_data):
     return [bill_date, matches.group(4)]
 
   # Wizardry to actually get the latest filename
-  files = list(STD.mapp(map_dates_and_filenames, files))
-  bill_text_filename = STD.maxx(files, key=lambda x: x[0])[1]
+  files = list(map(map_dates_and_filenames, files))
+  bill_text_filename = max(files, key=lambda x: x[0])[1]
 
   # Get bill text (finally!)
   return keep_trying_ftpopen(bill_text_files_url + bill_text_filename)
