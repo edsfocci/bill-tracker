@@ -13,7 +13,7 @@ https://www.python.org/downloads/ or
 
 http://conda.pydata.org/miniconda.html
 
-Note: This project is Python 2 compatible as of 2015-08-18. However, the core
+Note: This project is Python 2-compatible as of 2015-08-18. However, the core
 team will develop this project in Python 3, so it is recommended that you do the
 same.
 
