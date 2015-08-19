@@ -8,10 +8,6 @@ class Bill(models.Model):
   number = models.IntegerField()
   text = models.TextField()
 
-  # Deprecated
-  authors = models.TextField(null=True)
-  subjects = models.TextField(null=True)
-
   # Not deprecated (yet)
   stage = models.IntegerField(null=True)
   last_action = models.CharField(max_length=255, null=True)
@@ -20,13 +16,6 @@ class Bill(models.Model):
   coauthors = models.CharField(max_length=255, null=True)
   sponsors = models.CharField(max_length=255, null=True)
   cosponsors = models.CharField(max_length=255, null=True)
-
-  # Deprecated
-  def serialize(object):
-    return json.dumps(object)
-
-  def deserialize(object):
-    return json.loads(object)
 
 
 class Senator(models.Model):#model for this needs to be changed to inlude more than one bill.
