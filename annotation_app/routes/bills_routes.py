@@ -27,7 +27,4 @@ urlpatterns = [
   url(r'^(?P<bill_id>\d+)/$', bills_controller.redirect_get_one, name='bill'),
   url(r'^(?P<bill_slug>[SHsh][Bb]\d+)/$', bills_controller.get_one,
     name='bill_by_slug'),
-
-  # Deprecated
-  url(r'^addbill/$', bills_controller.pull_bill, name='add_bill'),
 ]
