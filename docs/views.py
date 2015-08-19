@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import random
 from django.conf import settings
 from django.shortcuts import render
@@ -12,7 +14,7 @@ def home(request):
     'Help the community understand the proposed ' +
       'laws you feel strongly about.',
 
-    'Follow newly proposed Texas laws —' +
+    'Follow newly proposed Texas laws — ' +
       'for your piece of mind.'
   ]
 
