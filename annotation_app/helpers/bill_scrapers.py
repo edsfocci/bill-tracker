@@ -5,7 +5,10 @@
 # no processing (except converting xml to dict whenever possible;
 # minor processing)
 
-from urllib import request
+try:
+  from urllib import request
+except(ImportError): # Python2 compatibility
+  import urllib as request
 import re, xmltodict
 
 # Deprecated: will be removed after July 2015
@@ -16,17 +19,18 @@ from annotation_app.helpers import std_deprecated as STD
 # ftpopen is not 100% reliable on first try
 def keep_trying_ftpopen(url, tries=7):
   # TODO: figure out optimal number of 'tries'
+  from contextlib import closing # Python2 compatibility
 
   # One last try, return None if fail
   if tries <= 1:
     try:
-      with request.urlopen(url) as response:
+      with closing(request.urlopen(url)) as response:
         return response.read()
     except:
       return
 
   try:
-    with request.urlopen(url) as response:
+    with closing(request.urlopen(url)) as response:
       return response.read()
   except:
     return keep_trying_ftpopen(url, tries=tries-1)
@@ -76,8 +80,7 @@ def scrape_bill_text(initial_data):
   if response == None:
     return response
 
-  response = str(response)[2:]
-  response = response.split('\\r\\n')[:-1]
+  response = response.decode('utf-8').split('\r\n')[:-1]
   files = list(STD.filterr(lambda x: re.search(bill_text_filename_regex, x,
     re.IGNORECASE), response))
 
@@ -140,7 +143,7 @@ def scrape_bill_history(initial_data):
   if response == None:
     return response
 
-  return xmltodict.parse(str(response)[14:-1])['billhistory']
+  return xmltodict.parse(response.decode('utf-8'))['billhistory']
 
   # Get only data I want
   # bill_data['caption'] = data['caption']['#text']
@@ -149,17 +152,17 @@ def scrape_bill_history(initial_data):
 
 # input = {'session': '84R', 'chamber_origin': 'S', 'number': 5}
 ### Testers
-def scrape_bill_text_test():
-  return scrape_bill_text(
-    {'session': '84R', 'chamber_origin': 'S', 'number': 5})
+# def scrape_bill_text_test():
+#   return scrape_bill_text(
+#     {'session': '84R', 'chamber_origin': 'S', 'number': 5})
 
-def scrape_bill_history_test():
-  return scrape_bill_history(
-    {'session': '84R', 'chamber_origin': 'S', 'number': 5})
+# def scrape_bill_history_test():
+#   return scrape_bill_history(
+#     {'session': '84R', 'chamber_origin': 'S', 'number': 5})
 
 
 ### Speed test
-def speedtest():
-  from timeit import Timer
-  t = Timer(lambda: scrape_bill_history_test())
-  print(t.timeit(number=1))
+# def speedtest():
+#   from timeit import Timer
+#   t = Timer(lambda: scrape_bill_history_test())
+#   print(t.timeit(number=1))
