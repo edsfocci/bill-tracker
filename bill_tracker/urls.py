@@ -26,6 +26,7 @@ urlpatterns = [
   url(r'^contact-us.html/', docs.views.contact_us),
   url(r'^blog.html/', docs.views.blog),
   url(r'^bill-listing.html/', docs.views.bill_listing),
+  url(r'^demo-bill.html/', docs.views.demo_bill),
   #url(r'^samplecontact/', docs.views.sample_contact),
 
 
