@@ -27,6 +27,9 @@ def about_us(request):
 def contact_us(request):
   return render(request, 'contact-us.html')
 
+def demo_bill(request):
+  return render(request, 'demo-bill.html')  
+
 def blog(request):
   return render(request, 'blog.html')
 
