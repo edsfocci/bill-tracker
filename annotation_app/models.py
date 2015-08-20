@@ -1,5 +1,4 @@
 from django.db import models
-import json
 
 
 class Bill(models.Model):
@@ -13,6 +12,8 @@ class Bill(models.Model):
   last_action = models.CharField(max_length=255, null=True)
   caption_version = models.CharField(max_length=255, null=True)
   caption_text = models.TextField(null=True)
+
+  # Deprecated
   coauthors = models.CharField(max_length=255, null=True)
   sponsors = models.CharField(max_length=255, null=True)
   cosponsors = models.CharField(max_length=255, null=True)
@@ -73,8 +74,3 @@ class Annotation(models.Model):
 #   },
 #   'data_creacio': 1434156917763     # created datetime in iso8601 format (added by backend)
 # }
-
-
-class Comment(models.Model):
-  annotation = models.ForeignKey(Annotation)
-  text = models.TextField()
