@@ -62,3 +62,8 @@ class NameForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=100)
     number = forms.IntegerField(label='number', min_value=999999999, max_value = 10000000000)
     comment = forms.CharField(label = "Comment", max_length = 100)
+
+
+# Archived
+def nick(request):
+  return render(request, 'megalith/megalith.html')
