@@ -21,5 +21,5 @@ urlpatterns = [
 
 
   # Archived
-  url(r'throwback/', docs.views.nick),
+  url(r'throwback/', views.nick),
 ]
