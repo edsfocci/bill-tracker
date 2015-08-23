@@ -442,17 +442,8 @@ if ( $('body.home').length) {
 
 /* billpage demo (page 2) */
 
-if ( $('.billarea').length) {
-
-	setTimeout(function(){
-
-		$('.1.annotator-hl').data( "step", 3 );
-		$('.1.annotator-hl').data( "intro", "Highlight some text" );
-
-		if (RegExp('multipage', 'gi').test(window.location.search)) {
-			introJs().start();
-		}
-
-	},1000);
-
+if ( $('.demoBill').length) {
+	
+	introJs().start();
+	
 }
