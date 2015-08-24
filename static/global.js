@@ -445,5 +445,9 @@ if ( $('body.home').length) {
 if ( $('.demoBill').length) {
 	
 	introJs().start();
+
+	$('a.introjs-button').click(function(){
+		$('.annotator-adder').show();
+	});
 	
 }
