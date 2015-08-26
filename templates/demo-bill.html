@@ -70,7 +70,7 @@
       In this subchapter:</p>
 
       <ul>
-        <li class="list demo-annotator-adder-parent"><span data-step="4" data-intro="Click the pencil icon"><div class="annotator-adder"><button>Annotate</button></div></span><span data-step="3" data-intro="Highlight some text" class="1 annotator-hl"><span style=
+        <li class="list demo-annotator-adder-parent"><div data-step="4" data-intro="Click the pencil icon" class="annotator-adder"><button>Annotate</button></div><span data-step="3" data-intro="Highlight some text" class="1 annotator-hl"><span style=
         "text-decoration: underline">(1)</span><span style=
         "text-decoration: underline">"Offense" means a prohibited act for which
         state</span> <span style="text-decoration: underline">law imposes a
@@ -599,7 +599,7 @@
             </form>
           </div>
 
-          
+
         </li>
       </ul>
     </div>
@@ -607,7 +607,7 @@
 
   <div class="col-xs-4" id="submission">
 
-    {% if annotation_list %} 
+    {% if annotation_list %}
       <ul>
         {% for annotation in annotation_list %}
           {% if annotation.text|length > 10  %}
