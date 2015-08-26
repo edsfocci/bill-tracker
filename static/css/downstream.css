@@ -53,9 +53,5 @@
 
 .demoBill .demo-annotator-adder-parent {
   position: relative; }
-  .demoBill .demo-annotator-adder-parent .annotator-adder {
-    position: absolute;
-    top: 0;
-    left: 16px; }
 
 /*# sourceMappingURL=downstream.css.map */

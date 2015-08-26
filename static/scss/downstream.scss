@@ -1,7 +1,7 @@
 $textBlue: #2c3e50;
 
 .downstream {
- 
+
   h1 {
     font-weight: 700;
     border-bottom: 1px solid $textBlue;
@@ -42,7 +42,7 @@ $textBlue: #2c3e50;
 
   footer {
     padding: 0 0 15px;
-    overflow: hidden; 
+    overflow: hidden;
 
     p {
       &.footerPhotoCredit {
@@ -66,15 +66,15 @@ $textBlue: #2c3e50;
 
   .contactUs {
     #contact_form {
-      
+
       button[type="submit"] {
         width: 100%;
       }
 
-      #success_message{ 
+      #success_message{
         display: none;
       }
-      
+
       &.form-horizontal {
         .has-feedback .form-control-feedback {
           top: 15px;
@@ -108,9 +108,9 @@ $textBlue: #2c3e50;
   .demo-annotator-adder-parent {
     position: relative;
     .annotator-adder {
-      position: absolute;
-      top: 0;
-      left: 16px;
+      // position: absolute;
+      // top: 0;
+      // left: 16px;
     }
   }
 }
