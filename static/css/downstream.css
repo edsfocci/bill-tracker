@@ -53,9 +53,12 @@
 
 .demoBill .demo-annotator-adder-parent {
   position: relative; }
+.demoBill .annotator-pencil {
+  visibility: hidden; }
 .demoBill .annotator-editor {
   display: none !important; }
   .demoBill .annotator-editor.annotator-original {
-    display: block !important; }
+    display: block !important;
+    visibility: hidden; }
 
 /*# sourceMappingURL=downstream.css.map */
