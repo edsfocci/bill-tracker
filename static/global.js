@@ -254,7 +254,7 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 
 					if ( (targetTop >= testTop) && (targetTop <= testBot) ||
 						(targetBot >= testTop) && (targetBot <= testBot) ) {
-						
+
 						isCollision = true;
 						targetTop = testBot + offset;
 						targetBot = targetTop + annotationHeight;
@@ -265,7 +265,7 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 			}
 
 			if (!isCollision) {
-				
+
 				annotationTop = targetTop + offset;
 
 			} else {
@@ -443,11 +443,20 @@ if ( $('body.home').length) {
 /* billpage demo (page 2) */
 
 if ( $('.demoBill').length) {
-	
+
 	introJs().start();
 
+	var counter = 0;
 	$('a.introjs-button').click(function(){
-		$('.annotator-adder').show();
+		counter++;
+		if (counter == 1) {
+				console.log('counter: ' + counter);
+				$('.annotator-pencil').css('visibility','visible');
+		} else if (counter == 2) {
+			console.log('counter: ' + counter);
+			$('.annotator-pencil').css('visibility','hidden');
+			$('.annotator-original').css('visibility','visible');
+		}
 	});
-	
+
 }

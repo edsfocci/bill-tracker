@@ -108,10 +108,14 @@ $textBlue: #2c3e50;
   .demo-annotator-adder-parent {
     position: relative;
   }
+  .annotator-pencil {
+    visibility: hidden;
+  }
   .annotator-editor {
     display: none !important;
     &.annotator-original {
       display: block !important;
+      visibility: hidden;
     }
   }
 }
