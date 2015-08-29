@@ -53,5 +53,9 @@
 
 .demoBill .demo-annotator-adder-parent {
   position: relative; }
+.demoBill .annotator-editor {
+  display: none !important; }
+  .demoBill .annotator-editor.annotator-original {
+    display: block !important; }
 
 /*# sourceMappingURL=downstream.css.map */
