@@ -107,10 +107,11 @@ $textBlue: #2c3e50;
 .demoBill {
   .demo-annotator-adder-parent {
     position: relative;
-    .annotator-adder {
-      // position: absolute;
-      // top: 0;
-      // left: 16px;
+  }
+  .annotator-editor {
+    display: none !important;
+    &.annotator-original {
+      display: block !important;
     }
   }
 }
