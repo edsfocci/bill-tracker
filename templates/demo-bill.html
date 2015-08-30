@@ -615,24 +615,23 @@
 
   <div class="col-xs-4" id="submission">
 
-    {% if annotation_list %}
       <ul>
-        {% for annotation in annotation_list %}
-          {% if annotation.text|length > 10  %}
-            <li><a href="/annotations/{{ annotation.id }}/">
-              {{ annotation.text|slice:":10" }}
-            </a></li>
-          {% else %}
-            <li><a href="/annotations/{{ annotation.id }}/">
-              {{ annotation.text }}
-            </a></li>
-          {% endif %}
-        {% endfor %}
+        <li data-step="6" data-intro="Your annotation appears here." class="annotator-marginviewer-element  me" id="annotation-2" style="top: 232.5px;">
+          <div class="annotator-marginviewer-text">
+            <div class="hightlight anotator_color_box">
+            </div>
+            <div class="anotador_text">I can't believe they're trying to slip this in there. Talk about pork barrel legislation!</div>
+          </div>
+          <div class="annotator-marginviewer-date">
+            08/18/2015 16:08:05
+          </div>
+          <div class="annotator-marginviewer-quote">the</div>
+          <div class="annotator-marginviewer-footer">
+            <span class="label">demoUser</span>
+            <img src="../../static/annotatorjs/src/img/icono_eliminar.png" class="annotator-viewer-delete" title="Delete" style=" float:right;margin-top:3px;;margin-left:3px"><img src="../../static/annotatorjs/src/img/edit-icon.png" class="annotator-viewer-edit" title="Edit" style="float:right;margin-top:3px">
+          </div>
+        </li>
       </ul>
-    {% else %}
-      <!--p>you haven't added any annotations yet!</p-->
-    {% endif %}
-
 
     <div class="form-group">
       <form action="/addannotation/" method="post" class="form" id="formaddannotation">
