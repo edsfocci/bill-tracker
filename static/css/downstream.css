@@ -60,5 +60,8 @@
   .demoBill .annotator-editor.annotator-original {
     display: block !important;
     visibility: hidden; }
+.demoBill .annotator-marginviewer-element {
+  visibility: hidden;
+  list-style: none; }
 
 /*# sourceMappingURL=downstream.css.map */

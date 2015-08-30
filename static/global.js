@@ -456,7 +456,17 @@ if ( $('.demoBill').length) {
 			console.log('counter: ' + counter);
 			$('.annotator-pencil').css('visibility','hidden');
 			$('.annotator-original').css('visibility','visible');
+		} else if (counter == 3) {
+			$('.annotator-original').css('visibility','hidden');
+			$('.annotator-marginviewer-element').css('visibility','visible');
 		}
 	});
+
+	// set the date in the example annotation to today's date & time
+	var now = new Date();
+	var month = now.getMonth() + 1;
+	var day = now.getDate();
+	var year = now.getFullYear();
+	$('.annotator-marginviewer-date').text(month + '/' + day + '/' + year);
 
 }
