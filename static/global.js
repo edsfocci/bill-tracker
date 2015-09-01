@@ -433,9 +433,18 @@ $(document).ready(function() {
 if ( $('body.home').length) {
 
 	document.getElementById('demo').onclick = function() {
-		introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
-	  		window.location.href = '/demo-bill.html';
-		});
+
+		introJs().start();
+
+		// $('.introjs-nextpagebutton').css('border','1px solid red');
+
+		// introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+	  // 	window.location.href = '/demo-bill.html';
+		// });
+
+		// introJs().setOption('nextLabel', 'Next page').start().oncomplete(function() {
+		// 	console.log('hi');
+		// });
 	};
 
 }
@@ -450,10 +459,10 @@ if ( $('.demoBill').length) {
 	$('a.introjs-button').click(function(){
 		counter++;
 		if (counter == 1) {
-				console.log('counter: ' + counter);
+				// console.log('counter: ' + counter);
 				$('.annotator-pencil').css('visibility','visible');
 		} else if (counter == 2) {
-			console.log('counter: ' + counter);
+			// console.log('counter: ' + counter);
 			$('.annotator-pencil').css('visibility','hidden');
 			$('.annotator-original').css('visibility','visible');
 		} else if (counter == 3) {

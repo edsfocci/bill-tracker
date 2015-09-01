@@ -751,7 +751,7 @@
 
         //change active bullet
         // i commented this out to fix "cannsot set property 'classname' of null error. -mark m 8/25/15
-        // oldReferenceLayer.querySelector('.introjs-bullets li > a.active').className = ''; 
+        // oldReferenceLayer.querySelector('.introjs-bullets li > a.active').className = '';
 
         oldReferenceLayer.querySelector('.introjs-bullets li > a[data-stepnumber="' + targetElement.step + '"]').className = 'active';
 
@@ -927,11 +927,31 @@
       prevTooltipButton.tabIndex = '-1';
       nextTooltipButton.className = 'introjs-button introjs-nextbutton';
       skipTooltipButton.innerHTML = this._options.skipLabel;
+
+    // custom last step hack for homepage - removing "next page" button
+    // and moving that functionality to the "next" button
+    // just seems more intuitive this way to me. -mm 8/31/15
+    } else if ( $('body.home').length && this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
+      // console.log('yoo');
+      setTimeout(function(){
+          $('.introjs-nextpagebutton').click(function(e){
+            window.location.href = '/demo-bill.html';
+            e.preventDefault();
+          })
+      },1);
+
+      skipTooltipButton.innerHTML = this._options.doneLabel;
+      prevTooltipButton.className = 'introjs-button introjs-prevbutton';
+      nextTooltipButton.className = 'introjs-button introjs-nextbutton introjs-nextpagebutton';
+      nextTooltipButton.tabIndex = '-1';
+
+    // original last step fallback
     } else if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
       skipTooltipButton.innerHTML = this._options.doneLabel;
       prevTooltipButton.className = 'introjs-button introjs-prevbutton';
       nextTooltipButton.className = 'introjs-button introjs-nextbutton introjs-disabled';
       nextTooltipButton.tabIndex = '-1';
+
     } else {
       prevTooltipButton.className = 'introjs-button introjs-prevbutton';
       nextTooltipButton.className = 'introjs-button introjs-nextbutton';
