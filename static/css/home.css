@@ -187,4 +187,9 @@ footer {
     footer p a:hover {
       text-decoration: underline; }
 
+.introjs-tooltipReferenceLayer .introjs-tooltipbuttons {
+  text-align: center; }
+.introjs-tooltipReferenceLayer .introjs-skipbutton {
+  display: none; }
+
 /*# sourceMappingURL=home.css.map */

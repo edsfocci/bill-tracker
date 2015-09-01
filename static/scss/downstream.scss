@@ -123,3 +123,12 @@ $textBlue: #2c3e50;
     list-style: none;
   }
 }
+
+.introjs-tooltipReferenceLayer {
+  .introjs-tooltipbuttons {
+      text-align: center;
+  }
+  .introjs-skipbutton {
+    display: none;
+  }
+}

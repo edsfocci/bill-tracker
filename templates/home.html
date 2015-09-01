@@ -22,7 +22,7 @@
 <body class="home">
 
   <div id="st-container" class="st-container">
-      
+
     <!-- slide out mobile menu -->
     <div class="st-pusher">
 
@@ -61,14 +61,14 @@
       </nav>
 
       <div class="st-content"> <!-- regular content wrapper -->
-          
+
           <div class="st-content-inner"> <!-- extra div for emulating position:fixed of the menu -->
 
           <div class="banner homeSection">
 
             <header>
 
-              <div class="container"> 
+              <div class="container">
 
                 <a id="logoText" href="/">
                   <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
@@ -93,7 +93,7 @@
               </div>
 
             </header>
-          
+
 
             <!-- Content -->
             <div class="container bannerContent">
@@ -106,7 +106,7 @@
                   <span id="legis-session">Find a bill <em>Texas Session 84R</em></span>
 
                   {% csrf_token %}
-                  
+
                   <!-- HARDCODE WARNING -->
                   <input type="hidden" name="session" value="84R" />
 
@@ -131,7 +131,7 @@
                       <button type="submit" class="btn btn-info">
                         <i class="fa fa-pencil"></i>
                         &nbsp;Annotate Bill!
-                      </button>  
+                      </button>
                     </span>
                   </div>
 
@@ -211,7 +211,7 @@
           </footer>
 
         </div><!-- /st-content-inner -->
-      
+
       </div><!-- /st-content -->
 
     </div> <!-- st-pusher -->
@@ -224,7 +224,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
   <script src="{% static "javascript/classie.js" %}"></script>
   <script src="{% static "javascript/sidebarEffects.js" %}"></script>
-  <script src="{% static "javascript/intro.min.js" %}"></script>
+  <script src="{% static "javascript/intro.js" %}"></script>
   <!-- <script src="{% static "lib/bootswatch.js" %}"></script> -->
 
 </body>

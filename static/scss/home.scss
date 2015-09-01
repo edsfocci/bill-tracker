@@ -9,7 +9,7 @@
     height:100vh;
     top: 0;
     left: 0;
-    z-index: 0; 
+    z-index: 0;
     background-image: url("../images/thelukeparker-14170034048.jpg");
     background-repeat:no-repeat;
     background-position: center center;
@@ -18,7 +18,7 @@
     -o-background-size: cover;
     background-size: cover;
 
-    header { 
+    header {
       background: none;
 
       #ultraTopNav {
@@ -78,7 +78,7 @@
         display: block;
         background: #18bc9c;
         font-size: 31px;
-        
+
         em {
           display: block;
           font-size: 15px;
@@ -91,7 +91,7 @@
       .formBody {
         padding: 22px 0px 29px;
         margin-left: 5px;
-        margin-right: 5px;       
+        margin-right: 5px;
 
         #legis-chamber label,
         #bill-number input {
@@ -139,7 +139,7 @@
           }
         }
 
-        #bill-submit { 
+        #bill-submit {
           margin: 16px 0 0;
           display: block;
 
@@ -219,7 +219,7 @@
         }
 
         &.quote {
-          
+
           .featurette-heading {
             @media (max-width: 572px) {
               padding: 20px 0 14px;
@@ -270,7 +270,7 @@
 
 footer {
   padding: 0 0 15px;
-  overflow: hidden; 
+  overflow: hidden;
 
   p {
     margin: 0;
@@ -313,5 +313,14 @@ footer {
         text-decoration: underline;
       }
     }
+  }
+}
+
+.introjs-tooltipReferenceLayer {
+  .introjs-tooltipbuttons {
+      text-align: center;
+  }
+  .introjs-skipbutton {
+    display: none;
   }
 }

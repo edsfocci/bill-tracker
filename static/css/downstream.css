@@ -64,4 +64,9 @@
   visibility: hidden;
   list-style: none; }
 
+.introjs-tooltipReferenceLayer .introjs-tooltipbuttons {
+  text-align: center; }
+.introjs-tooltipReferenceLayer .introjs-skipbutton {
+  display: none; }
+
 /*# sourceMappingURL=downstream.css.map */
