@@ -1228,6 +1228,7 @@
         }
       }
       if (event && this.selectedRanges.length) {
+        // TODO: comment below pencil show & go straight to comment input box
         return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
       } else {
         return this.adder.hide();
