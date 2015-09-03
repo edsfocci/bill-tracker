@@ -1229,7 +1229,13 @@
       }
       if (event && this.selectedRanges.length) {
         // TODO: comment below pencil show & go straight to comment input box
-        return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
+        // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
+
+        var position,  _this = this;
+        position = this.adder.position();
+
+        return this.showEditor(annotation, position);
+
       } else {
         return this.adder.hide();
       }
