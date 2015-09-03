@@ -1213,6 +1213,17 @@
     };
 
     Annotator.prototype.checkForEndSelection = function(event) {
+
+      var position = $(event.toElement).position();
+
+      // var eventPosition = {
+      //   top: event.clientY,
+      //   left: event.clientX
+      // }
+
+      // console.log(event.clientX);
+      // console.log(event.clientY);
+
       var container, range, _k, _len2, _ref1;
       this.mouseIsDown = false;
       if (this.ignoreMouseup) {
@@ -1229,10 +1240,17 @@
       }
       if (event && this.selectedRanges.length) {
         // TODO: comment below pencil show & go straight to comment input box
+
+        // console.log(event);
+        //
+        // console.log('eventPosition:');
+        // console.log(eventPosition);
+
         // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
 
-        var position,  _this = this;
-        position = this.adder.position();
+        // var position,  _this = this;
+        // position = this.adder.position();
+        // position = container.position();
 
         return this.showEditor(annotation, position);
 
@@ -1274,6 +1292,10 @@
         event.preventDefault();
       }
       position = this.adder.position();
+
+      console.log('adder position:');
+      console.log(position);
+
       this.adder.hide();
       annotation = this.setupAnnotation(this.createAnnotation());
       $(annotation.highlights).addClass('annotator-hl-temporary');
