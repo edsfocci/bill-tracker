@@ -1214,20 +1214,6 @@
 
     Annotator.prototype.checkForEndSelection = function(event) {
 
-      console.log(event.toElement.offsetWidth);
-
-      var position = $(event.toElement).position();
-
-      // console.log(position);
-
-      // var eventPosition = {
-      //   top: event.clientY,
-      //   left: event.clientX
-      // }
-
-      // console.log(event.clientX);
-      // console.log(event.clientY);
-
       var container, range, _k, _len2, _ref1;
       this.mouseIsDown = false;
       if (this.ignoreMouseup) {
@@ -1243,19 +1229,14 @@
         }
       }
       if (event && this.selectedRanges.length) {
-        // TODO: comment below pencil show & go straight to comment input box
-
-        // console.log(event);
-        //
-        // console.log('eventPosition:');
-        // console.log(eventPosition);
-
+        // i removed the pencil icon and now we go straight to the editor -mm 9/5/15
         // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
-
         // var position,  _this = this;
         // position = this.adder.position();
-        // position = container.position();
-
+        var position = {
+            top: $(event.toElement).position().top,
+            left: event.clientX - 50,
+        }
         return this.showEditor(annotation, position);
 
       } else {
