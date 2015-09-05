@@ -1214,7 +1214,11 @@
 
     Annotator.prototype.checkForEndSelection = function(event) {
 
+      console.log(event.toElement.offsetWidth);
+
       var position = $(event.toElement).position();
+
+      // console.log(position);
 
       // var eventPosition = {
       //   top: event.clientY,
