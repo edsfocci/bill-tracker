@@ -1229,13 +1229,13 @@
         }
       }
       if (event && this.selectedRanges.length) {
-        // i removed the pencil icon and now we go straight to the editor -mm 9/5/15
+        // i removed the pencil icon and now we go straight to the editor -mhm 9/5/15
         // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
         // var position,  _this = this;
         // position = this.adder.position();
         var position = {
             top: $(event.toElement).position().top,
-            left: event.clientX - 50,
+            left: event.clientX - 125,
         }
         return this.showEditor(annotation, position);
 
