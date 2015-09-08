@@ -98,7 +98,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     /* border-radius: 5px; */
-     border-radius: 0; 
+     border-radius: 0;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -248,6 +248,9 @@
     box-sizing: border-box;
     resize: none
 }
+.annotator-editor .annotator-item #annotator-field-2 {
+  display: none;
+}
 .annotator-editor .annotator-item textarea::-webkit-scrollbar {
     height: 8px;
     width: 8px
@@ -290,7 +293,8 @@
     cursor: pointer
 }
 .annotator-editor .annotator-checkbox {
-    padding: 8px 6px
+    padding: 8px 6px;
+    display: none !important;
 }
 .annotator-filter,
 .annotator-filter .annotator-filter-navigation button,
