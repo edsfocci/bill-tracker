@@ -1239,9 +1239,11 @@
         // not from the left edge of the text, so it's chaging a lot depending on
         // the window width.  see if you can get the offset from the text to the
         // window edge and subtract it from the current left or something
+
+
         var position = {
             top: $(event.toElement).position().top,
-            left: event.clientX - 125,
+            left: event.clientX - $(".billarea").offset().left,
         }
         return this.showEditor(annotation, position);
 
