@@ -1234,13 +1234,6 @@
         // var position,  _this = this;
         // position = this.adder.position();
 
-
-        // todo: the left below is buggy.  i think it's calculing from window left,
-        // not from the left edge of the text, so it's chaging a lot depending on
-        // the window width.  see if you can get the offset from the text to the
-        // window edge and subtract it from the current left or something
-
-
         var position = {
             top: $(event.toElement).position().top,
             left: event.clientX - $(".billarea").offset().left,
