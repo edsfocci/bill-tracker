@@ -1230,14 +1230,17 @@
       }
       if (event && this.selectedRanges.length) {
         // i removed the pencil icon and now we go straight to the editor -mhm 9/5/15
+
         // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
         // var position,  _this = this;
         // position = this.adder.position();
 
+        // hacked position for highlight
         var position = {
             top: $(event.toElement).position().top,
             left: event.clientX - $(".billarea").offset().left,
         }
+
         return this.showEditor(annotation, position);
 
       } else {
