@@ -57,6 +57,7 @@ From that list, high priority tickets are
 - rap genious style annotations https://github.com/bill-tracker/bill-tracker/issues/263
 - mobile https://github.com/bill-tracker/bill-tracker/issues/261
 - user registration https://github.com/bill-tracker/bill-tracker/issues/155
+
 If you have any questions about anything or need help getting started, you'll probably want to join our slack channel at https://billtracker.slack.com/
 
 ## <a name="team-members"></a>Team Members
