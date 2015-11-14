@@ -58,7 +58,7 @@ From that list, high priority tickets are
 - mobile https://github.com/bill-tracker/bill-tracker/issues/261
 - user registration https://github.com/bill-tracker/bill-tracker/issues/155
 
-If you have any questions about anything or need help getting started, you'll probably want to join our slack channel at https://billtracker.slack.com/
+If you have any questions about anything or need help getting started, you'll probably want to join our slack channel at https://billtracker.slack.com/  You'll need an invite from Dee for that.  You can email me at mcdermottsolutions@gmail.com and I can ask Dee to send you the slack invite.
 
 ## <a name="team-members"></a>Team Members
 
