@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 '''
 EMAIL_USE_TLS = True
 EMAIL_HOST = EMAIL_HOST
-EMAIL_HOST_USERNAME = EMAIL_HOST_USERNAME 
+EMAIL_HOST_USERNAME = EMAIL_HOST_USERNAME
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = 587
 '''
@@ -84,10 +84,10 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.getenv('PRODUCTION'):
-  DEBUG = False
-else:
-  DEBUG = True
+# if os.getenv('PRODUCTION'):
+#   DEBUG = False
+# else:
+DEBUG = True
 
 
 if os.getenv('HEROKU'):
@@ -152,4 +152,3 @@ else: # LOCAL
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
   )
-  

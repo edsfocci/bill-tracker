@@ -1,6 +1,7 @@
 *.pyc
 *.sqlite3
 ENV*
+env*
 .sass-cache
 staticfiles
 
