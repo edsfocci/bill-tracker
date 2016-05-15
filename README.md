@@ -60,6 +60,14 @@ Go to: http://localhost:8000/
 
     python manage.py shell
 
+**Alternative method if the above doesn't work for you**
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+
+python3 manage.py flush
+
 ## <a name="team-members"></a>Team Members
 
 * Deepti Boddapati [@deeptiboddapati](https://github.com/deeptiboddapati)
