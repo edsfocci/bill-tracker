@@ -1213,6 +1213,7 @@
     };
 
     Annotator.prototype.checkForEndSelection = function(event) {
+
       var container, range, _k, _len2, _ref1;
       this.mouseIsDown = false;
       if (this.ignoreMouseup) {
@@ -1228,7 +1229,20 @@
         }
       }
       if (event && this.selectedRanges.length) {
-        return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
+        // i removed the pencil icon and now we go straight to the editor -mhm 9/5/15
+
+        // return this.adder.css(Util.mousePosition(event, this.wrapper[0])).show();
+        // var position,  _this = this;
+        // position = this.adder.position();
+
+        // hacked position for highlight
+        var position = {
+            top: $(event.toElement).position().top,
+            left: event.clientX - $(".billarea").offset().left,
+        }
+
+        return this.showEditor(annotation, position);
+
       } else {
         return this.adder.hide();
       }
@@ -1267,6 +1281,10 @@
         event.preventDefault();
       }
       position = this.adder.position();
+
+      console.log('adder position:');
+      console.log(position);
+
       this.adder.hide();
       annotation = this.setupAnnotation(this.createAnnotation());
       $(annotation.highlights).addClass('annotator-hl-temporary');

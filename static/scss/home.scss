@@ -9,7 +9,7 @@
     height:100vh;
     top: 0;
     left: 0;
-    z-index: 0; 
+    z-index: 0;
     background-image: url("../images/thelukeparker-14170034048.jpg");
     background-repeat:no-repeat;
     background-position: center center;
@@ -18,89 +18,26 @@
     -o-background-size: cover;
     background-size: cover;
 
-    header { 
-      padding: 0 0 20px;
-      overflow: hidden;
+    header {
+      background: none;
 
-      a#logoText {
-        margin: 50px 0 0;
-        font-size: 32px;
-        color: #fff;
-        display: block;
-        font-family: "Arvo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        float: left;
+      #ultraTopNav {
+        padding: 10px 0;
 
-        // fixes font kerning
-        span {
-          display: inline-block;
-          &.fixBigKerningGap {
-            margin-left: -2px;
-          }
-          &.fixSmallKerningGap {
-            margin-left: -1px; 
-          }
-        }
-
-        &:hover,
-        &:active,
-        &:visited {
-          text-decoration: none;
-        }
-
-        /* logo preview from http://graphicriver.net/item/law-talk/7469608 */
-        img#logoImage {
-          margin: -63px 5px 0 0;
-          width: 50px;
-        }
-
-        @media (max-width: 480px) {
-          font-size: 25px;
-
-          img#logoImage {
-            margin: -33px 5px 0 0;
-            width: 30px;
-          }
- 
-        } 
-      }
-
-      #st-trigger-effects {
-        display: none;
-      }
-
-      ul#ultraTopNav {
-        margin: 60px 20px 0 0;
-        float: right;
-        overflow: hidden;
-
-        li {
-          list-style: none;
-          float: left;
-
-          a {
-            margin: 0 0 0 35px;
-            color: #fff;
+        a#demo {
+          padding: 5px;
+          margin: -10px 0 0 15px;
+          color: #18bc9c;
+          border: 1px solid #18bc9c;
+          &:hover {
             text-decoration: none;
-
-            &:hover {
-              text-decoration: underline;
-            }
-
+            color: #fff;
+            border-color: #18bc9c;
+            background: #18bc9c;
           }
         }
       }
 
-      @media (max-width: 569px) {
-        #st-trigger-effects {
-          display: block;
-        }
-
-        ul#ultraTopNav {
-          display: none;
-        }
-
-      }
 
     }
 
@@ -141,7 +78,7 @@
         display: block;
         background: #18bc9c;
         font-size: 31px;
-        
+
         em {
           display: block;
           font-size: 15px;
@@ -154,7 +91,7 @@
       .formBody {
         padding: 22px 0px 29px;
         margin-left: 5px;
-        margin-right: 5px;       
+        margin-right: 5px;
 
         #legis-chamber label,
         #bill-number input {
@@ -202,7 +139,7 @@
           }
         }
 
-        #bill-submit { 
+        #bill-submit {
           margin: 16px 0 0;
           display: block;
 
@@ -282,7 +219,7 @@
         }
 
         &.quote {
-          
+
           .featurette-heading {
             @media (max-width: 572px) {
               padding: 20px 0 14px;
@@ -333,7 +270,7 @@
 
 footer {
   padding: 0 0 15px;
-  overflow: hidden; 
+  overflow: hidden;
 
   p {
     margin: 0;
@@ -376,5 +313,14 @@ footer {
         text-decoration: underline;
       }
     }
+  }
+}
+
+.introjs-tooltipReferenceLayer {
+  .introjs-tooltipbuttons {
+      text-align: center;
+  }
+  .introjs-skipbutton {
+    display: none;
   }
 }

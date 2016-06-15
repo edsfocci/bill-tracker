@@ -33,6 +33,11 @@
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
 				classie.remove( container, 'st-menu-open' );
+
+				var icon = $('button#mobileMenuButton i');
+				icon.removeClass('fa-times');
+				icon.addClass('fa-bars');
+
 			},
 			bodyClickFn = function(evt) {
 				if( !hasParentClass( evt.target, 'st-menu' ) ) {
@@ -51,6 +56,11 @@
 				classie.add( container, effect );
 				setTimeout( function() {
 					classie.add( container, 'st-menu-open' );
+					
+					var icon = $('button#mobileMenuButton i');
+					icon.removeClass('fa-bars');
+					icon.addClass('fa-times');
+
 				}, 25 );
 				document.addEventListener( eventtype, bodyClickFn );
 			});

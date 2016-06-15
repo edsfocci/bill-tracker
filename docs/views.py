@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import random
 from django.conf import settings
 from django.shortcuts import render
@@ -5,24 +7,34 @@ from django import forms
 from django.core.mail import send_mail
 
 def home(request):
-  copy_list = [
+  headlines_list = [
     'Understand and create dialog ' +
       'about the proposed laws you care about.',
 
     'Help the community understand the proposed ' +
       'laws you feel strongly about.',
 
-    'Follow newly proposed Texas laws —' +
+    'Follow newly proposed Texas laws — ' +
       'for your piece of mind.'
   ]
 
-  return render(request, 'home.html', {'copy': random.choice(copy_list)})
+  return render(request, 'home.html',
+    {'headline': random.choice(headlines_list)})
 
 def about_us(request):
   return render(request, 'about-us.html')
 
 def contact_us(request):
   return render(request, 'contact-us.html')
+
+def demo_bill(request):
+  return render(request, 'demo-bill.html')  
+
+def blog(request):
+  return render(request, 'blog.html')
+
+def bill_listing(request):
+  return render(request, 'bill-listing.html')
 
 
 from django.shortcuts import render
@@ -53,3 +65,8 @@ class NameForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=100)
     number = forms.IntegerField(label='number', min_value=999999999, max_value = 10000000000)
     comment = forms.CharField(label = "Comment", max_length = 100)
+
+
+# Archived
+def nick(request):
+  return render(request, 'megalith/megalith.html')

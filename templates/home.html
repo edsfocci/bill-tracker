@@ -11,36 +11,64 @@
   <link href="{% static "css/global.css" %}" rel="stylesheet" />
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{% static "css/st-menu.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/introjs.css" %}" />
   <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" />
   <script src="{% static "javascript/modernizr.custom.js" %}"></script>
 
   <!-- Page-specific stylesheets -->
   <link href="{% static "css/home.css" %}" rel="stylesheet" />
 </head>
+
 <body class="home">
 
   <div id="st-container" class="st-container">
-      
-    <!-- content push wrapper -->
+
+    <!-- slide out mobile menu -->
     <div class="st-pusher">
 
       <nav class="st-menu st-effect-7" id="menu-7">
-        <h2>Bill Tracker</h2>
+        <a id="logoText" href="/">
+          <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
+          alt="Bill Tracker logo" />
+          Bill Tra<span class="fixBigKerningGap">c</span>k<span class="fixSmallKerningGap">e</span>r
+        </a>
         <ul>
-          <li><a class="icon icon-data" href="about-us.html">About Us</a></li>
-          <li><a class="icon icon-location" href="contact-us.html">Contact Us</a></li>
+          <li>
+            <a href="/bill-listing.html">
+              <i class="fa fa-leanpub"></i>
+              &nbsp;Bills
+            </a>
+          </li>
+          <li>
+            <a href="/about-us.html">
+              <i class="fa fa-users"></i>
+              &nbsp;About Us
+            </a>
+          </li>
+          <li>
+            <a href="/blog.html">
+              <i class="fa fa-comments"></i>
+              &nbsp;Blog
+            </a>
+          </li>
+          <li>
+            <a href="/contact-us.html">
+              <i class="fa fa-envelope"></i>
+              &nbsp;Contact Us
+            </a>
+          </li>
         </ul>
       </nav>
 
-      <div class="st-content"><!-- this is the wrapper for the content -->
-          
-          <div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+      <div class="st-content"> <!-- regular content wrapper -->
+
+          <div class="st-content-inner"> <!-- extra div for emulating position:fixed of the menu -->
 
           <div class="banner homeSection">
 
             <header>
 
-              <div class="container"> 
+              <div class="container">
 
                 <a id="logoText" href="/">
                   <img id="logoImage" src="{% static "images/logo-balloon.png" %}"
@@ -55,19 +83,22 @@
                 </div>
 
                 <ul id="ultraTopNav">
-                  <li><a href="/about-us.html">About Us</a></li>
-                  <li><a href="/contact-us.html">Contact Us</a></li>
+                  <li><a href="/bill-listing.html">Bills</a></li>
+                  <li><a href="/about-us.html">About</a></li>
+                  <li><a href="/blog.html">Blog</a></li>
+                  <li><a href="/contact-us.html">Contact</a></li>
+                  <li><a id="demo" href="javascript:void(0);">View Demo</a></li>
                 </ul>
 
               </div>
 
             </header>
-          
+
 
             <!-- Content -->
             <div class="container bannerContent">
               <div id="page1" class="page">
-                <h1>{{ copy }}</h1>
+                <h1>{{ headline }}</h1>
 
                 <form action="/bills/" method="post" class="form">
                   <!-- Placeholder for being able to
@@ -75,13 +106,13 @@
                   <span id="legis-session">Find a bill <em>Texas Session 84R</em></span>
 
                   {% csrf_token %}
-                  
+
                   <!-- HARDCODE WARNING -->
                   <input type="hidden" name="session" value="84R" />
 
                   <div class="formBody">
                     <!-- Dropdown to select where the bill originated: Senate or House -->
-                    <span id="legis-chamber">
+                    <span id="legis-chamber" data-step="1" data-intro="Choose senate or house">
                       <!-- Senate or House Bill:<br /> -->
                       <input type="radio" name="chamber_origin" checked="checked" value="S" id="SB" />
                       <label for="SB">Senate Bill</label>
@@ -91,7 +122,7 @@
                       </label>
                     </span>
 
-                    <span id="bill-number">
+                    <span id="bill-number" data-step="2" data-intro="Enter the bill number">
                       <input type="number" id="id_number" name="number" placeholder="Bill Number"
                       min="1" autofocus="autofocus" />
                     </span>
@@ -100,7 +131,7 @@
                       <button type="submit" class="btn btn-info">
                         <i class="fa fa-pencil"></i>
                         &nbsp;Annotate Bill!
-                      </button>  
+                      </button>
                     </span>
                   </div>
 
@@ -180,7 +211,7 @@
           </footer>
 
         </div><!-- /st-content-inner -->
-      
+
       </div><!-- /st-content -->
 
     </div> <!-- st-pusher -->
@@ -193,6 +224,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
   <script src="{% static "javascript/classie.js" %}"></script>
   <script src="{% static "javascript/sidebarEffects.js" %}"></script>
+  <script src="{% static "javascript/intro.js" %}"></script>
   <!-- <script src="{% static "lib/bootswatch.js" %}"></script> -->
 
 </body>

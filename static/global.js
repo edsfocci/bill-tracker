@@ -1,9 +1,7 @@
-
-
 /* -------------- nav click functionality ------------------- */
 
 $('.navbar-collapse a').click(function(e){
-	
+
 	var clickedLink = $(this);
 	var clickedLi = clickedLink.parent();
 	var lis = $('.navbar-collapse li');
@@ -70,7 +68,8 @@ function submitAnnotation(text)
 
 	submissionForm.style.visibility = "hidden";
 	lastClicked.style.backgroundColor = "inherit";
-	alert(annotationText + " submitted as annotation for sentence " + lastClicked.id + ".");
+	alert(annotationText + " submitted as annotation for sentence " +
+		lastClicked.id + ".");
 	text.value = "";
 
 }
@@ -85,7 +84,9 @@ if ( $('.billarea').length ) {
 
 	// init vars for annotation y pos calculations
 	var annotations = [];
-	var offset = 7; // about half of highlight height (this gets top of annotation to top of highlight)
+	// about half of highlight height
+	// (this gets top of annotation to top of highlight)
+	var offset = 7;
 	var basePos = $('.billarea').offset().top;
 
 }
@@ -121,11 +122,12 @@ function arrangeAnnotations() {
 
 }
 
-	
+
 
 
 // this is a custom tweak to the annotator.js library.
-// it's called from /static/annotatorjs/src/view_annotator.js line 231 when an annotation is created 
+// it's called from /static/annotatorjs/src/view_annotator.js line 231
+// when an annotation is created
 function placeNewAnnotation (newAnnotation) {
 
 	// first grab the newest highlight
@@ -150,16 +152,17 @@ function placeNewAnnotation (newAnnotation) {
 	var index = $('li.annotator-marginviewer-element').length - 1;
 	var highlightPos = highlight.offset().top;
 	var annotationSelector = '#submission #annotation-' + highlightId;
-	var highlightTop = highlightPos - basePos - offset;
+	// var highlightTop = highlightPos - basePos - offset;
+	var highlightTop = highlight[0].offsetTop + offset * 1.5;
 	var annotationHeight = $(annotationSelector).height();
 	var isCollision = false;
 	var targetTop = highlightTop;
 	var targetBot = highlightTop + annotationHeight;
 
-	console.log('highlightPos: ' + highlightPos);
-	console.log('basePos: ' + basePos);
-	console.log('offset: ' + offset);
-	console.log('highlightPos - basePos - offset: ' + targetTop);
+	// console.log('highlightPos: ' + highlightPos);
+	// console.log('basePos: ' + basePos);
+	// console.log('offset: ' + offset);
+	// console.log('highlightPos - basePos - offset: ' + targetTop);
 
 
 	testAnnotationCollision();
@@ -172,10 +175,11 @@ function placeNewAnnotation (newAnnotation) {
 				var testTop = testAnnotation.topY;
 				var testBot = testAnnotation.botY;
 
-				if ( (targetTop >= testTop) && (targetTop <= testBot) || (targetBot >= testTop) && (targetBot <= testBot) ) {
-					
+				if ( (targetTop >= testTop) && (targetTop <= testBot) ||
+					(targetBot >= testTop) && (targetBot <= testBot) ) {
+
 					isCollision = true;
-					targetTop = testBot + 15;
+					targetTop = testBot + offset;
 					targetBot = targetTop + annotationHeight;
 
 				}
@@ -184,29 +188,29 @@ function placeNewAnnotation (newAnnotation) {
 		}
 
 		if (!isCollision) {
-			
+
 			annotationTop = targetTop;
 
 		} else {
-			
+
 			isCollision = false;
 			testAnnotationCollision();
 
 		}
-		
+
 	}
-	
-	console.log('annotationTop: ' + annotationTop);
+
+	// console.log('annotationTop: ' + annotationTop);
 	$('#submission #annotation-' + highlightId).css('top', annotationTop + 'px');
-	
+
 	annotations.push({
 		id: highlightId,
 		highlightY: highlightTop,
 		annotationHeight: annotationHeight,
 		topY: annotationTop,
 		botY: annotationTop + annotationHeight
-	});	
-	
+	});
+
 
 }
 
@@ -218,8 +222,8 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 	var annotationTop = null;
 
 	if (index==0) {
-			
-		annotationTop = highlightTop + offset;	
+
+		annotationTop = highlightTop + offset;
 
 	} else {
 
@@ -230,11 +234,56 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		var prevTop = prevAnnotation.topY;
 		var prevBot = prevAnnotation.botY;
 
-		if ( (targetTop > prevTop) && (targetTop < prevBot) || (targetBot > prevTop) && (targetBot < prevBot) ) {
-			annotationTop = prevBot + 15;
-		} else {
-			annotationTop = targetTop + offset;
+		// console.log(annotations.length);
+
+		// there's a bug here
+		// this only checks against last annotation placed, not all already placed
+		// hence https://github.com/bill-tracker/bill-tracker/issues/171
+
+		var isCollision	= false;
+
+		testAnnotationCollision();
+
+		function testAnnotationCollision() {
+			for (var i=0; i<annotations.length; i++) {
+
+				if (!isCollision) {
+					var testAnnotation = annotations[i];
+					var testTop = testAnnotation.topY;
+					var testBot = testAnnotation.botY;
+
+					if ( (targetTop >= testTop) && (targetTop <= testBot) ||
+						(targetBot >= testTop) && (targetBot <= testBot) ) {
+
+						isCollision = true;
+						targetTop = testBot + offset;
+						targetBot = targetTop + annotationHeight;
+
+					}
+				}
+
+			}
+
+			if (!isCollision) {
+
+				annotationTop = targetTop + offset;
+
+			} else {
+
+				isCollision = false;
+				testAnnotationCollision();
+
+			}
+
 		}
+
+
+		// if ( (targetTop > prevTop) && (targetTop < prevBot) ||
+		// 	(targetBot > prevTop) && (targetBot < prevBot) ) {
+		// 	annotationTop = prevBot + 15;
+		// } else {
+		// 	annotationTop = targetTop + offset;
+		// }
 
 	}
 
@@ -246,7 +295,7 @@ function loadAnnotation(index,highlightId,highlightTop,annotationHeight) {
 		annotationHeight: annotationHeight,
 		topY: annotationTop,
 		botY: annotationTop + annotationHeight
-	});	
+	});
 
 }
 
@@ -376,3 +425,57 @@ $(document).ready(function() {
 	});
 });
 
+
+
+/* ------------ demo functionality -------------- */
+
+/* homepage demo (page 1) */
+if ( $('body.home').length) {
+
+	document.getElementById('demo').onclick = function() {
+
+		introJs().start();
+
+		// $('.introjs-nextpagebutton').css('border','1px solid red');
+
+		// introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+	  // 	window.location.href = '/demo-bill.html';
+		// });
+
+		// introJs().setOption('nextLabel', 'Next page').start().oncomplete(function() {
+		// 	console.log('hi');
+		// });
+	};
+
+}
+
+/* billpage demo (page 2) */
+
+if ( $('.demoBill').length) {
+
+	introJs().start();
+
+	var counter = 0;
+	$('a.introjs-button').click(function(){
+		counter++;
+		if (counter == 1) {
+				// console.log('counter: ' + counter);
+				$('.annotator-pencil').css('visibility','visible');
+		} else if (counter == 2) {
+			// console.log('counter: ' + counter);
+			$('.annotator-pencil').css('visibility','hidden');
+			$('.annotator-original').css('visibility','visible');
+		} else if (counter == 3) {
+			$('.annotator-original').css('visibility','hidden');
+			$('.annotator-marginviewer-element').css('visibility','visible');
+		}
+	});
+
+	// set the date in the example annotation to today's date & time
+	var now = new Date();
+	var month = now.getMonth() + 1;
+	var day = now.getDate();
+	var year = now.getFullYear();
+	$('.annotator-marginviewer-date').text(month + '/' + day + '/' + year);
+
+}

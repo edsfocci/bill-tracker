@@ -1,9 +1,11 @@
 *.pyc
 *.sqlite3
-ENV
-static/.sass-cache
+ENV*
+env*
+.sass-cache
 staticfiles
 
 */migrations/0*
 
+bill_tracker/mysecrets.py
 bill_tracker/emailsettings.py

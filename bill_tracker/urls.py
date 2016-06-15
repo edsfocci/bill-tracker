@@ -20,15 +20,20 @@ import annotation_app as annote_app
 
 
 urlpatterns = [
+  ### root routes
   url(r'^$', docs.views.home, name='home'),
   url(r'^about-us.html/', docs.views.about_us),
   url(r'^contact-us.html/', docs.views.contact_us),
+  url(r'^blog.html/', docs.views.blog),
+  url(r'^bill-listing.html/', docs.views.bill_listing),
+  url(r'^demo-bill.html/', docs.views.demo_bill),
   #url(r'^samplecontact/', docs.views.sample_contact),
 
+
+  ### annotation_app routes
   url(r'^bills/', include('annotation_app.routes.bills_routes')),
   # Deprecated
   url(r'^get_bill_list/$', annote_app.views_deprecated.get_bill_list),
-  url(r'^addbill/$', annote_app.controllers.bills_controller.pull_bill),
 
   url(r'^authors/', include('annotation_app.routes.authors_routes')),
   # Deprecated
@@ -41,5 +46,8 @@ urlpatterns = [
   url(r'^get_subject_bills/$', annote_app.views_deprecated.get_subject_bills),
 
   url(r'^annotations/', include('annotation_app.routes.annotations_routes')),
+
+
+  ### docs routes
   url(r'^docs/', include('docs.urls')),
 ]

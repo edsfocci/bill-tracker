@@ -17,5 +17,9 @@ from django.conf.urls import url
 from docs import views
 
 urlpatterns = [
-  url(r'^home/$', views.home, name='docs-home'),
+  # url(r'^home/$', views.home, name='docs-home'),
+
+
+  # Archived
+  url(r'throwback/', views.nick),
 ]

@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 '''
 EMAIL_USE_TLS = True
 EMAIL_HOST = EMAIL_HOST
-EMAIL_HOST_USERNAME = EMAIL_HOST_USERNAME 
+EMAIL_HOST_USERNAME = EMAIL_HOST_USERNAME
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = 587
 '''
@@ -84,10 +84,10 @@ USE_TZ = True
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.getenv('PRODUCTION'):
-  DEBUG = False
-else:
-  DEBUG = False
+# if os.getenv('PRODUCTION'):
+#   DEBUG = False
+# else:
+DEBUG = True
 
 
 if os.getenv('HEROKU'):
@@ -122,7 +122,8 @@ else: # LOCAL
   # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
   # SECURITY WARNING: keep the secret key used in production secret!
-  SECRET_KEY = 'z9(!-fqsuop(%d_0gf_*crh&98$(1+j4foae=-=n1jhi#mxh*u'
+  from bill_tracker import mysecrets
+  SECRET_KEY = mysecrets.django_secret
 
   ALLOWED_HOSTS = []
 
@@ -132,8 +133,12 @@ else: # LOCAL
 
   DATABASES = {
     'default': {
-      'ENGINE': 'django.db.backends.sqlite3',
-      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'bill_tracker',
+      'USER': 'bill_tracker',
+      'PASSWORD': mysecrets.psql_password,
+      'HOST': '127.0.0.1',
+      'PORT': '5432',
     }
   }
 
@@ -147,4 +152,3 @@ else: # LOCAL
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
   )
-  
